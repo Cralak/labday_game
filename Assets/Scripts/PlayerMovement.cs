@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
  
         controller.Move(velocity * Time.deltaTime);
  
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && Input.GetButtonDown("Jump") && !isCrouched)
         {
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
@@ -85,24 +85,26 @@ public class PlayerMovement : MonoBehaviour
             velocityY = -8f;
         }
 
-        if (controller.height >= 2f && Input.GetKeyDown("c"))
+        if (controller.height >= 2f && (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.LeftControl)))
         {
             isCrouched = true;
+            Speed = 4f;
         }
 
-        if (controller.height <= 1f && Input.GetKeyDown("c")) 
+        if (controller.height <= 1f && (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.LeftControl)))
         {
             isCrouched = false;
+            Speed = 6f;
         }
 
         if (isCrouched && controller.height > 1f )
         {
-            controller.height -= 0.01f;
+            controller.height -= 0.05f;
         }
 
         if (!isCrouched && controller.height < 2f)
         {
-            controller.height += 0.01f;
+            controller.height += 0.05f;
         }
     }
 }
