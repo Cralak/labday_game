@@ -85,24 +85,24 @@ public class PlayerMovement : MonoBehaviour
             velocityY = -8f;
         }
 
-        if (controller.height >= 2f && Input.GetKeyDown("c"))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             isCrouched = true;
         }
 
-        if (controller.height <= 1f && Input.GetKeyDown("c")) 
+        if (Input.GetKeyUp(KeyCode.LeftControl)) 
         {
             isCrouched = false;
         }
 
         if (isCrouched && controller.height > 1f )
         {
-            controller.height -= 0.01f;
+            controller.height -= 0.05f;
         }
 
         if (!isCrouched && controller.height < 2f)
         {
-            controller.height += 0.01f;
+            controller.height += 0.05f;
         }
     }
 }
