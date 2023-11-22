@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private bool isCrouched = false;
     [SerializeField] Transform playerCamera;
     [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
     [SerializeField] bool cursorLock = true;
@@ -18,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 6f;
     float velocityY;
     private bool isGrounded;
- 
+    private bool isCrouched = false;
+
     float cameraCap;
     Vector2 currentMouseDelta;
     Vector2 currentMouseDeltaVelocity;
@@ -84,7 +84,25 @@ public class PlayerMovement : MonoBehaviour
         {
             velocityY = -8f;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            isCrouched = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl)) 
+        {
+            isCrouched = false;
+        }
+
+        if (isCrouched && controller.height > 1f )
+        {
+            controller.height -= 0.05f;
+        }
+
+        if (!isCrouched && controller.height < 2f)
+        {
+            controller.height += 0.05f;
+        }
     }
-
-
 }
