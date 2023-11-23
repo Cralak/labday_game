@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
  
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
+            print("Jump");
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
  
@@ -87,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
+            print("Crouch");
             isCrouched = true;
         }
 

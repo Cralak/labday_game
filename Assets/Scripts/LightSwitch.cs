@@ -17,6 +17,7 @@ public class LightSwitch : MonoBehaviour
     if (Input.GetKeyDown("f"))
         {
             lght.enabled = !lght.enabled;
+            print("Torch");
         }
     }
 }
