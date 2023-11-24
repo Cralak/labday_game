@@ -19,9 +19,12 @@ public class CleLaser : MonoBehaviour
             laser.enabled = !laser.enabled;
         }
 
-        if (Time.frameCount % 5 == 0)
+        if (laser.enabled)
         {
-            laser.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0f, 1f);
+            if (Time.frameCount % 5 == 0)
+            {
+                laser.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0f, 1f);
+            }
         }
     }
 }
