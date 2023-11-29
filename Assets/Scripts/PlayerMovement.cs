@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField] float gravity = -30f;
     [SerializeField] Transform groundCheck;
-    [SerializeField] LayerMask ground;  
- 
+    [SerializeField] LayerMask ground; 
+    [SerializeField] LayerMask Pad;   
+
     public float jumpHeight = 6f;
     float velocityY;
     private bool isGrounded;
+    private bool isOnPad;
     private bool isCrouched = false;
 
     float cameraCap;
@@ -27,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 currentDir;
     Vector2 currentDirVelocity;
     Vector3 velocity;
- 
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -63,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
     void UpdateMove()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, ground);
+
+        isOnPad = Physics.CheckSphere(groundCheck.position, 0.2f, Pad);
  
         Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         targetDir.Normalize();
@@ -79,6 +83,12 @@ public class PlayerMovement : MonoBehaviour
         {
             print("Jump");
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        if (isOnPad)
+        {
+            print("JumpPad");
+            velocityY = Mathf.Sqrt(jumpHeight * -40f * gravity);
         }
  
         if(isGrounded! && controller.velocity.y < -1f)
