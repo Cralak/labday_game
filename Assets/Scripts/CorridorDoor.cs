@@ -5,11 +5,13 @@ using UnityEngine;
 public class CorridorDoor : MonoBehaviour
 {
     bool isTouching;
+    bool close;
     
     // Start is called before the first frame update
     void Start()
     {
         isTouching = false;
+        close = true;
     }
 
     // Update is called once per frame
@@ -17,7 +19,16 @@ public class CorridorDoor : MonoBehaviour
     {
         if (isTouching && Input.GetKeyDown("e"))
         {
-            transform.position += new Vector3(1f, 0f, 0f);
+            if (close)
+            {
+                transform.position += new Vector3(5f, 0f, 3.5f);
+                close = !close;
+            }
+            else
+            {
+                transform.position += new Vector3(-5f, 0f, -3.5f);
+                close = !close;
+            }
         }
     }
 
