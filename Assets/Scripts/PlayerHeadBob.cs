@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerHeadBob : MonoBehaviour
 {
-    [SerializeField, Range(0, 0.1f)] float amplitudeX;
-    [SerializeField, Range(0, 0.1f)] float amplitudeY;
-    [SerializeField, Range(0, 30)] float frequency;
+    [SerializeField, Range(0, 0.1f)] float amplitudeX = 0.003f;
+    [SerializeField, Range(0, 0.1f)] float amplitudeY = 0.001f;
+    [SerializeField, Range(0, 30)] float frequency = 10f;
     [SerializeField] Transform playerCamera;
     [SerializeField] Transform cameraHolder;
 
