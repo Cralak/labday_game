@@ -11,7 +11,8 @@ public class ObjectInteract : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision == player){
+        if (collision == player)
+        {
             isColliding = true;
         }
     }

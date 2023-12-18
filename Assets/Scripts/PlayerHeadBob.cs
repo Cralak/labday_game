@@ -13,10 +13,12 @@ public class PlayerHeadBob : MonoBehaviour
     float toggleSpeed = 3.0f;
     Vector3 startPos;
     CharacterController controller;
+    AudioSource footstepsSound;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        footstepsSound = GetComponent<AudioSource>();
         startPos = playerCamera.localPosition;
     }
 
@@ -41,6 +43,11 @@ public class PlayerHeadBob : MonoBehaviour
         if (speed > toggleSpeed && controller.isGrounded)
         {
             playerCamera.localPosition += FootStepMotion();
+            footstepsSound.UnPause();
+        }
+        else
+        {
+            footstepsSound.Pause();
         }
     }
 
