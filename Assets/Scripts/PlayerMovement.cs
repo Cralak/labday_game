@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField] float gravity = -30f;
     [SerializeField] Transform groundCheck;
-    [SerializeField] LayerMask ground;  
+    [SerializeField] LayerMask ground;
+    [SerializeField] LayerMask jumpBlock;
  
     public float jumpHeight = 6f;
     float velocityY;
@@ -26,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     CharacterController controller;
     Vector2 currentDir;
     Vector2 currentDirVelocity;
-    Vector3 velocity;
  
     void Start()
     {
@@ -74,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * Speed + Vector3.up * velocityY;
  
         controller.Move(velocity * Time.deltaTime);
+
+        if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock))
+        {
+            velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
  
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
