@@ -11622,7 +11622,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 1024
-  Pad:
+  jumpBlock:
     serializedVersion: 2
     m_Bits: 2048
   jumpHeight: 6
@@ -26981,7 +26981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  player: {fileID: 759782713}
+  player: {fileID: 0}
 --- !u!135 &1742446285
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -31616,7 +31616,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004767455}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
