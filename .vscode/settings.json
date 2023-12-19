@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "labday_game.sln"
+    "dotnet.defaultSolution": "labday_game.sln",
+    "dotnet.preferCSharpExtension": true
 }
