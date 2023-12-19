@@ -1,36 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class ObjectInteract : MonoBehaviour
 {
-    [SerializeField] CharacterController player;
+    [SerializeField]GameObject player;
     bool isColliding = false;
+    Inventory2 inventoryScript;
 
-
-    void OnTriggerEnter(Collider collision)
+    void Start()
     {
-        if (collision == player)
+        inventoryScript = player.GetComponent<Inventory2>();
+    }
+    
+    void Update()
+    {
+        if (isColliding && Input.GetKeyDown("e"))
+        {
+            inventoryScript.inventory.Add(gameObject);
+            GetComponent<Renderer>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+            isColliding = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject == player)
         {
             isColliding = true;
         }
     }
 
-    void OnTriggerExit(Collider collision)
+    void OnTriggerExit(Collider collider)
     {
-        if (collision == player)
+        if (collider.gameObject == player)
         {
             isColliding = false;
-        }
-    }
-
-    void Update()
-    {
-        if (isColliding && Input.GetKeyDown("e"))
-        {
-            print("Ludwig, trop beau");
-            //Destroy(gameObject);
         }
     }
 }
