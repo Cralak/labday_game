@@ -35,6 +35,7 @@ public class Chess : MonoBehaviour
             {
                 isPlaying = true;
                 playerMovement.enabled = false;
+                Cursor.lockState = CursorLockMode.None;
                 camera.transform.DOMove(new Vector3(-12.31f, 1.75f, 12.7f ), 2);
                 camera.transform.DORotate(new Vector3(90f, 0f, 0f ), 2);
             }
@@ -66,5 +67,7 @@ public class Chess : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         playerMovement.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked; 
+
     }
 }
