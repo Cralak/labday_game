@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 6f;
     float velocityY;
     private bool isGrounded;
+    private bool isOnPad;
     private bool isCrouched = false;
 
     float cameraCap;
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
+            print("Jump");
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
@@ -92,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
+            print("Crouch");
             isCrouched = true;
         }
 
