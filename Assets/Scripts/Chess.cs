@@ -12,7 +12,7 @@ public class Chess : MonoBehaviour
 
     PlayerMovement playerMovement;
     bool isTouching;
-    bool isPlaying;
+    public bool isPlaying;
 
     // Start is called before the first frame update
     void Start()

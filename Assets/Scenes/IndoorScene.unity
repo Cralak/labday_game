@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 221717047}
   - component: {fileID: 221717046}
   m_Layer: 0
-  m_Name: ChessLignt
+  m_Name: ChessLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1575,7 +1575,6 @@ GameObject:
   - component: {fileID: 759782716}
   - component: {fileID: 759782717}
   - component: {fileID: 759782715}
-  - component: {fileID: 759782719}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1674,18 +1673,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &759782719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 759782712}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eddcb227cfd34a7eb16a795591187d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &884881275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3151be68500cb47e195febcb9acab3b4, type: 3}
@@ -2028,7 +2015,7 @@ GameObject:
   - component: {fileID: 1263502064}
   - component: {fileID: 1263502065}
   m_Layer: 0
-  m_Name: Press "e" to play
+  m_Name: PressToPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2085,6 +2072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 759782712}
   camera: {fileID: 939477231}
+  isPlaying: 0
 --- !u!1 &1382662463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,7 +2616,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004767455}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
