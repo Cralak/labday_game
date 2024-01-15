@@ -1093,8 +1093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c10609fe6ce4742b7986fc7da0df71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitudeX: 0.003
-  amplitudeY: 0.001
+  amplitudeX: 0.02
+  amplitudeY: 0.01
   frequency: 10
   playerCamera: {fileID: 94621875}
   cameraHolder: {fileID: 2135695055}

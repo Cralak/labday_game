@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask jumpBlock;
+    [SerializeField] AudioSource footsteps;
 
     public float jumpHeight = 6f;
     float velocityY;
@@ -24,13 +25,14 @@ public class PlayerMovement : MonoBehaviour
     float cameraCap;
     Vector2 currentMouseDelta;
     Vector2 currentMouseDeltaVelocity;
-
     CharacterController controller;
     Vector2 currentDir;
     Vector2 currentDirVelocity;
 
     void Start()
     {
+        footsteps.Play();
+
         controller = GetComponent<CharacterController>();
 
         if (cursorLock)
@@ -75,6 +77,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * Speed + Vector3.up * velocityY;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if (velocity != Vector3.zero && isGrounded) {
+            footsteps.UnPause();
+        } else {
+            footsteps.Pause();
+        }
 
         if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock))
         {
