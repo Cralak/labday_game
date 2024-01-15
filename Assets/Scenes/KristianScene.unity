@@ -1124,6 +1124,7 @@ MonoBehaviour:
   jumpBlock:
     serializedVersion: 2
     m_Bits: 2048
+  footsteps: {fileID: 674951889}
   jumpHeight: 6
 --- !u!143 &674951887
 CharacterController:
@@ -1300,6 +1301,7 @@ MonoBehaviour:
   inventory: []
   cross: {fileID: 2800000, guid: 2bf714c0b6f8b2244a83bc12d942a73d, type: 3}
   cube: {fileID: 2800000, guid: 0174e4ddd9d37ad43b42104de057c66a, type: 3}
+  inventoryCanvas: {fileID: 605328104}
 --- !u!64 &700017923
 MeshCollider:
   m_ObjectHideFlags: 0

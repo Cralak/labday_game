@@ -6,11 +6,11 @@ public class ObjectInteract : MonoBehaviour
 {
     [SerializeField]GameObject player;
     bool isColliding = false;
-    Inventory2 inventoryScript;
+    Inventory inventoryScript;
 
     void Start()
     {
-        inventoryScript = player.GetComponent<Inventory2>();
+        inventoryScript = player.GetComponent<Inventory>();
     }
     
     void Update()
