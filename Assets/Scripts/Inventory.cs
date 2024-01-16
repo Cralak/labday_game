@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     public List<GameObject> inventory = new List<GameObject>();
     [SerializeField] Texture2D cross;
     [SerializeField] Texture2D cube;
+    [SerializeField] Texture2D flashlight;
     [SerializeField] GameObject inventoryCanvas;
 
     List<RawImage> inventorySlotsContent = new List<RawImage>();
@@ -17,7 +18,8 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        object2D[GameObject.Find("Cube")] = cube;
+        // object2D[GameObject.Find("Cube (1)")] = cube;
+        object2D[GameObject.Find("Flashlight")] = flashlight;
         // object2D[GameObject.Find("Cube (2)")] = cube;
 
         inventoryScreen = inventoryCanvas.GetComponent<Canvas>();

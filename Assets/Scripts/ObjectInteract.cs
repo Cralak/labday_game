@@ -18,9 +18,10 @@ public class ObjectInteract : MonoBehaviour
         if (isColliding && Input.GetKeyDown("e"))
         {
             inventoryScript.inventory.Add(gameObject);
-            GetComponent<Renderer>().enabled = false;
+            transform.localScale = new Vector3(0, 0, 0);
             GetComponent<Collider>().enabled = false;
             isColliding = false;
+            enabled = false;
         }
     }
 

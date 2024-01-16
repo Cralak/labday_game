@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
-using TMPro;
-using UnityEditor;
 
 public class Chess : MonoBehaviour
 {
