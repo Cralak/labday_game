@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        // object2D[GameObject.Find("Cube (1)")] = cube;
+        object2D[GameObject.Find("Cube")] = cube;
         // object2D[GameObject.Find("Cube (2)")] = cube;
 
         inventoryScreen = inventoryCanvas.GetComponent<Canvas>();

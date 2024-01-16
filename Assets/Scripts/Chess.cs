@@ -179,7 +179,7 @@ public class Chess : MonoBehaviour
                         pieceWhite3.transform.DOMoveZ(13.022f, 2f);
 
                         yield return new WaitForSeconds(1.7f);
-                        
+
                         pieceBlack4.GetComponent<Renderer>().enabled = false;
 
                         yield return new WaitForSeconds(0.3f);

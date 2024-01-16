@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectInteract : MonoBehaviour
 {
-    [SerializeField]GameObject player;
+    [SerializeField] GameObject player;
     bool isColliding = false;
     Inventory inventoryScript;
 
@@ -12,7 +12,7 @@ public class ObjectInteract : MonoBehaviour
     {
         inventoryScript = player.GetComponent<Inventory>();
     }
-    
+
     void Update()
     {
         if (isColliding && Input.GetKeyDown("e"))

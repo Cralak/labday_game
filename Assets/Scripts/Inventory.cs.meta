@@ -5,7 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - cross: {fileID: 2800000, guid: 2bf714c0b6f8b2244a83bc12d942a73d, type: 3}
-  - cube: {fileID: 2800000, guid: d2b1469102e84dc46b3124e2a5132584, type: 3}
+  - cube: {fileID: 2800000, guid: 0174e4ddd9d37ad43b42104de057c66a, type: 3}
+  - inventoryCanvas: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
