@@ -26,6 +26,7 @@ public class Chess : MonoBehaviour
     GameObject pieceBlack3;
     [SerializeField]
     GameObject pieceBlack4;
+
     Camera componentCamera;
     PlayerMovement playerMovement;
     bool isTouching;
