@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (targetDir != Vector2.zero && isGrounded)
+        if (Vector2.Distance(new Vector2(velocity.x, velocity.z), Vector2.zero) > 0.3f && isGrounded)
         {
             footsteps.UnPause();
         }

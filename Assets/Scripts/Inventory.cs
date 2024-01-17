@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public List<GameObject> inventory = new List<GameObject>();
 
+    [SerializeField] Canvas UI;
     [SerializeField] Texture2D cross;
     [SerializeField] Texture2D cube;
     [SerializeField] GameObject flashlightObject;
@@ -38,6 +39,7 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             isOpened = !isOpened;
+            UI.enabled = !UI.enabled;
         }
 
         if (isOpened)
