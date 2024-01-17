@@ -8,6 +8,7 @@ public class Lightning : MonoBehaviour
     [SerializeField] float lightningTime = 0.05f;
     AudioSource lightningSound;
     Light lightningLight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,7 @@ public class Lightning : MonoBehaviour
             lightningSound.Play();
             yield return new WaitForSeconds(0.1f);
             lightningLight.enabled = false;
-            for(int i = 0; i<3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 yield return new WaitForSeconds(lightningTime);
                 lightningLight.enabled = true;
