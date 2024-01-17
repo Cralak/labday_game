@@ -4,34 +4,52 @@ using UnityEngine;
 
 public class Lightcorridor : MonoBehaviour
 {
-    bool enabled = true;
-    Light light;
+    [SerializeField] float interval = 0.3f;
+
+    Light lightComponent;
+    AudioSource lightSound;
+
     // Start is called before the first frame update
     void Start()
     {
-        light = GetComponent<Light>();
+        lightComponent = GetComponent<Light>();
+        lightSound = GetComponent<AudioSource>();
+        lightSound.Play();
+        StartCoroutine(LightCycle(interval));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.frameCount % 10 == 0 && enabled)
+        lightSound.volume = PlayerPrefs.GetFloat("SFX");
+    }
+
+    IEnumerator LightCycle(float interval)
+    {
+        yield return new WaitForSeconds(3f);
+        for (int i = 0; i < 10; i++)
         {
-            if (light.intensity == 1 && !light.enabled)
-            {
-                light. intensity = 3;
-            } 
-            else if (light.intensity == 3 && !light.enabled)
-            {
-                light.intensity = 1;
-            }            
-            
-            light.enabled = !light.enabled;
-        }
-        if (Time.frameCount % 600 == 0)
-        {
-            light.enabled = false;
-            enabled = !enabled;
+            yield return new WaitForSeconds(interval);
+
+            lightSound.UnPause();
+            lightComponent.intensity = 3;
+            lightComponent.enabled = true;
+
+            yield return new WaitForSeconds(interval);
+
+            lightSound.Pause();
+            lightComponent.enabled = false;
+
+            yield return new WaitForSeconds(interval);
+
+            lightSound.UnPause();
+            lightComponent.intensity = 1;
+            lightComponent.enabled = true;
+
+            yield return new WaitForSeconds(interval);
+
+            lightSound.Pause();
+            lightComponent.enabled = false;
         }
     }
 }
