@@ -30,7 +30,7 @@ public class Chess : MonoBehaviour
     Camera componentCamera;
     PlayerMovement playerMovement;
     bool isTouching;
-    bool isPlaying;
+    public bool isPlaying;
     bool isSwitching;
     GameObject square;
     String lastClicked;
