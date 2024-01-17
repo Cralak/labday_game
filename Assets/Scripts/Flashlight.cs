@@ -19,16 +19,9 @@ public class Flashlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inventoryScript.inventory.Contains(gameObject))
+        if (Input.GetKeyDown("f"))
         {
-            transform.parent = playerCamera.transform;
-            transform.localScale = new Vector3(1, 1, 1);
-            transform.localRotation = Quaternion.identity;
-            transform.localPosition = new Vector3(0.4f, -0.3f, 0.2f);
-            if (Input.GetKeyDown("f"))
-            {
-                lightComponent.enabled = !lightComponent.enabled;
-            }
+            lightComponent.enabled = !lightComponent.enabled;
         }
     }
 }
