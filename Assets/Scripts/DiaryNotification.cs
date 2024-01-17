@@ -7,14 +7,16 @@ using UnityEngine.UI;
 public class DiaryNotification : MonoBehaviour
 {
     [SerializeField] Diary diary;
-    [SerializeField] TMP_Text number;
 
+    TMP_Text number;
     Image dot;
 
     // Start is called before the first frame update
     void Start()
     {
         dot = GetComponentInChildren<Image>();
+        number = GetComponentInChildren<TMP_Text>();
+
     }
 
     // Update is called once per frame
@@ -23,12 +25,12 @@ public class DiaryNotification : MonoBehaviour
         if (diary.events.Count == 0)
         {
             dot.enabled = false;
-            number.SetText("");
+            number.text = "";
         }
         else
         {
             dot.enabled = true;
-            number.SetText(diary.events.Count.ToString());
+            number.text = diary.events.Count.ToString();
         }
     }
 }
