@@ -27,10 +27,11 @@ public class Chess : MonoBehaviour
     [SerializeField]
     GameObject pieceBlack4;
 
+    public bool isPlaying;
+
     Camera componentCamera;
     PlayerMovement playerMovement;
     bool isTouching;
-    public bool isPlaying;
     bool isSwitching;
     GameObject square;
     String lastClicked;
