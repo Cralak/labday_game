@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class LockedWithKey : MonoBehaviour
@@ -7,33 +8,36 @@ public class LockedWithKey : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject key;
 
-    bool isTouching;
+    AudioSource doorNoise;
+    bool isColliding;
     Inventory inventoryScript;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        isTouching = false;
+        isColliding = false;
         inventoryScript = player.GetComponent<Inventory>();
+        doorNoise = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isTouching && Input.GetKeyDown("e"))
+        if (isColliding && Input.GetKeyDown("e") && inventoryScript.inventory.Contains(key))
         {
             inventoryScript.inventory.Remove(key);
-            transform.position += new Vector3(5f, 0f, 3.5f);
+            doorNoise.Play();
+            transform.DOMove(transform.position + new Vector3(5f, 0f, 3.5f), 5f);
         }
     }
 
-    void OnTriggerEnter(Collider collision)    
+    void OnTriggerEnter(Collider collision)
     {
-        isTouching = true;
+        isColliding = true;
     }
 
-    void OnTriggerExit(Collider collision)   
+    void OnTriggerExit(Collider collision)
     {
-        isTouching = false;
+        isColliding = false;
     }
 }

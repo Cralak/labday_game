@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask jumpBlock;
-    [SerializeField] AudioSource footsteps;
+    AudioSource footsteps;
 
     public float jumpHeight = 6f;
     float velocityY;
@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        footsteps = GetComponent<AudioSource>();
         footsteps.Play();
 
         controller = GetComponent<CharacterController>();
