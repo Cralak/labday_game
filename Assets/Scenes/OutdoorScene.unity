@@ -12635,6 +12635,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6e29990d37045168b8960687c88695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
+  lightComponent: {fileID: 0}
 --- !u!1 &373051003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6126423550958121854, guid: 424365dfe65694c3a8c3dc5e86c97807, type: 3}
@@ -67761,7 +67764,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004767455}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
