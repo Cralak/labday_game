@@ -21,7 +21,7 @@ public class Lightcorridor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        lightSound.volume = PlayerPrefs.GetFloat("SFX");
     }
 
     IEnumerator LightCycle(float interval)

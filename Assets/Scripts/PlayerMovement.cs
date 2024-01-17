@@ -29,6 +29,14 @@ public class PlayerMovement : MonoBehaviour
     Vector2 currentDir;
     Vector2 currentDirVelocity;
 
+    void Awake()
+    {
+        if (!PlayerPrefs.HasKey("SFX"))
+        {
+            PlayerPrefs.SetFloat("SFX", 1);
+        }
+    }
+
     void Start()
     {
         footsteps = GetComponent<AudioSource>();
@@ -45,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        footsteps.volume = PlayerPrefs.GetFloat("SFX");
         UpdateMouse();
         UpdateMove();
     }

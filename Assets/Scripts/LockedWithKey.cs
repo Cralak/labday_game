@@ -23,6 +23,7 @@ public class LockedWithKey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        doorNoise.volume = PlayerPrefs.GetFloat("SFX");
         if (isColliding && Input.GetKeyDown("e") && inventoryScript.inventory.Contains(key))
         {
             inventoryScript.inventory.Remove(key);

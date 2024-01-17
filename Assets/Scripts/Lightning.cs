@@ -20,7 +20,7 @@ public class Lightning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        return;
+        lightningSound.volume = PlayerPrefs.GetFloat("SFX");
     }
 
     private IEnumerator Flash(float interval)
