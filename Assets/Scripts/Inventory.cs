@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public List<GameObject> inventory = new List<GameObject>();
+
     [SerializeField] Texture2D cross;
     [SerializeField] Texture2D cube;
-    [SerializeField] Texture2D flashlight;
+    [SerializeField] GameObject flashlightObject;
+    [SerializeField] GameObject keyObject;
+    [SerializeField] Texture2D flashlight2D;
+    [SerializeField] Texture2D key2D;
     [SerializeField] GameObject inventoryCanvas;
 
     List<RawImage> inventorySlotsContent = new List<RawImage>();
@@ -18,9 +22,8 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        // object2D[GameObject.Find("Cube (1)")] = cube;
-        object2D[GameObject.Find("Flashlight")] = flashlight;
-        // object2D[GameObject.Find("Cube (2)")] = cube;
+        object2D[flashlightObject] = flashlight2D;
+        object2D[keyObject] = key2D;
 
         inventoryScreen = inventoryCanvas.GetComponent<Canvas>();
         for (int i = 0; i < 6; i++)
