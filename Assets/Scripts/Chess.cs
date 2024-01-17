@@ -34,7 +34,7 @@ public class Chess : MonoBehaviour
     bool isTouching;
     bool isSwitching;
     GameObject square;
-    String lastClicked;
+    string lastClicked;
     bool firstMoveDone;
     bool secondMoveDone;
 
