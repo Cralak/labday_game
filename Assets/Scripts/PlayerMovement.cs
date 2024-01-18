@@ -9,32 +9,28 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool cursorLock = true;
     [SerializeField] float mouseSensitivity = 3.5f;
     [SerializeField] float Speed = 6.0f;
+    [SerializeField] float jumpHeight = 6f;
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField] float gravity = -30f;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask jumpBlock;
-    AudioSource footsteps;
 
-    public float jumpHeight = 6f;
-    float velocityY;
-    private bool isGrounded;
-    private bool isOnPad;
-    private bool isCrouched = false;
-
-    float cameraCap;
     Vector2 currentMouseDelta;
     Vector2 currentMouseDeltaVelocity;
     CharacterController controller;
     Vector2 currentDir;
     Vector2 currentDirVelocity;
+    AudioSource footsteps;
+    float velocityY;
+    bool isGrounded;
+    bool isOnPad;
+    bool isCrouched = false;
+    float cameraCap;
 
     void Awake()
     {
-        if (!PlayerPrefs.HasKey("SFX"))
-        {
-            PlayerPrefs.SetFloat("SFX", 1);
-        }
+        if (!PlayerPrefs.HasKey("SFX")) PlayerPrefs.SetFloat("SFX", 1);
     }
 
     void Start()
@@ -88,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (targetDir != Vector2.zero && isGrounded)
+        if (Vector2.Distance(new Vector2(velocity.x, velocity.z), Vector2.zero) > 0.3f && isGrounded)
         {
             footsteps.UnPause();
         }
@@ -104,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            print("Jump");
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
@@ -115,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            print("Crouch");
             isCrouched = true;
         }
 
