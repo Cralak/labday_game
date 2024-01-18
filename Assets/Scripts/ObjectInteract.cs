@@ -27,17 +27,11 @@ public class ObjectInteract : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject == player)
-        {
-            isColliding = true;
-        }
+        if (collider.gameObject == player) isColliding = true;
     }
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject == player)
-        {
-            isColliding = false;
-        }
+        if (collider.gameObject == player) isColliding = false;
     }
 }

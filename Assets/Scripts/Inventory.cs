@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public List<GameObject> inventory = new List<GameObject>();
 
+    [SerializeField] Canvas UI;
     [SerializeField] Texture2D cross;
     [SerializeField] Texture2D cube;
     [SerializeField] GameObject flashlightObject;
@@ -38,28 +39,16 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             isOpened = !isOpened;
+            UI.enabled = !UI.enabled;
         }
 
-        if (isOpened)
-        {
-            displayInventory();
-        }
-
+        if (isOpened) displayInventory();
         inventoryScreen.enabled = isOpened;
     }
 
     void displayInventory()
     {
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            inventorySlotsContent[i].texture = object2D[inventory[i]];
-        }
-
-        for (int i = inventory.Count; i < 6; i++)
-        {
-            inventorySlotsContent[i].texture = cross;
-        }
-
-
+        for (int i = 0; i < inventory.Count; i++) inventorySlotsContent[i].texture = object2D[inventory[i]];
+        for (int i = inventory.Count; i < 6; i++) inventorySlotsContent[i].texture = cross;
     }
 }

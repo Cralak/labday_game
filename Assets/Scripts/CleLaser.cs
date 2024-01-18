@@ -14,17 +14,7 @@ public class CleLaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("l"))
-        {
-            laser.enabled = !laser.enabled;
-        }
-
-        if (laser.enabled)
-        {
-            if (Time.frameCount % 5 == 0)
-            {
-                laser.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0f, 1f);
-            }
-        }
+        if (Input.GetKeyDown("l")) laser.enabled = !laser.enabled;
+        if (laser.enabled && Time.frameCount % 5 == 0) laser.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0f, 1f);
     }
 }
