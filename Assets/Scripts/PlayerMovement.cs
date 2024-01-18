@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Transform playerCamera;
-    [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
-    [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
+    [SerializeField, Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
+    [SerializeField, Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField, Range(0, 0.1f)] float bobbingX = 0.001f;
     [SerializeField, Range(0, 0.1f)] float bobbingY = 0.003f;
     [SerializeField, Range(0, 30)] float frequency = 10.0f;
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (Vector2.Distance(new Vector2(velocity.x, velocity.z), Vector2.zero) > 0.2f && isGrounded)
+        if (Vector2.Distance(new Vector2(velocity.x, velocity.z), Vector2.zero) > 0.3f && isGrounded)
         {
             playerCamera.localPosition += new Vector3(Mathf.Cos(Time.time * frequency / 2.0f) * bobbingX * 2.0f, Mathf.Sin(Time.time * frequency) * bobbingY, 0.0f);
             footsteps.UnPause();
@@ -115,13 +115,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             isCrouched = true;
-            speed = 0.3f;
+            speed = 3.0f;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             isCrouched = false;
-            speed = 0.6f;
+            speed = 6.0f;
         }
 
         if (isCrouched && controller.height > 1.0f)

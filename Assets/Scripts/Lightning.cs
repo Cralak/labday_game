@@ -6,9 +6,11 @@ public class Lightning : MonoBehaviour
 {
     [SerializeField] float interval = 5.0f;
     [SerializeField] float lightningTime = 0.05f;
+    [SerializeField] AudioClip lightningSound;
+
+    readonly List<AudioSource> lightnings = new();
 
     Diary diary;
-    AudioSource lightningSound;
     Light lightningLight;
 
     // Start is called before the first frame update
@@ -16,14 +18,24 @@ public class Lightning : MonoBehaviour
     {
         diary = GameObject.Find("Diary").GetComponent<Diary>();
         lightningLight = GetComponent<Light>();
-        lightningSound = GetComponent<AudioSource>();
+
+        for (byte i = 0; i < 5; i++)
+        {
+            AudioSource lightning = gameObject.AddComponent<AudioSource>();
+            lightning.clip = lightningSound;
+            lightnings.Add(lightning);
+        }
+
         StartCoroutine(Flash(interval));
     }
 
     // Update is called once per frame
     void Update()
     {
-        lightningSound.volume = PlayerPrefs.GetFloat("SFX");
+        for (byte i = 0; i < 5; i++)
+        {
+            lightnings[i].volume = PlayerPrefs.GetFloat("SFX");
+        }
     }
 
     private IEnumerator Flash(float interval)
@@ -35,7 +47,7 @@ public class Lightning : MonoBehaviour
 
             lightningLight.intensity = 3.0f;
             lightningLight.enabled = true;
-            lightningSound.Play();
+            lightnings[3].Play();
 
             yield return new WaitForSeconds(0.1f);
 
@@ -45,7 +57,7 @@ public class Lightning : MonoBehaviour
                 yield return new WaitForSeconds(lightningTime);
 
                 lightningLight.enabled = true;
-                lightningSound.Play();
+                lightnings[i].Play();
 
                 yield return new WaitForSeconds(lightningTime);
 
@@ -54,7 +66,7 @@ public class Lightning : MonoBehaviour
             yield return new WaitForSeconds(lightningTime);
 
             lightningLight.enabled = true;
-            lightningSound.Play();
+            lightnings[4].Play();
 
             yield return new WaitForSeconds(lightningTime);
 
