@@ -6,9 +6,9 @@ using UnityEngine;
 public class OpenDoorWithKey : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] GameObject key;
-    [SerializeField] Diary diary;
 
+    Diary diary;
+    GameObject key;
     AudioSource doorNoise;
     bool isColliding;
     Inventory inventoryScript;
@@ -16,19 +16,22 @@ public class OpenDoorWithKey : MonoBehaviour
     // Start is called before the first frame update    
     void Start()
     {
-        isColliding = false;
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        key = GameObject.Find("Key");
         inventoryScript = player.GetComponent<Inventory>();
         doorNoise = GetComponent<AudioSource>();
+
+        isColliding = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         doorNoise.volume = PlayerPrefs.GetFloat("SFX");
-        if (isColliding && Input.GetKeyDown("e") && inventoryScript.inventory.Contains(key))
+        if (isColliding && Input.GetKeyDown(KeyCode.E) && inventoryScript.inventory.Contains(key))
         {
             inventoryScript.inventory.Remove(key);
-            transform.DOMove(transform.position + new Vector3(5f, 0f, 3.5f), 5f);
+            transform.DOMove(transform.position + new Vector3(5.0f, 0.0f, 3.5f), 5.0f);
             doorNoise.Play();
             diary.events.Add("rustyKey");
         }

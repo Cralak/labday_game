@@ -12,6 +12,7 @@ public class ArchEntrance : MonoBehaviour
     Image blackScreen;
     [SerializeField]
     Canvas canvas;
+
     bool isTouching;
     PlayerMovement playerMovement;
     Canvas text;
@@ -32,11 +33,10 @@ public class ArchEntrance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isTouching && Input.GetKeyDown("e"))
+        if(isTouching && Input.GetKeyDown(KeyCode.E))
         {
             playerMovement.enabled = false;
-            StartCoroutine(fakeScreen());
-            print("Oke");
+            StartCoroutine(FakeScreen());
         }
     }
 
@@ -44,7 +44,6 @@ public class ArchEntrance : MonoBehaviour
     {
         isTouching = true;
         text.enabled = true;
-        print("ArchTouch");
     }
 
     void OnTriggerExit()
@@ -53,7 +52,7 @@ public class ArchEntrance : MonoBehaviour
         text.enabled = false;
     }
 
-    IEnumerator fakeScreen()
+    IEnumerator FakeScreen()
     {
         for (float i = 0; i <= 1; i += 0.005f)
         {
@@ -65,7 +64,7 @@ public class ArchEntrance : MonoBehaviour
 
         player.transform.position= new Vector3(22, 1, 50);
 
-        for (float i = 1f; i >= 0; i -= 0.005f)
+        for (float i = 1.0f; i >= 0; i -= 0.005f)
         {
             Color c = blackScreen.color;
             c.a = i;

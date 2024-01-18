@@ -6,8 +6,8 @@ public class Lightcorridor : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] float interval = 0.3f;
-    [SerializeField] Diary diary;
 
+    Diary diary;
     Light lightComponent;
     AudioSource lightSound;
     bool hasStarted;
@@ -15,6 +15,7 @@ public class Lightcorridor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
         lightComponent = GetComponent<Light>();
         lightSound = GetComponent<AudioSource>();
         lightSound.Play();
@@ -26,7 +27,7 @@ public class Lightcorridor : MonoBehaviour
     void Update()
     {
         lightSound.volume = PlayerPrefs.GetFloat("SFX");
-        if (Vector3.Distance(transform.position, player.transform.position) < 10f && !hasStarted) StartCoroutine(LightCycle(interval));
+        if (Vector3.Distance(transform.position, player.transform.position) < 10.0f && !hasStarted) StartCoroutine(LightCycle(interval));
     }
 
     IEnumerator LightCycle(float interval)

@@ -15,7 +15,7 @@ public class ObjectInteract : MonoBehaviour
 
     void Update()
     {
-        if (isColliding && Input.GetKeyDown("e"))
+        if (isColliding && Input.GetKeyDown(KeyCode.E))
         {
             inventoryScript.inventory.Add(gameObject);
             transform.localScale = new Vector3(0, 0, 0);

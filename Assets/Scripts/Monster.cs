@@ -31,7 +31,7 @@ public class Monster : MonoBehaviour
 
         // face the target
         transform.LookAt(target);
-        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(0.0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
         // get the distance between the chaser and the target
         float distance = Vector3.Distance(transform.position, target.position);

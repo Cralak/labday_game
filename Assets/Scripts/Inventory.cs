@@ -5,28 +5,27 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public List<GameObject> inventory = new List<GameObject>();
+    public List<GameObject> inventory = new();
 
-    [SerializeField] Canvas UI;
     [SerializeField] Texture2D cross;
     [SerializeField] Texture2D cube;
-    [SerializeField] GameObject flashlightObject;
-    [SerializeField] GameObject keyObject;
-    [SerializeField] Texture2D flashlight2D;
     [SerializeField] Texture2D key2D;
-    [SerializeField] GameObject inventoryCanvas;
 
-    List<RawImage> inventorySlotsContent = new List<RawImage>();
-    Dictionary<GameObject, Texture2D> object2D = new Dictionary<GameObject, Texture2D>();
+    readonly List<RawImage> inventorySlotsContent = new();
+    readonly Dictionary<GameObject, Texture2D> object2D = new();
+
+    GameObject keyObject;
     bool isOpened = false;
-    Canvas inventoryScreen;
+    Canvas UI;
+    Canvas inventoryCanvas;
 
     void Start()
     {
-        object2D[flashlightObject] = flashlight2D;
-        object2D[keyObject] = key2D;
+        UI = GameObject.Find("UI").GetComponent<Canvas>();
+        inventoryCanvas = GameObject.Find("Inventory").GetComponent<Canvas>();
 
-        inventoryScreen = inventoryCanvas.GetComponent<Canvas>();
+        if (keyObject = GameObject.Find("Key")) object2D[keyObject] = key2D;
+
         for (int i = 0; i < 6; i++)
         {
             inventorySlotsContent.Add(GameObject.Find("InventorySlot" + i + "Content").GetComponent<RawImage>());
@@ -43,7 +42,7 @@ public class Inventory : MonoBehaviour
         }
 
         if (isOpened) displayInventory();
-        inventoryScreen.enabled = isOpened;
+        inventoryCanvas.enabled = isOpened;
     }
 
     void displayInventory()

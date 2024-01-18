@@ -6,15 +6,9 @@ public class Flashlight : MonoBehaviour
 {
     [SerializeField] Light lightComponent;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("f")) lightComponent.enabled = !lightComponent.enabled;
+        if (Input.GetKeyDown(KeyCode.F)) lightComponent.enabled = !lightComponent.enabled;
     }
 }

@@ -4,25 +4,38 @@ using UnityEngine;
 
 public class Lightning : MonoBehaviour
 {
-    [SerializeField] float interval = 5f;
+    [SerializeField] float interval = 5.0f;
     [SerializeField] float lightningTime = 0.05f;
-    [SerializeField] Diary diary;
+    [SerializeField] AudioClip lightningSound;
 
-    AudioSource lightningSound;
+    readonly List<AudioSource> lightnings = new();
+
+    Diary diary;
     Light lightningLight;
 
     // Start is called before the first frame update
     void Start()
     {
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
         lightningLight = GetComponent<Light>();
-        lightningSound = GetComponent<AudioSource>();
+
+        for (byte i = 0; i < 5; i++)
+        {
+            AudioSource lightning = gameObject.AddComponent<AudioSource>();
+            lightning.clip = lightningSound;
+            lightnings.Add(lightning);
+        }
+
         StartCoroutine(Flash(interval));
     }
 
     // Update is called once per frame
     void Update()
     {
-        lightningSound.volume = PlayerPrefs.GetFloat("SFX");
+        for (byte i = 0; i < 5; i++)
+        {
+            lightnings[i].volume = PlayerPrefs.GetFloat("SFX");
+        }
     }
 
     private IEnumerator Flash(float interval)
@@ -32,9 +45,9 @@ public class Lightning : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
 
-            lightningLight.intensity = 3f;
+            lightningLight.intensity = 3.0f;
             lightningLight.enabled = true;
-            lightningSound.Play();
+            lightnings[3].Play();
 
             yield return new WaitForSeconds(0.1f);
 
@@ -44,7 +57,7 @@ public class Lightning : MonoBehaviour
                 yield return new WaitForSeconds(lightningTime);
 
                 lightningLight.enabled = true;
-                lightningSound.Play();
+                lightnings[i].Play();
 
                 yield return new WaitForSeconds(lightningTime);
 
@@ -53,15 +66,15 @@ public class Lightning : MonoBehaviour
             yield return new WaitForSeconds(lightningTime);
 
             lightningLight.enabled = true;
-            lightningSound.Play();
+            lightnings[4].Play();
 
             yield return new WaitForSeconds(lightningTime);
 
-            lightningLight.intensity = 2f;
+            lightningLight.intensity = 2.0f;
 
             yield return new WaitForSeconds(lightningTime);
 
-            lightningLight.intensity = 1f;
+            lightningLight.intensity = 1.0f;
 
             yield return new WaitForSeconds(lightningTime);
 
@@ -71,7 +84,7 @@ public class Lightning : MonoBehaviour
 
             lightningLight.enabled = false;
 
-            if(firstTime)
+            if (firstTime)
             {
                 diary.events.Add("lightning");
                 firstTime = false;
