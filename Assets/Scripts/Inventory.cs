@@ -10,9 +10,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] Canvas UI;
     [SerializeField] Texture2D cross;
     [SerializeField] Texture2D cube;
-    [SerializeField] GameObject flashlightObject;
     [SerializeField] GameObject keyObject;
-    [SerializeField] Texture2D flashlight2D;
     [SerializeField] Texture2D key2D;
     [SerializeField] GameObject inventoryCanvas;
 
@@ -23,7 +21,6 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        object2D[flashlightObject] = flashlight2D;
         object2D[keyObject] = key2D;
 
         inventoryScreen = inventoryCanvas.GetComponent<Canvas>();
