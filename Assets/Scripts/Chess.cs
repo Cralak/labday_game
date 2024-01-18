@@ -21,6 +21,8 @@ public class Chess : MonoBehaviour
 
     Camera componentCamera;
     PlayerMovement playerMovement;
+    PlayerHeadBob playerHeadBob;
+    AudioSource footsteps;
     bool isTouching;
     bool isSwitching;
     GameObject square;
@@ -32,6 +34,8 @@ public class Chess : MonoBehaviour
     void Start()
     {
         playerMovement = player.GetComponent<PlayerMovement>();
+        playerHeadBob = player.GetComponent<PlayerHeadBob>();
+        footsteps = player.GetComponent<AudioSource>();
         componentCamera = mainCamera.GetComponent<Camera>();
         isTouching = false;
         isPlaying = false;
@@ -79,6 +83,7 @@ public class Chess : MonoBehaviour
 
         isSwitching = false;
         playerMovement.enabled = true;
+        playerHeadBob.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
 
     }
@@ -87,6 +92,8 @@ public class Chess : MonoBehaviour
     {
         isPlaying = true;
         playerMovement.enabled = false;
+        playerHeadBob.enabled = false;
+        footsteps.Pause();
         mainCamera.transform.DOMove(new Vector3(-12.31f, 1.75f, 12.7f), 2);
         mainCamera.transform.DORotate(new Vector3(90f, 0f, 0f), 2);
         isSwitching = true;

@@ -161,8 +161,8 @@ GameObject:
   - component: {fileID: 28603340}
   - component: {fileID: 28603342}
   - component: {fileID: 28603341}
-  - component: {fileID: 28603343}
   - component: {fileID: 28603344}
+  - component: {fileID: 28603343}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4652ea8a1f7d649e29c9b1152d823dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chessScript: {fileID: 1263502065}
   delay: 0.2
 --- !u!135 &28603344
 SphereCollider:
@@ -992,6 +993,7 @@ MonoBehaviour:
   cursorLock: 1
   mouseSensitivity: 1
   Speed: 6
+  jumpHeight: 6
   moveSmoothTime: 0.1
   gravity: -30
   groundCheck: {fileID: 1978048356}
@@ -1001,7 +1003,6 @@ MonoBehaviour:
   jumpBlock:
     serializedVersion: 2
     m_Bits: 2048
-  jumpHeight: 6
 --- !u!82 &119188231
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1169,7 +1170,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119188227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dd7526b85a08244d9f94cf4bfe575e4, type: 3}
   m_Name: 
@@ -1178,7 +1179,7 @@ MonoBehaviour:
   UI: {fileID: 0}
   cross: {fileID: 2800000, guid: 2bf714c0b6f8b2244a83bc12d942a73d, type: 3}
   cube: {fileID: 2800000, guid: 0174e4ddd9d37ad43b42104de057c66a, type: 3}
-  flashlightObject: {fileID: 0}
+  flashlightObject: {fileID: 74833007}
   keyObject: {fileID: 0}
   flashlight2D: {fileID: 0}
   key2D: {fileID: 0}
@@ -6850,8 +6851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6e29990d37045168b8960687c88695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  playerCamera: {fileID: 0}
   lightComponent: {fileID: 0}
 --- !u!108 &1177559393
 Light:
@@ -7563,7 +7562,7 @@ GameObject:
   - component: {fileID: 1263502064}
   - component: {fileID: 1263502065}
   m_Layer: 0
-  m_Name: Press "e" to play
+  m_Name: Press e to play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7618,6 +7617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80402c4c6d0ce403a9aa1f9d5d07c3d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaying: 0
   player: {fileID: 119188227}
   mainCamera: {fileID: 849048255}
   table: {fileID: 605566032}
@@ -7628,7 +7628,6 @@ MonoBehaviour:
   pieceBlack2: {fileID: 1753288175}
   pieceBlack3: {fileID: 1742106425}
   pieceBlack4: {fileID: 559295271}
-  isPlaying: 0
 --- !u!1 &1277169662 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4437131460270816839, guid: 3151be68500cb47e195febcb9acab3b4, type: 3}
@@ -7762,125 +7761,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312483373}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1402498363
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1402498367}
-  - component: {fileID: 1402498366}
-  - component: {fileID: 1402498365}
-  - component: {fileID: 1402498364}
-  - component: {fileID: 1402498368}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1402498364
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402498363}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1402498365
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402498363}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1402498366
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402498363}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1402498367
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402498363}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5671306, y: 0.491, z: 8.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1402498368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402498363}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3260066922a97584c90c5aaa728c6e93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 119188227}
 --- !u!1 &1423270257
 GameObject:
   m_ObjectHideFlags: 0
@@ -10676,4 +10556,3 @@ SceneRoots:
   - {fileID: 726908318}
   - {fileID: 1708258329}
   - {fileID: 428833534}
-  - {fileID: 1402498367}
