@@ -6,18 +6,21 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Transform playerCamera;
     [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
-    [SerializeField] bool cursorLock = true;
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
+    [SerializeField, Range(0, 0.1f)] float bobbingX = 0.001f;
+    [SerializeField, Range(0, 0.1f)] float bobbingY = 0.003f;
+    [SerializeField, Range(0, 30)] float frequency = 10.0f;
     [SerializeField] float gravity = -30.0f;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask jumpBlock;
 
+    CharacterController controller;
     Vector2 currentMouseDelta;
     Vector2 currentMouseDeltaVelocity;
-    CharacterController controller;
     Vector2 currentDir;
     Vector2 currentDirVelocity;
+    Vector3 startPos;
     AudioSource footsteps;
     float sensitivity;
     float speed = 6.0f;
@@ -35,16 +38,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        controller = GetComponent<CharacterController>();
         footsteps = GetComponent<AudioSource>();
         footsteps.Play();
 
-        controller = GetComponent<CharacterController>();
+        startPos = playerCamera.localPosition;
 
-        if (cursorLock)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = true;
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
     }
 
     void Update()
@@ -85,12 +86,14 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (Vector2.Distance(new Vector2(velocity.x, velocity.z), Vector2.zero) > 0.3f && isGrounded)
+        if (Vector2.Distance(new Vector2(velocity.x, velocity.z), Vector2.zero) > 0.2f && isGrounded)
         {
+            playerCamera.localPosition += new Vector3(Mathf.Cos(Time.time * frequency / 2.0f) * bobbingX * 2.0f, Mathf.Sin(Time.time * frequency) * bobbingY, 0.0f);
             footsteps.UnPause();
         }
         else
         {
+            playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, startPos, Time.deltaTime);
             footsteps.Pause();
         }
 
