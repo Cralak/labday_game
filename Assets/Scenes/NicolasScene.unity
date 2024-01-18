@@ -8336,7 +8336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 759782712}
   playerCamera: {fileID: 939477231}
-  lightComponent: {fileID: 0}
+  lightComponent: {fileID: 370595363}
 --- !u!1 &373051003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6126423550958121854, guid: 424365dfe65694c3a8c3dc5e86c97807, type: 3}
