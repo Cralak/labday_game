@@ -34,7 +34,6 @@ public class CorridorDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)    
     {
-        print("touch");
         isTouching = true;
     }
 

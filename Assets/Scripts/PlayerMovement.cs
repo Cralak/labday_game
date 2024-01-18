@@ -30,10 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        if (!PlayerPrefs.HasKey("SFX"))
-        {
-            PlayerPrefs.SetFloat("SFX", 1);
-        }
+        if (!PlayerPrefs.HasKey("SFX")) PlayerPrefs.SetFloat("SFX", 1);
     }
 
     void Start()
@@ -103,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            print("Jump");
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
@@ -114,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            print("Crouch");
             isCrouched = true;
         }
 

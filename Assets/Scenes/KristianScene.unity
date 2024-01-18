@@ -625,7 +625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &267308034
 Transform:
   m_ObjectHideFlags: 0
@@ -1012,7 +1012,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5ea46d11250463aad85e510fffc2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 674951884}
   interval: 1
+  diary: {fileID: 919177742}
 --- !u!82 &429096790
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1116,7 +1118,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429096787}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -1431,7 +1433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &567343777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1446,6 +1448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 5
   lightningTime: 0.05
+  diary: {fileID: 919177742}
 --- !u!82 &567343778
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1913,7 +1916,6 @@ GameObject:
   - component: {fileID: 674951886}
   - component: {fileID: 674951885}
   - component: {fileID: 674951891}
-  - component: {fileID: 674951892}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1955,6 +1957,7 @@ MonoBehaviour:
   cursorLock: 1
   mouseSensitivity: 1
   Speed: 6
+  jumpHeight: 6
   moveSmoothTime: 0.1
   gravity: -30
   groundCheck: {fileID: 149873839}
@@ -1964,7 +1967,6 @@ MonoBehaviour:
   jumpBlock:
     serializedVersion: 2
     m_Bits: 2048
-  jumpHeight: 6
 --- !u!143 &674951887
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2146,19 +2148,6 @@ MonoBehaviour:
   flashlight2D: {fileID: 2800000, guid: 5f1454110129ba349a54601aea639f2f, type: 3}
   key2D: {fileID: 2800000, guid: af0a2ab7048b0bd43b1ca4bf63a5e909, type: 3}
   inventoryCanvas: {fileID: 605328104}
---- !u!114 &674951892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674951884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d7cbd94c18c0d44495e5005ca405b6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  diary: {fileID: 919177740}
 --- !u!64 &700017923
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2501,11 +2490,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1138a0e470b175249b8ec9cf3951cac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  events: []
   text1: {fileID: 1852390706}
   text2: {fileID: 143571679}
   writingSound: {fileID: 8300000, guid: be2c26635ccaed14eaa32ac4b0a8aaf3, type: 3}
   pageSound: {fileID: 8300000, guid: 0ab989fac87548046860ca7c630aa8d8, type: 3}
-  events: []
+  writingSpeed: 0.001
 --- !u!82 &919177743
 AudioSource:
   m_ObjectHideFlags: 0

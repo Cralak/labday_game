@@ -8,26 +8,16 @@ public class Chess : MonoBehaviour
 {
     public bool isPlaying;
 
-    [SerializeField]
-    GameObject player;
-    [SerializeField]
-    GameObject mainCamera;
-    [SerializeField]
-    GameObject table;
-    [SerializeField]
-    GameObject pieceWhite1;
-    [SerializeField]
-    GameObject pieceWhite2;
-    [SerializeField]
-    GameObject pieceWhite3;
-    [SerializeField]
-    GameObject pieceBlack1;
-    [SerializeField]
-    GameObject pieceBlack2;
-    [SerializeField]
-    GameObject pieceBlack3;
-    [SerializeField]
-    GameObject pieceBlack4;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject table;
+    [SerializeField] GameObject pieceWhite1;
+    [SerializeField] GameObject pieceWhite2;
+    [SerializeField] GameObject pieceWhite3;
+    [SerializeField] GameObject pieceBlack1;
+    [SerializeField] GameObject pieceBlack2;
+    [SerializeField] GameObject pieceBlack3;
+    [SerializeField] GameObject pieceBlack4;
 
     Camera componentCamera;
     PlayerMovement playerMovement;
@@ -54,36 +44,28 @@ public class Chess : MonoBehaviour
     {
         if (!isPlaying)
         {
-            if (isTouching && !isSwitching && Input.GetKeyDown("e"))
-            {
-                StartCoroutine(Play());
-            }
+            if (isTouching && !isSwitching && Input.GetKeyDown("e")) StartCoroutine(Play());
+
         }
         else
         {
             StartCoroutine(Puzzle());
 
-            if (isTouching && !isSwitching && Input.GetKeyDown("e"))
-            {
-                StartCoroutine(Unplay());
-            }
+            if (isTouching && !isSwitching && Input.GetKeyDown("e")) StartCoroutine(Unplay());
+
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider == player.GetComponent<CharacterController>())
-        {
-            isTouching = true;
-        }
+        if (collider == player.GetComponent<CharacterController>()) isTouching = true;
+
     }
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider == player.GetComponent<CharacterController>())
-        {
-            isTouching = false;
-        }
+        if (collider == player.GetComponent<CharacterController>()) isTouching = false;
+
     }
 
     IEnumerator Unplay()

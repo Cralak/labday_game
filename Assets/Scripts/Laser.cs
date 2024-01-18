@@ -14,10 +14,7 @@ public class Laser : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("l"))
-        {
-            laser.enabled = !laser.enabled;
-        }
+        if (Input.GetKeyDown("l"))laser.enabled = !laser.enabled;
 
         if (laser.enabled)
         {

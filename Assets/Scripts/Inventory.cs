@@ -42,26 +42,13 @@ public class Inventory : MonoBehaviour
             UI.enabled = !UI.enabled;
         }
 
-        if (isOpened)
-        {
-            displayInventory();
-        }
-
+        if (isOpened) displayInventory();
         inventoryScreen.enabled = isOpened;
     }
 
     void displayInventory()
     {
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            inventorySlotsContent[i].texture = object2D[inventory[i]];
-        }
-
-        for (int i = inventory.Count; i < 6; i++)
-        {
-            inventorySlotsContent[i].texture = cross;
-        }
-
-
+        for (int i = 0; i < inventory.Count; i++) inventorySlotsContent[i].texture = object2D[inventory[i]];
+        for (int i = inventory.Count; i < 6; i++) inventorySlotsContent[i].texture = cross;
     }
 }

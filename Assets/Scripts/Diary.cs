@@ -15,32 +15,62 @@ public class Diary : MonoBehaviour
 
     Canvas canvas;
     AudioSource sound;
-    bool isWriting;
+    bool isBusy;
+    int pageNumber;
+    List<string> writtenEvents = new List<string>();
 
     // Start is called before the first frame update
     void Start()
     {
         canvas = GetComponent<Canvas>();
         sound = GetComponent<AudioSource>();
+        pageNumber = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         sound.volume = PlayerPrefs.GetFloat("SFX");
-        if (canvas.enabled == true && !isWriting)
+
+        if (Input.GetKeyDown(KeyCode.N)) canvas.enabled = !canvas.enabled;
+
+        if (canvas.enabled == true && !isBusy)
         {
-            if (events.Contains("keyUsed"))
+            if (pageNumber > 0 && Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                isWriting = true;
+                isBusy = true;
+                StartCoroutine(TurnPage(-1));
+            }
+
+            if (pageNumber * 2 + 2 < writtenEvents.Count && Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                isBusy = true;
+                StartCoroutine(TurnPage(1));
+            }
+
+            int leftPage = pageNumber * 2;
+            int rightPage = pageNumber * 2 + 1;
+
+            text1.text = writtenEvents.Count > leftPage ? writtenEvents[leftPage] : "";
+            text2.text = writtenEvents.Count > rightPage ? writtenEvents[rightPage] : "";
+
+            if (events.Contains("rustyKey"))
+            {
+                isBusy = true;
                 StartCoroutine(Write("This door is so noisy... And that key is so rusty, glad I don't have to touch it anymore."));
-                events.Remove("keyUsed");
+                events.Remove("rustyKey");
             }
             else if (events.Contains("lightCorridor"))
             {
-                isWriting = true;
+                isBusy = true;
                 StartCoroutine(Write("What is illuminating the ceiling ? So scary! "));
                 events.Remove("lightCorridor");
+            }
+            else if (events.Contains("lightning"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("What an astounding lightning! It scared me so badly!"));
+                events.Remove("lightning");
             }
         }
     }
@@ -55,22 +85,28 @@ public class Diary : MonoBehaviour
             foreach (char letter in sentence)
             {
                 text1.text += letter;
-                yield return new WaitForSeconds(0.005f);
+                yield return new WaitForSeconds(writingSpeed);
             }
-
-            isWriting = false;
             sound.Stop();
+
+            yield return new WaitForSeconds(2f);
+
+            writtenEvents.Add(sentence);
+            isBusy = false;
         }
         else if (text2.text == "")
         {
             foreach (char letter in sentence)
             {
                 text2.text += letter;
-                yield return new WaitForSeconds(0.005f);
+                yield return new WaitForSeconds(writingSpeed);
             }
-
-            isWriting = false;
             sound.Stop();
+
+            yield return new WaitForSeconds(2f);
+
+            writtenEvents.Add(sentence);
+            isBusy = false;
         }
         else
         {
@@ -83,7 +119,21 @@ public class Diary : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
             sound.Stop();
+            pageNumber += 1;
+
             StartCoroutine(Write(sentence));
         }
+    }
+
+    IEnumerator TurnPage(int n)
+    {
+        sound.clip = pageSound;
+        sound.Play();
+
+        yield return new WaitForSeconds(0.5f);
+
+        sound.Stop();
+        pageNumber += n;
+        isBusy = false;
     }
 }

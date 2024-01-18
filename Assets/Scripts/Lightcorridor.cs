@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Lightcorridor : MonoBehaviour
 {
+    [SerializeField] GameObject player;
     [SerializeField] float interval = 0.3f;
+    [SerializeField] Diary diary;
 
     Light lightComponent;
     AudioSource lightSound;
+    bool hasStarted;
 
     // Start is called before the first frame update
     void Start()
@@ -15,18 +18,22 @@ public class Lightcorridor : MonoBehaviour
         lightComponent = GetComponent<Light>();
         lightSound = GetComponent<AudioSource>();
         lightSound.Play();
-        StartCoroutine(LightCycle(interval));
+        lightSound.Pause();
+        hasStarted = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         lightSound.volume = PlayerPrefs.GetFloat("SFX");
+        if (Vector3.Distance(transform.position, player.transform.position) < 10f && !hasStarted) StartCoroutine(LightCycle(interval));
     }
 
     IEnumerator LightCycle(float interval)
     {
-        yield return new WaitForSeconds(3f);
+        diary.events.Add("lightCorridor");
+        hasStarted = true;
+
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(interval);

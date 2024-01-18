@@ -30,17 +30,17 @@ public class OpenDoorWithKey : MonoBehaviour
             inventoryScript.inventory.Remove(key);
             transform.DOMove(transform.position + new Vector3(5f, 0f, 3.5f), 5f);
             doorNoise.Play();
-            diary.events.Add("keyUsed");
+            diary.events.Add("rustyKey");
         }
     }
 
-    void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collider)
     {
-        isColliding = true;
+        if (collider.gameObject == player) isColliding = true;
     }
 
-    void OnTriggerExit(Collider collision)
+    void OnTriggerExit(Collider collider)
     {
-        isColliding = false;
+        if (collider.gameObject == player) isColliding = false;
     }
 }

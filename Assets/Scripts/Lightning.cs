@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Lightning : MonoBehaviour
 {
-    [SerializeField] float interval = 30f;
+    [SerializeField] float interval = 5f;
     [SerializeField] float lightningTime = 0.05f;
+    [SerializeField] Diary diary;
+
     AudioSource lightningSound;
     Light lightningLight;
 
@@ -25,33 +27,55 @@ public class Lightning : MonoBehaviour
 
     private IEnumerator Flash(float interval)
     {
+        bool firstTime = true;
         while (true)
         {
             yield return new WaitForSeconds(interval);
+
             lightningLight.intensity = 3f;
             lightningLight.enabled = true;
             lightningSound.Play();
+
             yield return new WaitForSeconds(0.1f);
+
             lightningLight.enabled = false;
             for (int i = 0; i < 3; i++)
             {
                 yield return new WaitForSeconds(lightningTime);
+
                 lightningLight.enabled = true;
                 lightningSound.Play();
+
                 yield return new WaitForSeconds(lightningTime);
+
                 lightningLight.enabled = false;
             }
             yield return new WaitForSeconds(lightningTime);
+
             lightningLight.enabled = true;
             lightningSound.Play();
+
             yield return new WaitForSeconds(lightningTime);
+
             lightningLight.intensity = 2f;
+
             yield return new WaitForSeconds(lightningTime);
+
             lightningLight.intensity = 1f;
+
             yield return new WaitForSeconds(lightningTime);
+
             lightningLight.intensity = 0.5f;
+
             yield return new WaitForSeconds(lightningTime);
+
             lightningLight.enabled = false;
+
+            if(firstTime)
+            {
+                diary.events.Add("lightning");
+                firstTime = false;
+            }
         }
     }
 }
