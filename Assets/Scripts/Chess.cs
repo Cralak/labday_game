@@ -6,6 +6,8 @@ using System;
 
 public class Chess : MonoBehaviour
 {
+    public bool isPlaying;
+
     [SerializeField]
     GameObject player;
     [SerializeField]
@@ -26,8 +28,6 @@ public class Chess : MonoBehaviour
     GameObject pieceBlack3;
     [SerializeField]
     GameObject pieceBlack4;
-
-    public bool isPlaying;
 
     Camera componentCamera;
     PlayerMovement playerMovement;

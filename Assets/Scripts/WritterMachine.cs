@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class WriterMachine : MonoBehaviour
 {
+    [SerializeField, Range(0.1f, 1f)] float delay = 0.4f;
+
     string originalText;
     TextMeshProUGUI uiText;
-    public float delay = 0.4f;
     Chess chessScript;
 
     void Awake()
@@ -45,7 +45,7 @@ public class WriterMachine : MonoBehaviour
             if (chessScript != null && chessScript.isPlaying)
             {
                 uiText.text = null;
-                yield break; 
+                yield break;
             }
 
             uiText.text = originalText.Substring(0, i);

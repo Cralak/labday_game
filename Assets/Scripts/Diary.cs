@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class Diary : MonoBehaviour
 {
+    public List<string> events = new List<string>();
+
     [SerializeField] TMP_Text text1;
     [SerializeField] TMP_Text text2;
     [SerializeField] AudioClip writingSound;
     [SerializeField] AudioClip pageSound;
-
-    public List<string> events = new List<string>();
+    [SerializeField, Range(0.0005f, 0.005f)] float writingSpeed = 0.001f;
 
     Canvas canvas;
     AudioSource sound;
@@ -54,7 +55,7 @@ public class Diary : MonoBehaviour
             foreach (char letter in sentence)
             {
                 text1.text += letter;
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(0.005f);
             }
 
             isWriting = false;
@@ -65,7 +66,7 @@ public class Diary : MonoBehaviour
             foreach (char letter in sentence)
             {
                 text2.text += letter;
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(0.005f);
             }
 
             isWriting = false;
