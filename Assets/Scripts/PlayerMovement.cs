@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform playerCamera;
     [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
     [SerializeField] bool cursorLock = true;
-    [SerializeField] float mouseSensitivity = 3.5f;
     [SerializeField] float Speed = 6.0f;
     [SerializeField] float jumpHeight = 6f;
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
@@ -22,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 currentDir;
     Vector2 currentDirVelocity;
     AudioSource footsteps;
+    float sensitivity;
     float velocityY;
     bool isGrounded;
     bool isOnPad;
@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         if (!PlayerPrefs.HasKey("SFX")) PlayerPrefs.SetFloat("SFX", 1);
+        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5f);
     }
 
     void Start()
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         footsteps.volume = PlayerPrefs.GetFloat("SFX");
+        sensitivity = PlayerPrefs.GetFloat("sensitivity");
         UpdateMouse();
         UpdateMove();
     }
@@ -60,13 +62,13 @@ public class PlayerMovement : MonoBehaviour
 
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
 
-        cameraCap -= currentMouseDelta.y * mouseSensitivity;
+        cameraCap -= currentMouseDelta.y * sensitivity;
 
         cameraCap = Mathf.Clamp(cameraCap, -90.0f, 90.0f);
 
         playerCamera.localEulerAngles = Vector3.right * cameraCap;
 
-        transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
+        transform.Rotate(Vector3.up * currentMouseDelta.x * sensitivity);
     }
 
     void UpdateMove()

@@ -85,7 +85,6 @@ public class Chess : MonoBehaviour
         playerMovement.enabled = true;
         playerHeadBob.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
-
     }
 
     IEnumerator Play()
