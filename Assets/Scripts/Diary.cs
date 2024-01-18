@@ -11,7 +11,7 @@ public class Diary : MonoBehaviour
     [SerializeField] TMP_Text text2;
     [SerializeField] AudioClip writingSound;
     [SerializeField] AudioClip pageSound;
-    [SerializeField, Range(0.0005f, 0.005f)] float writingSpeed = 0.001f;
+    [SerializeField, Range(0.005f, 0.05f)] float writingSpeed = 0.01f;
 
     Canvas canvas;
     AudioSource sound;
