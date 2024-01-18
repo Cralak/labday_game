@@ -6,14 +6,15 @@ public class Lightning : MonoBehaviour
 {
     [SerializeField] float interval = 5f;
     [SerializeField] float lightningTime = 0.05f;
-    [SerializeField] Diary diary;
 
+    Diary diary;
     AudioSource lightningSound;
     Light lightningLight;
 
     // Start is called before the first frame update
     void Start()
     {
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
         lightningLight = GetComponent<Light>();
         lightningSound = GetComponent<AudioSource>();
         StartCoroutine(Flash(interval));
@@ -71,7 +72,7 @@ public class Lightning : MonoBehaviour
 
             lightningLight.enabled = false;
 
-            if(firstTime)
+            if (firstTime)
             {
                 diary.events.Add("lightning");
                 firstTime = false;
