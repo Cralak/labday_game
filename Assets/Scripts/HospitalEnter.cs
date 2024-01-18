@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class HospitalEnter : MonoBehaviour
 {
     [SerializeField] GameObject key;
     [SerializeField] GameObject player;
+
     bool isTouching;
     Canvas text;
     Inventory inventoryScript;

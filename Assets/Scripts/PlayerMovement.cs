@@ -32,12 +32,6 @@ public class PlayerMovement : MonoBehaviour
     bool isCrouched = false;
     float cameraCap;
 
-    void Awake()
-    {
-        if (!PlayerPrefs.HasKey("SFX")) PlayerPrefs.SetFloat("SFX", 1);
-        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5.0f);
-    }
-
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -82,14 +76,15 @@ public class PlayerMovement : MonoBehaviour
 
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
         
-        if (velocityY < 1.0f)
-        {
-            if (Physics.Raycast(new Vector3(transform.position.x - 0.2f, transform.position.y, transform.position.z), -Vector3.up, 0.5f)
-            || Physics.Raycast(new Vector3(transform.position.x + 0.2f, transform.position.y, transform.position.z), -Vector3.up, 0.5f)
-            || Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.2f), -Vector3.up, 0.5f)
-            || Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.2f), -Vector3.up, 0.5f)) velocityY = 1.0f;
-        }
+        if (controller.velocity.y == 0.0f && velocityY < -1.0f) velocityY = 1.0f;
+
         velocityY += gravity * 2.0f * Time.deltaTime;
+
+        if (isGrounded && Input.GetButtonDown("Jump")) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+
+        if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock)) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+
+        if (!isGrounded && controller.velocity.y < -1.0f)  velocityY = -8.0f;
 
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed + Vector3.up * velocityY;
 
@@ -106,21 +101,6 @@ public class PlayerMovement : MonoBehaviour
             footsteps.Pause();
         }
 
-        if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock))
-        {
-            velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
-        }
-
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
-            velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
-        }
-
-        if (isGrounded! && controller.velocity.y < -1.0f)
-        {
-            velocityY = -8.0f;
-        }
-
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             isCrouched = true;
@@ -133,14 +113,8 @@ public class PlayerMovement : MonoBehaviour
             speed = 6.0f;
         }
 
-        if (isCrouched && controller.height > 1.0f)
-        {
-            controller.height -= 0.05f;
-        }
+        if (isCrouched && controller.height > 1.0f) controller.height -= 0.05f;
 
-        if (!isCrouched && controller.height < 2.0f)
-        {
-            controller.height += 0.05f;
-        }
+        if (!isCrouched && controller.height < 2.0f) controller.height += 0.05f;
     }
 }

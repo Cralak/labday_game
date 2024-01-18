@@ -5,16 +5,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class setSensitivity : MonoBehaviour
+public class ChangeSensitivity : MonoBehaviour
 {
     Slider slider;
     TMP_InputField inputField;
 
+    void Awake()
+    {
+        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5.0f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5.0f);
-
         slider = GetComponentInChildren<Slider>();
         inputField = GetComponentInChildren<TMP_InputField>();
 

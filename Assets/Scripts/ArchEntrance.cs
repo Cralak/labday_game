@@ -36,6 +36,7 @@ public class ArchEntrance : MonoBehaviour
         if(isTouching && Input.GetKeyDown(KeyCode.E))
         {
             playerMovement.enabled = false;
+            player.GetComponent<AudioSource>().Pause();
             StartCoroutine(FakeScreen());
         }
     }
