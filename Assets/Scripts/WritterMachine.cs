@@ -6,7 +6,7 @@ using TMPro;
 public class WriterMachine : MonoBehaviour
 {
     [SerializeField] Chess chessScript;
-    [SerializeField, Range(0.1f, 1f)] float delay = 0.4f;
+    [SerializeField, Range(0.1f, 1.0f)] float delay = 0.4f;
 
     string originalText;
     TextMeshProUGUI uiText;
@@ -43,7 +43,7 @@ public class WriterMachine : MonoBehaviour
                 yield break;
             }
 
-            uiText.text = originalText.Substring(0, i);
+            uiText.text = originalText[..i];
 
             yield return new WaitForSeconds(delay);
         }

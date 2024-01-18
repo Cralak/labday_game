@@ -28,10 +28,10 @@ public class OpenDoorWithKey : MonoBehaviour
     void Update()
     {
         doorNoise.volume = PlayerPrefs.GetFloat("SFX");
-        if (isColliding && Input.GetKeyDown("e") && inventoryScript.inventory.Contains(key))
+        if (isColliding && Input.GetKeyDown(KeyCode.E) && inventoryScript.inventory.Contains(key))
         {
             inventoryScript.inventory.Remove(key);
-            transform.DOMove(transform.position + new Vector3(5f, 0f, 3.5f), 5f);
+            transform.DOMove(transform.position + new Vector3(5.0f, 0.0f, 3.5f), 5.0f);
             doorNoise.Play();
             diary.events.Add("rustyKey");
         }

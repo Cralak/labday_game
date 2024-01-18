@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class Diary : MonoBehaviour
 {
-    public List<string> events = new List<string>();
+    public List<string> events = new();
 
     [SerializeField] TMP_Text text1;
     [SerializeField] TMP_Text text2;
     [SerializeField] AudioClip writingSound;
     [SerializeField] AudioClip pageSound;
     [SerializeField, Range(0.005f, 0.05f)] float writingSpeed = 0.01f;
+    
+    readonly List<string> writtenEvents = new();
 
     Canvas canvas;
     AudioSource sound;
     bool isBusy;
     int pageNumber;
-    List<string> writtenEvents = new List<string>();
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +90,7 @@ public class Diary : MonoBehaviour
             }
             sound.Stop();
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2.0f);
 
             writtenEvents.Add(sentence);
             isBusy = false;
@@ -103,7 +104,7 @@ public class Diary : MonoBehaviour
             }
             sound.Stop();
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2.0f);
 
             writtenEvents.Add(sentence);
             isBusy = false;

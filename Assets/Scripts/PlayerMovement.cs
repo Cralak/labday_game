@@ -7,10 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform playerCamera;
     [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
     [SerializeField] bool cursorLock = true;
-    [SerializeField] float Speed = 6.0f;
-    [SerializeField] float jumpHeight = 6f;
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
-    [SerializeField] float gravity = -30f;
+    [SerializeField] float gravity = -30.0f;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
     [SerializeField] LayerMask jumpBlock;
@@ -22,16 +20,17 @@ public class PlayerMovement : MonoBehaviour
     Vector2 currentDirVelocity;
     AudioSource footsteps;
     float sensitivity;
+    float speed = 6.0f;
+    float jumpHeight = 6.0f;
     float velocityY;
     bool isGrounded;
-    bool isOnPad;
     bool isCrouched = false;
     float cameraCap;
 
     void Awake()
     {
         if (!PlayerPrefs.HasKey("SFX")) PlayerPrefs.SetFloat("SFX", 1);
-        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5f);
+        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5.0f);
     }
 
     void Start()
@@ -80,9 +79,9 @@ public class PlayerMovement : MonoBehaviour
 
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
 
-        velocityY += gravity * 2f * Time.deltaTime;
+        velocityY += gravity * 2.0f * Time.deltaTime;
 
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * Speed + Vector3.up * velocityY;
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed + Vector3.up * velocityY;
 
         controller.Move(velocity * Time.deltaTime);
 
@@ -97,35 +96,37 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock))
         {
-            velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
 
-        if (isGrounded! && controller.velocity.y < -1f)
+        if (isGrounded! && controller.velocity.y < -1.0f)
         {
-            velocityY = -8f;
+            velocityY = -8.0f;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             isCrouched = true;
+            speed = 0.3f;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             isCrouched = false;
+            speed = 0.6f;
         }
 
-        if (isCrouched && controller.height > 1f)
+        if (isCrouched && controller.height > 1.0f)
         {
             controller.height -= 0.05f;
         }
 
-        if (!isCrouched && controller.height < 2f)
+        if (!isCrouched && controller.height < 2.0f)
         {
             controller.height += 0.05f;
         }

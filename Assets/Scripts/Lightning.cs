@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lightning : MonoBehaviour
 {
-    [SerializeField] float interval = 5f;
+    [SerializeField] float interval = 5.0f;
     [SerializeField] float lightningTime = 0.05f;
 
     Diary diary;
@@ -33,7 +33,7 @@ public class Lightning : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
 
-            lightningLight.intensity = 3f;
+            lightningLight.intensity = 3.0f;
             lightningLight.enabled = true;
             lightningSound.Play();
 
@@ -58,11 +58,11 @@ public class Lightning : MonoBehaviour
 
             yield return new WaitForSeconds(lightningTime);
 
-            lightningLight.intensity = 2f;
+            lightningLight.intensity = 2.0f;
 
             yield return new WaitForSeconds(lightningTime);
 
-            lightningLight.intensity = 1f;
+            lightningLight.intensity = 1.0f;
 
             yield return new WaitForSeconds(lightningTime);
 

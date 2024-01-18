@@ -16,19 +16,17 @@ public class GoIndoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTouching && Input.GetKeyDown("e"))
+        if (isTouching && Input.GetKeyDown(KeyCode.E))
         {
-            print("e press");
             SceneManager.LoadScene("indoorScene");
         }
     }
-    void OnTriggerEnter(Collider collision)    
+    void OnTriggerEnter(Collider collider)
     {
-        print("touch");
         isTouching = true;
     }
 
-    void OnTriggerExit(Collider collision)   
+    void OnTriggerExit(Collider collider)
     {
         isTouching = false;
     }

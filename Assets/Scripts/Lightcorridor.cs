@@ -27,7 +27,7 @@ public class Lightcorridor : MonoBehaviour
     void Update()
     {
         lightSound.volume = PlayerPrefs.GetFloat("SFX");
-        if (Vector3.Distance(transform.position, player.transform.position) < 10f && !hasStarted) StartCoroutine(LightCycle(interval));
+        if (Vector3.Distance(transform.position, player.transform.position) < 10.0f && !hasStarted) StartCoroutine(LightCycle(interval));
     }
 
     IEnumerator LightCycle(float interval)

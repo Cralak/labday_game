@@ -13,27 +13,27 @@ public class setSensitivity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5f);
+        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5.0f);
 
         slider = GetComponentInChildren<Slider>();
         inputField = GetComponentInChildren<TMP_InputField>();
 
-        slider.value = (PlayerPrefs.GetFloat("sensitivity") - 1f) / 9f;
+        slider.value = (PlayerPrefs.GetFloat("sensitivity") - 1.0f) / 9.0f;
         inputField.text = PlayerPrefs.GetFloat("sensitivity").ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Math.Round(PlayerPrefs.GetFloat("sensitivity"), 5) != Math.Round(slider.value * 9f + 1f, 5))
+        if (Math.Round(PlayerPrefs.GetFloat("sensitivity"), 5) != Math.Round(slider.value * 9.0f + 1.0f, 5))
         {
-            PlayerPrefs.SetFloat("sensitivity", slider.value * 9f + 1f);
+            PlayerPrefs.SetFloat("sensitivity", slider.value * 9.0f + 1.0f);
             inputField.text = PlayerPrefs.GetFloat("sensitivity").ToString();
         }
         else if (PlayerPrefs.GetFloat("sensitivity").ToString() != inputField.text)
         {
             PlayerPrefs.SetFloat("sensitivity", float.Parse(inputField.text));
-            slider.value = (PlayerPrefs.GetFloat("sensitivity") - 1f) / 9f;
+            slider.value = (PlayerPrefs.GetFloat("sensitivity") - 1.0f) / 9.0f;
         }
     }
 }

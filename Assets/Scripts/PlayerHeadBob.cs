@@ -6,19 +6,17 @@ public class PlayerHeadBob : MonoBehaviour
 {
     [SerializeField, Range(0, 0.1f)] float amplitudeX = 0.01f;
     [SerializeField, Range(0, 0.1f)] float amplitudeY = 0.005f;
-    [SerializeField, Range(0, 30)] float frequency = 10f;
+    [SerializeField, Range(0, 30)] float frequency = 10.0f;
     [SerializeField] Transform playerCamera;
     [SerializeField] Transform cameraHolder;
 
     float toggleSpeed = 3.0f;
     Vector3 startPos;
     CharacterController controller;
-    AudioSource footstepsSound;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-        footstepsSound = GetComponent<AudioSource>();
         startPos = playerCamera.localPosition;
     }
 
@@ -43,11 +41,6 @@ public class PlayerHeadBob : MonoBehaviour
         if (speed > toggleSpeed && controller.isGrounded)
         {
             playerCamera.localPosition += FootStepMotion();
-            footstepsSound.UnPause();
-        }
-        else
-        {
-            footstepsSound.Pause();
         }
     }
 

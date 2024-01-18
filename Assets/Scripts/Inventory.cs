@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public List<GameObject> inventory = new List<GameObject>();
+    public List<GameObject> inventory = new();
 
     [SerializeField] Texture2D cross;
     [SerializeField] Texture2D cube;
     [SerializeField] Texture2D key2D;
 
-    List<RawImage> inventorySlotsContent = new List<RawImage>();
-    Dictionary<GameObject, Texture2D> object2D = new Dictionary<GameObject, Texture2D>();
-    GameObject keyObject;
+    readonly List<RawImage> inventorySlotsContent = new();
+    readonly Dictionary<GameObject, Texture2D> object2D = new();
 
+    GameObject keyObject;
     bool isOpened = false;
     Canvas UI;
     Canvas inventoryCanvas;
