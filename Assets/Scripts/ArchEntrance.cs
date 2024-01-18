@@ -36,7 +36,7 @@ public class ArchEntrance : MonoBehaviour
         if(isTouching && Input.GetKeyDown(KeyCode.E))
         {
             playerMovement.enabled = false;
-            StartCoroutine(fakeScreen());
+            StartCoroutine(FakeScreen());
         }
     }
 
@@ -52,7 +52,7 @@ public class ArchEntrance : MonoBehaviour
         text.enabled = false;
     }
 
-    IEnumerator fakeScreen()
+    IEnumerator FakeScreen()
     {
         for (float i = 0; i <= 1; i += 0.005f)
         {

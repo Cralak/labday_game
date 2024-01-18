@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -79,7 +81,14 @@ public class PlayerMovement : MonoBehaviour
         targetDir.Normalize();
 
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
-
+        
+        if (velocityY < 1.0f)
+        {
+            if (Physics.Raycast(new Vector3(transform.position.x - 0.2f, transform.position.y, transform.position.z), -Vector3.up, 0.5f)
+            || Physics.Raycast(new Vector3(transform.position.x + 0.2f, transform.position.y, transform.position.z), -Vector3.up, 0.5f)
+            || Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.2f), -Vector3.up, 0.5f)
+            || Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.2f), -Vector3.up, 0.5f)) velocityY = 1.0f;
+        }
         velocityY += gravity * 2.0f * Time.deltaTime;
 
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed + Vector3.up * velocityY;

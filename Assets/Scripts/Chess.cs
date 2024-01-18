@@ -104,14 +104,12 @@ public class Chess : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
 
-            if (Physics.Raycast(componentCamera.ScreenPointToRay(Input.mousePosition), out hit))
+            if (Physics.Raycast(componentCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
                 if (hit.transform.name.Contains("Black") || hit.transform.name.Contains("White"))
                 {
-                    RaycastHit hit2;
-                    Physics.Raycast(hit.transform.position, -Vector3.up, out hit2);
+                    Physics.Raycast(hit.transform.position, -Vector3.up, out RaycastHit hit2);
                     square = hit2.transform.gameObject;
                 }
                 else
