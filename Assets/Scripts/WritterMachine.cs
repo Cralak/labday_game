@@ -41,7 +41,6 @@ public class WriterMachine : MonoBehaviour
                 uiText.text = null;
                 yield break;
             }
-
             uiText.text = originalText[..i];
             yield return new WaitForSeconds(delay);
         }
