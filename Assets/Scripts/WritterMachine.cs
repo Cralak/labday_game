@@ -22,7 +22,6 @@ public class WriterMachine : MonoBehaviour
     {
         if (chessScript != null && chessScript.isPlaying) uiText.text = null;
     }
-
     void OnTriggerEnter()
     {
         StartCoroutine(LetterByLetter());
@@ -44,7 +43,6 @@ public class WriterMachine : MonoBehaviour
             }
 
             uiText.text = originalText[..i];
-
             yield return new WaitForSeconds(delay);
         }
     }
