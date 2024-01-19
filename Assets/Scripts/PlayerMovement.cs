@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform playerCamera;
     [SerializeField, Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
     [SerializeField, Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
-    [SerializeField, Range(0, 0.1f)] float bobbingX = 0.001f;
-    [SerializeField, Range(0, 0.1f)] float bobbingY = 0.003f;
+    [SerializeField, Range(0, 0.1f)] float bobbingX = 0.01f;
+    [SerializeField, Range(0, 0.1f)] float bobbingY = 0.005f;
     [SerializeField, Range(0, 30)] float frequency = 10.0f;
     [SerializeField] float gravity = -30.0f;
     [SerializeField] Transform groundCheck;
