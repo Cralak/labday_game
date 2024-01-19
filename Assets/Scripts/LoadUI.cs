@@ -9,4 +9,13 @@ public class LoadUI : MonoBehaviour
     {
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
     }
+
+    void Start()
+    {
+        DontDestroyOnLoad(GameObject.Find("EventSystem"));
+        DontDestroyOnLoad(GameObject.Find("UI"));
+        DontDestroyOnLoad(GameObject.Find("Diary"));
+        DontDestroyOnLoad(GameObject.Find("Inventory"));
+        DontDestroyOnLoad(GameObject.Find("Settings"));
+    }
 }

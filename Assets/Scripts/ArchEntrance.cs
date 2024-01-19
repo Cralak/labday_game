@@ -10,6 +10,8 @@ public class ArchEntrance : MonoBehaviour
     [SerializeField] Canvas canvas;
 
     GameObject player;
+    Diary diary;
+    Canvas UI;
     bool isTouching;
     PlayerMovement playerMovement;
     Canvas text;
@@ -18,6 +20,8 @@ public class ArchEntrance : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        UI = GameObject.Find("UI").GetComponent<Canvas>();
         playerMovement = player.GetComponent<PlayerMovement>();
         blackScreen = canvas.GetComponentInChildren<Image>();
         text = GetComponent<Canvas>();
@@ -35,7 +39,9 @@ public class ArchEntrance : MonoBehaviour
         {
             playerMovement.enabled = false;
             player.GetComponent<AudioSource>().Pause();
+            UI.enabled = false;
             StartCoroutine(FakeScreen());
+            isTouching = false;
         }
     }
 
@@ -70,6 +76,8 @@ public class ArchEntrance : MonoBehaviour
             blackScreen.color = c;
             yield return new WaitForSeconds(0.005f);
         }
+        diary.events.Add("archEnter");
         playerMovement.enabled = true;
+        UI.enabled = true;
     }
 }

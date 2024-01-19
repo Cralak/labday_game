@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+
         controller = GetComponent<CharacterController>();
         footsteps = GetComponent<AudioSource>();
         footsteps.Play();
@@ -75,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         targetDir.Normalize();
 
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
-        
+
         if (controller.velocity.y == 0.0f && velocityY < -1.0f) velocityY = 0.0f;
 
         velocityY += gravity * 2.0f * Time.deltaTime;
@@ -86,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock)) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
 
-        if (!isGrounded && controller.velocity.y < -1.0f)  velocityY = -8.0f;
+        if (!isGrounded && controller.velocity.y < -1.0f) velocityY = -8.0f;
 
         controller.Move(velocity * Time.deltaTime);
 

@@ -74,11 +74,24 @@ public class Diary : MonoBehaviour
             text1.text = writtenEvents.Count > leftPage ? writtenEvents[leftPage] : "";
             text2.text = writtenEvents.Count > rightPage ? writtenEvents[rightPage] : "";
 
-            if (events.Contains("rustyKey"))
+            
+            if (events.Contains("archEnter"))
             {
                 isBusy = true;
-                StartCoroutine(Write("This door is so noisy... And that key is so rusty, glad I don't have to touch it anymore."));
+                StartCoroutine(Write("OH NO! I can't go out... Why did it take so long to enter by the way?"));
+                events.Remove("archEnter");
+            }
+            else if (events.Contains("rustyKey"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Berk, why was that key in that body? So disgusting! And how did it get so rusty?"));
                 events.Remove("rustyKey");
+            }
+            else if (events.Contains("indoor"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"));
+                events.Remove("indoor");
             }
             else if (events.Contains("lightCorridor"))
             {

@@ -15,18 +15,13 @@ public class OpenSettings : MonoBehaviour
     bool UIState;
     bool playerMovementState;
 
-    void Awake()
-    {
-        SceneManager.LoadScene("Settings", LoadSceneMode.Additive);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
         footsteps = player.GetComponent<AudioSource>();
-        settingsCanvas = GameObject.Find("SettingsCanvas").GetComponent<Canvas>();
+        settingsCanvas = GameObject.Find("Settings").GetComponent<Canvas>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         settingsCanvas.enabled = false;
     }

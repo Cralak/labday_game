@@ -8,6 +8,8 @@ public class HospitalEnter : MonoBehaviour
     [SerializeField] GameObject key;
 
     GameObject player;
+    PlayerMovement playerMovement;
+    Diary diary;
     bool isTouching;
     Canvas text;
     Inventory inventoryScript;
@@ -16,6 +18,8 @@ public class HospitalEnter : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        playerMovement = player.GetComponent<PlayerMovement>();
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
         inventoryScript = player.GetComponent<Inventory>();
         isTouching = false;
         text = GetComponent<Canvas>();
@@ -25,10 +29,9 @@ public class HospitalEnter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isTouching == true && inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
+        if (isTouching == true && inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
         {
-            SceneManager.LoadScene("IndoorScene");
-            inventoryScript.inventory.Remove(key);
+            StartCoroutine(LoadHospital());
         }
     }
 
@@ -42,5 +45,18 @@ public class HospitalEnter : MonoBehaviour
     {
         isTouching = false;
         text.enabled = false;
+    }
+
+    IEnumerator LoadHospital()
+    {
+        playerMovement.enabled = false;
+        player.transform.position = new Vector3(4.0f, 1.0f, 2.0f);
+        inventoryScript.inventory.Remove(key);
+
+        yield return new WaitForSeconds(0.1f);
+
+        diary.events.Add("indoor");
+        playerMovement.enabled = true;
+        SceneManager.LoadScene("IndoorScene");
     }
 }
