@@ -104,7 +104,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7d561dfe5d7863346b29b923137b3861, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d561dfe5d7863346b29b923137b3861, type: 3}
       propertyPath: m_LocalPosition.y
@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7d561dfe5d7863346b29b923137b3861, type: 3}
       propertyPath: m_Name
-      value: Flashlight 1
+      value: Flashlight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
