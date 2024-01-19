@@ -65,7 +65,7 @@ public class ArchEntrance : MonoBehaviour
             c.a = i;
             blackScreen.color = c;
 
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.005f);
         }
 
         player.transform.position = new Vector3(22, 1, 50);
@@ -76,7 +76,7 @@ public class ArchEntrance : MonoBehaviour
             c.a = i;
             blackScreen.color = c;
 
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.005f);
         }
         diary.events.Add("archEnter");
         playerMovement.enabled = true;

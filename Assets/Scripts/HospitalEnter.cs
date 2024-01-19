@@ -33,6 +33,11 @@ public class HospitalEnter : MonoBehaviour
         {
             StartCoroutine(LoadHospital());
         }
+
+        if (isTouching == true && !inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
+        {
+            diary.events.Add("doorLock");
+        }
     }
 
     void OnTriggerEnter()
