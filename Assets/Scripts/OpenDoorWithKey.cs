@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class OpenDoorWithKey : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-
+    GameObject player;
     Diary diary;
     GameObject key;
     AudioSource doorNoise;
@@ -16,6 +15,7 @@ public class OpenDoorWithKey : MonoBehaviour
     // Start is called before the first frame update    
     void Start()
     {
+        player = GameObject.Find("Player");
         diary = GameObject.Find("Diary").GetComponent<Diary>();
         key = GameObject.Find("Key");
         inventoryScript = player.GetComponent<Inventory>();

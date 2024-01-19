@@ -12,9 +12,12 @@ public class Diary : MonoBehaviour
     [SerializeField] AudioClip writingSound;
     [SerializeField] AudioClip pageSound;
     [SerializeField, Range(0.005f, 0.05f)] float writingSpeed = 0.01f;
-    
+
     readonly List<string> writtenEvents = new();
 
+    GameObject player;
+    PlayerMovement playerMovement;
+    AudioSource footsteps;
     Canvas canvas;
     AudioSource sound;
     bool isBusy;
@@ -23,6 +26,9 @@ public class Diary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        playerMovement = player.GetComponent<PlayerMovement>();
+        footsteps = player.GetComponent<AudioSource>();
         canvas = GetComponent<Canvas>();
         sound = GetComponent<AudioSource>();
         pageNumber = 0;
@@ -33,9 +39,22 @@ public class Diary : MonoBehaviour
     {
         sound.volume = PlayerPrefs.GetFloat("SFX");
 
-        if (Input.GetKeyDown(KeyCode.N)) canvas.enabled = !canvas.enabled;
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            canvas.enabled = !canvas.enabled;
+            if (canvas.enabled)
+            {
+                playerMovement.enabled = false;
+                footsteps.Pause();
+            }
+            else
+            {
+                playerMovement.enabled = true;
+                footsteps.UnPause();
+            }
+        }
 
-        if (canvas.enabled == true && !isBusy)
+        if (canvas.enabled && !isBusy)
         {
             if (pageNumber > 0 && Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -55,11 +74,29 @@ public class Diary : MonoBehaviour
             text1.text = writtenEvents.Count > leftPage ? writtenEvents[leftPage] : "";
             text2.text = writtenEvents.Count > rightPage ? writtenEvents[rightPage] : "";
 
-            if (events.Contains("rustyKey"))
+            if (events.Contains("start"))
             {
                 isBusy = true;
-                StartCoroutine(Write("This door is so noisy... And that key is so rusty, glad I don't have to touch it anymore."));
+                StartCoroutine(Write("Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."));
+                events.Remove("start");
+            }
+            else if (events.Contains("archEnter"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("OH NO! I can't go out... Why did it take so long to enter by the way?"));
+                events.Remove("archEnter");
+            }
+            else if (events.Contains("rustyKey"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Berk, why was that key in that body? So disgusting! And how did it get so rusty?"));
                 events.Remove("rustyKey");
+            }
+            else if (events.Contains("indoor"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"));
+                events.Remove("indoor");
             }
             else if (events.Contains("lightCorridor"))
             {
@@ -72,6 +109,12 @@ public class Diary : MonoBehaviour
                 isBusy = true;
                 StartCoroutine(Write("What an astounding lightning! It scared me so badly!"));
                 events.Remove("lightning");
+            }
+            else if (events.Contains("chess"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Why did I have to play chess in this place?"));
+                events.Remove("chess");
             }
         }
     }

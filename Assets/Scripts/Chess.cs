@@ -7,9 +7,6 @@ public class Chess : MonoBehaviour
 {
     public bool isPlaying;
 
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject playerCamera;
-    [SerializeField] GameObject flashlight;
     [SerializeField] GameObject pieceWhite1;
     [SerializeField] GameObject pieceWhite2;
     [SerializeField] GameObject pieceWhite3;
@@ -18,9 +15,14 @@ public class Chess : MonoBehaviour
     [SerializeField] GameObject pieceBlack3;
     [SerializeField] GameObject pieceBlack4;
 
-    Camera componentCamera;
+    GameObject player;
     PlayerMovement playerMovement;
     AudioSource footsteps;
+    GameObject playerCamera;
+    Camera componentCamera;
+    GameObject flashlight;
+    Diary diary;
+    Canvas UI;
     bool isTouching;
     bool isSwitching;
     GameObject square;
@@ -31,9 +33,14 @@ public class Chess : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
         footsteps = player.GetComponent<AudioSource>();
+        playerCamera = GameObject.Find("PlayerCamera");
         componentCamera = playerCamera.GetComponent<Camera>();
+        flashlight = GameObject.Find("Flashlight");
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        UI = GameObject.Find("UI").GetComponent<Canvas>();
         isTouching = false;
         isPlaying = false;
         isSwitching = false;
@@ -81,6 +88,7 @@ public class Chess : MonoBehaviour
         isSwitching = false;
         playerMovement.enabled = true;
         flashlight.SetActive(true);
+        UI.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -90,6 +98,7 @@ public class Chess : MonoBehaviour
         playerMovement.enabled = false;
         flashlight.SetActive(false);
         footsteps.Pause();
+        UI.enabled = false;
         playerCamera.transform.DOMove(new Vector3(-12.31f, 1.75f, 12.7f), 2);
         playerCamera.transform.DORotate(new Vector3(90.0f, 0.0f, 0.0f), 2);
         isSwitching = true;
@@ -167,6 +176,7 @@ public class Chess : MonoBehaviour
 
                         yield return new WaitForSeconds(0.3f);
 
+                        diary.events.Add("chess");
                         StartCoroutine(Unplay());
                     }
                 }

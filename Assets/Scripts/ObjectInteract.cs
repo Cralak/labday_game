@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class ObjectInteract : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    GameObject player;
+    Diary diary;
     bool isColliding = false;
     Inventory inventoryScript;
 
     void Start()
     {
+        player = GameObject.Find("Player");
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
         inventoryScript = player.GetComponent<Inventory>();
     }
 
@@ -22,6 +25,10 @@ public class ObjectInteract : MonoBehaviour
             GetComponent<Collider>().enabled = false;
             isColliding = false;
             enabled = false;
+            if (name == "Key")
+            {
+                diary.events.Add("rustyKey");
+            }
         }
     }
 
