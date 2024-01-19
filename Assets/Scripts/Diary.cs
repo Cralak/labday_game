@@ -86,6 +86,12 @@ public class Diary : MonoBehaviour
                 StartCoroutine(Write("OH NO! I can't go out... Why did it take so long to enter by the way?"));
                 events.Remove("archEnter");
             }
+            else if (events.Contains("doorLock"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("I don't have the key, i need to find it"));
+                events.Remove("doorLock");
+            }
             else if (events.Contains("rustyKey"))
             {
                 isBusy = true;
@@ -116,7 +122,6 @@ public class Diary : MonoBehaviour
                 StartCoroutine(Write("Why did I have to play chess in this place?"));
                 events.Remove("chess");
             }
-        }
     }
 
     IEnumerator Write(string sentence)
@@ -180,4 +185,5 @@ public class Diary : MonoBehaviour
         pageNumber += n;
         isBusy = false;
     }
+}
 }
