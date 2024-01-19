@@ -76,17 +76,17 @@ public class PlayerMovement : MonoBehaviour
 
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
         
-        if (controller.velocity.y == 0.0f && velocityY < -1.0f) velocityY = 1.0f;
+        if (controller.velocity.y == 0.0f && velocityY < -1.0f) velocityY = 0.0f;
 
         velocityY += gravity * 2.0f * Time.deltaTime;
+
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed + Vector3.up * velocityY;
 
         if (isGrounded && Input.GetButtonDown("Jump")) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
 
         if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock)) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
 
         if (!isGrounded && controller.velocity.y < -1.0f)  velocityY = -8.0f;
-
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed + Vector3.up * velocityY;
 
         controller.Move(velocity * Time.deltaTime);
 
