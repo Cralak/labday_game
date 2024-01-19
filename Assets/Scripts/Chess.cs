@@ -53,27 +53,23 @@ public class Chess : MonoBehaviour
         if (!isPlaying)
         {
             if (isTouching && !isSwitching && Input.GetKeyDown(KeyCode.E)) StartCoroutine(Play());
-
         }
         else
         {
             StartCoroutine(Puzzle());
 
             if (isTouching && !isSwitching && Input.GetKeyDown(KeyCode.E)) StartCoroutine(Unplay());
-
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
         if (collider == player.GetComponent<CharacterController>()) isTouching = true;
-
     }
 
     void OnTriggerExit(Collider collider)
     {
         if (collider == player.GetComponent<CharacterController>()) isTouching = false;
-
     }
 
     IEnumerator Unplay()
@@ -113,7 +109,6 @@ public class Chess : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
             if (Physics.Raycast(componentCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
                 if (hit.transform.name.Contains("Black") || hit.transform.name.Contains("White"))
