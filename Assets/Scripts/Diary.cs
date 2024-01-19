@@ -12,9 +12,12 @@ public class Diary : MonoBehaviour
     [SerializeField] AudioClip writingSound;
     [SerializeField] AudioClip pageSound;
     [SerializeField, Range(0.005f, 0.05f)] float writingSpeed = 0.01f;
-    
+
     readonly List<string> writtenEvents = new();
 
+    GameObject player;
+    PlayerMovement playerMovement;
+    AudioSource footsteps;
     Canvas canvas;
     AudioSource sound;
     bool isBusy;
@@ -23,6 +26,9 @@ public class Diary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        playerMovement = player.GetComponent<PlayerMovement>();
+        footsteps = player.GetComponent<AudioSource>();
         canvas = GetComponent<Canvas>();
         sound = GetComponent<AudioSource>();
         pageNumber = 0;
@@ -33,9 +39,22 @@ public class Diary : MonoBehaviour
     {
         sound.volume = PlayerPrefs.GetFloat("SFX");
 
-        if (Input.GetKeyDown(KeyCode.N)) canvas.enabled = !canvas.enabled;
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            canvas.enabled = !canvas.enabled;
+            if (canvas.enabled)
+            {
+                playerMovement.enabled = false;
+                footsteps.Pause();
+            }
+            else
+            {
+                playerMovement.enabled = true;
+                footsteps.UnPause();
+            }
+        }
 
-        if (canvas.enabled == true && !isBusy)
+        if (canvas.enabled && !isBusy)
         {
             if (pageNumber > 0 && Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -72,6 +91,12 @@ public class Diary : MonoBehaviour
                 isBusy = true;
                 StartCoroutine(Write("What an astounding lightning! It scared me so badly!"));
                 events.Remove("lightning");
+            }
+            else if (events.Contains("chess"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Why did I have to play chess in this place?"));
+                events.Remove("chess");
             }
         }
     }

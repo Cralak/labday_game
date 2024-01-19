@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ObjectInteract : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    GameObject player;
     bool isColliding = false;
     Inventory inventoryScript;
 
     void Start()
     {
+        player = GameObject.Find("Player");
         inventoryScript = player.GetComponent<Inventory>();
     }
 

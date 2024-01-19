@@ -6,13 +6,10 @@ using UnityEngine.UI;
 
 public class ArchEntrance : MonoBehaviour
 {
-    [SerializeField]
-    GameObject player;
-    [SerializeField]
-    Image blackScreen;
-    [SerializeField]
-    Canvas canvas;
+    [SerializeField] Image blackScreen;
+    [SerializeField] Canvas canvas;
 
+    GameObject player;
     bool isTouching;
     PlayerMovement playerMovement;
     Canvas text;
@@ -20,6 +17,7 @@ public class ArchEntrance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
         blackScreen = canvas.GetComponentInChildren<Image>();
         text = GetComponent<Canvas>();

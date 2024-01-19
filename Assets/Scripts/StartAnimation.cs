@@ -5,15 +5,14 @@ using DG.Tweening;
 
 public class StartAnimation : MonoBehaviour
 {
-    [SerializeField]
     GameObject player;
-
     PlayerMovement playerMovement;
     bool isPlaying;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
         isPlaying = false;
         DOTween.defaultEaseType = Ease.Linear;
