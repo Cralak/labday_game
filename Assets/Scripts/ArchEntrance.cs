@@ -35,7 +35,7 @@ public class ArchEntrance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isTouching && Input.GetKeyDown(KeyCode.E))
+        if (isTouching && Input.GetKeyDown(KeyCode.E))
         {
             playerMovement.enabled = false;
             player.GetComponent<AudioSource>().Pause();
@@ -59,22 +59,24 @@ public class ArchEntrance : MonoBehaviour
 
     IEnumerator FakeScreen()
     {
-        for (float i = 0; i <= 1; i += 0.005f)
+        for (float i = 0; i <= 1; i += 0.05f)
         {
             Color c = blackScreen.color;
             c.a = i;
             blackScreen.color = c;
-            yield return new WaitForSeconds(0.005f);
+
+            yield return new WaitForSeconds(0.001f);
         }
 
-        player.transform.position= new Vector3(22, 1, 50);
+        player.transform.position = new Vector3(22, 1, 50);
 
-        for (float i = 1.0f; i >= 0; i -= 0.005f)
+        for (float i = 1.0f; i >= 0; i -= 0.05f)
         {
             Color c = blackScreen.color;
             c.a = i;
             blackScreen.color = c;
-            yield return new WaitForSeconds(0.005f);
+
+            yield return new WaitForSeconds(0.001f);
         }
         diary.events.Add("archEnter");
         playerMovement.enabled = true;
