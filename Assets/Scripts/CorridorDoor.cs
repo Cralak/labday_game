@@ -17,16 +17,16 @@ public class CorridorDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTouching && Input.GetKeyDown("e"))
+        if (isTouching && Input.GetKeyDown(KeyCode.E))
         {
             if (close)
             {
-                transform.position += new Vector3(5f, 0f, 3.5f);
+                transform.position += new Vector3(5.0f, 0.0f, 3.5f);
                 close = !close;
             }
             else
             {
-                transform.position += new Vector3(-5f, 0f, -3.5f);
+                transform.position += new Vector3(-5.0f, 0.0f, -3.5f);
                 close = !close;
             }
         }
@@ -34,7 +34,6 @@ public class CorridorDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)    
     {
-        print("touch");
         isTouching = true;
     }
 

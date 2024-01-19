@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public float speed = 20.0f;
-    public float minDist = 1f;
-    public Transform target;
+    [SerializeField] float speed = 20.0f;
+    [SerializeField] float minDist = 1f;
+    [SerializeField] Transform target;
 
     // Use this for initialization
     void Start()
@@ -31,19 +31,13 @@ public class Monster : MonoBehaviour
 
         // face the target
         transform.LookAt(target);
-        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(0.0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
-        //get the distance between the chaser and the target
+        // get the distance between the chaser and the target
         float distance = Vector3.Distance(transform.position, target.position);
 
-        //so long as the chaser is farther away than the minimum distance, move towards it at rate speed.
+        // so long as the chaser is farther away than the minimum distance, move towards it at rate speed.
         if (distance > minDist)
             transform.position += transform.forward * speed * Time.deltaTime;
-    }
-
-    // Set the target of the chaser
-    public void SetTarget(Transform newTarget)
-    {
-        target = newTarget;
     }
 }

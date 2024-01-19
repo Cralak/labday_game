@@ -14,17 +14,7 @@ public class Laser : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("l"))
-        {
-            laser.enabled = !laser.enabled;
-        }
-
-        if (laser.enabled)
-        {
-            if (Time.frameCount % 5 == 0)
-            {
-                laser.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0f, 1f);
-            }
-        }
+        if (Input.GetKeyDown(KeyCode.L)) laser.enabled = !laser.enabled;
+        if (laser.enabled && Time.frameCount % 5 == 0) laser.color = Random.ColorHSV(0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f);
     }
 }

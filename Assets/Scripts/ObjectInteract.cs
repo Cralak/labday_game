@@ -4,40 +4,41 @@ using UnityEngine;
 
 public class ObjectInteract : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    GameObject player;
+    Diary diary;
     bool isColliding = false;
     Inventory inventoryScript;
 
     void Start()
     {
+        player = GameObject.Find("Player");
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
         inventoryScript = player.GetComponent<Inventory>();
     }
 
     void Update()
     {
-        if (isColliding && Input.GetKeyDown("e"))
+        if (isColliding && Input.GetKeyDown(KeyCode.E))
         {
             inventoryScript.inventory.Add(gameObject);
             transform.localScale = new Vector3(0, 0, 0);
             GetComponent<Collider>().enabled = false;
             isColliding = false;
             enabled = false;
+            if (name == "Key")
+            {
+                diary.events.Add("rustyKey");
+            }
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject == player)
-        {
-            isColliding = true;
-        }
+        if (collider.gameObject == player) isColliding = true;
     }
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject == player)
-        {
-            isColliding = false;
-        }
+        if (collider.gameObject == player) isColliding = false;
     }
 }

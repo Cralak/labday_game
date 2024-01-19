@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TextDisplay : MonoBehaviour
 {
-    public Transform target;
     [SerializeField] Transform player;
     Canvas text;
     // Start is called before the first frame update

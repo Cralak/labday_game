@@ -4,34 +4,61 @@ using UnityEngine;
 
 public class Lightcorridor : MonoBehaviour
 {
-    bool enabled = true;
-    Light light;
+    [SerializeField] float interval = 0.3f;
+
+    GameObject player;
+    Diary diary;
+    Light lightComponent;
+    AudioSource lightSound;
+    bool hasStarted;
+
     // Start is called before the first frame update
     void Start()
     {
-        light = GetComponent<Light>();
+        player = GameObject.Find("Player");
+        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        lightComponent = GetComponent<Light>();
+        lightSound = GetComponent<AudioSource>();
+        lightSound.Play();
+        lightSound.Pause();
+        hasStarted = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.frameCount % 10 == 0 && enabled)
+        lightSound.volume = PlayerPrefs.GetFloat("SFX");
+        if (Vector3.Distance(transform.position, player.transform.position) < 10.0f && !hasStarted) StartCoroutine(LightCycle(interval));
+    }
+
+    IEnumerator LightCycle(float interval)
+    {
+        diary.events.Add("lightCorridor");
+        hasStarted = true;
+
+        for (int i = 0; i < 10; i++)
         {
-            if (light.intensity == 1 && !light.enabled)
-            {
-                light. intensity = 3;
-            } 
-            else if (light.intensity == 3 && !light.enabled)
-            {
-                light.intensity = 1;
-            }            
-            
-            light.enabled = !light.enabled;
-        }
-        if (Time.frameCount % 600 == 0)
-        {
-            light.enabled = false;
-            enabled = !enabled;
+            yield return new WaitForSeconds(interval);
+
+            lightSound.UnPause();
+            lightComponent.intensity = 3;
+            lightComponent.enabled = true;
+
+            yield return new WaitForSeconds(interval);
+
+            lightSound.Pause();
+            lightComponent.enabled = false;
+
+            yield return new WaitForSeconds(interval);
+
+            lightSound.UnPause();
+            lightComponent.intensity = 1;
+            lightComponent.enabled = true;
+
+            yield return new WaitForSeconds(interval);
+
+            lightSound.Pause();
+            lightComponent.enabled = false;
         }
     }
 }
