@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadUI : MonoBehaviour
 {
+    GameObject diary;
     void Awake()
     {
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
@@ -12,9 +13,12 @@ public class LoadUI : MonoBehaviour
 
     void Start()
     {
+        diary = GameObject.Find("Diary");
+        diary.GetComponent<Diary>().events.Add("start");
+
         DontDestroyOnLoad(GameObject.Find("EventSystem"));
         DontDestroyOnLoad(GameObject.Find("UI"));
-        DontDestroyOnLoad(GameObject.Find("Diary"));
+        DontDestroyOnLoad(diary);
         DontDestroyOnLoad(GameObject.Find("Inventory"));
         DontDestroyOnLoad(GameObject.Find("Settings"));
     }

@@ -74,8 +74,13 @@ public class Diary : MonoBehaviour
             text1.text = writtenEvents.Count > leftPage ? writtenEvents[leftPage] : "";
             text2.text = writtenEvents.Count > rightPage ? writtenEvents[rightPage] : "";
 
-            
-            if (events.Contains("archEnter"))
+            if (events.Contains("start"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."));
+                events.Remove("start");
+            }
+            else if (events.Contains("archEnter"))
             {
                 isBusy = true;
                 StartCoroutine(Write("OH NO! I can't go out... Why did it take so long to enter by the way?"));
