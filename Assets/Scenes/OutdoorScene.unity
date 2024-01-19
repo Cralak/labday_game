@@ -1924,6 +1924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc3891372e62804880965e724688872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forestSound: {fileID: 0}
 --- !u!4 &33764889 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2aefd462f2cef7a47ae48e83dfcad5cb, type: 3}
@@ -27507,6 +27508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d01caa6ad2ee5469df8921ee5f40d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diary: {fileID: 0}
 --- !u!1 &665205670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4259579634488048177, guid: 424365dfe65694c3a8c3dc5e86c97807, type: 3}
@@ -31271,7 +31273,7 @@ MonoBehaviour:
     m_Bits: 1024
   jumpBlock:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
 --- !u!143 &759782716
 CharacterController:
   m_ObjectHideFlags: 0
@@ -31452,6 +31454,10 @@ MonoBehaviour:
   cross: {fileID: 2800000, guid: 2bf714c0b6f8b2244a83bc12d942a73d, type: 3}
   cube: {fileID: 2800000, guid: 0174e4ddd9d37ad43b42104de057c66a, type: 3}
   key2D: {fileID: 2800000, guid: af0a2ab7048b0bd43b1ca4bf63a5e909, type: 3}
+  keyObject: {fileID: 0}
+  isOpened: 0
+  UI: {fileID: 0}
+  inventoryCanvas: {fileID: 0}
 --- !u!1 &761173028
 GameObject:
   m_ObjectHideFlags: 0
@@ -34255,6 +34261,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: {fileID: 1705753433}
+  player: {fileID: 0}
+  playerMovement: {fileID: 0}
+  diary: {fileID: 0}
+  isTouching: 0
+  text: {fileID: 0}
+  inventoryScript: {fileID: 0}
 --- !u!135 &807437659
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -60645,6 +60657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d839a9938624a75a6ade1827060766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laser: {fileID: 0}
 --- !u!1 &1383093282
 GameObject:
   m_ObjectHideFlags: 0
@@ -74346,6 +74359,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3260066922a97584c90c5aaa728c6e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  diary: {fileID: 0}
+  isColliding: 0
+  inventoryScript: {fileID: 0}
 --- !u!135 &1705753435
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -78537,6 +78554,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackScreen: {fileID: 459027996}
   canvas: {fileID: 1864910735}
+  player: {fileID: 0}
+  diary: {fileID: 0}
+  UI: {fileID: 0}
+  isTouching: 0
+  playerMovement: {fileID: 0}
+  text: {fileID: 0}
 --- !u!1 &1803146955 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4810577748821792960, guid: 424365dfe65694c3a8c3dc5e86c97807, type: 3}
