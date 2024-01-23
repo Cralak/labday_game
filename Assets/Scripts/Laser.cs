@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    // Start is called before the first frame update
-    Light laser;
+    Light laser; // Reference to the Light component
 
     void Start()
     {
@@ -14,7 +13,12 @@ public class Laser : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) laser.enabled = !laser.enabled;
-        if (laser.enabled && Time.frameCount % 5 == 0) laser.color = Random.ColorHSV(0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f);
+        // Toggle the laser on/off with the L key
+        if (Input.GetKeyDown(KeyCode.L)) 
+            laser.enabled = !laser.enabled;
+
+        // Change the laser color periodically when it is enabled
+        if (laser.enabled && Time.frameCount % 5 == 0) 
+            laser.color = Random.ColorHSV(0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f);
     }
 }

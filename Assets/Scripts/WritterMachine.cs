@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class WriterMachine : MonoBehaviour
 {
@@ -13,34 +12,50 @@ public class WriterMachine : MonoBehaviour
 
     void Awake()
     {
-        uiText = GetComponent<TextMeshProUGUI>();
-        originalText = uiText.text;
-        uiText.text = null;
+        InitializeComponents();
     }
 
     void Update()
     {
-        if (chessScript != null && chessScript.isPlaying) uiText.text = null;
+        // Check if chessScript is playing and reset the text
+        if (chessScript != null && chessScript.isPlaying)
+        {
+            uiText.text = null;
+        }
     }
+
     void OnTriggerEnter()
     {
+        // Start the coroutine when triggered
         StartCoroutine(LetterByLetter());
     }
 
     void OnTriggerExit()
     {
+        // Clear the text when exiting the trigger
+        uiText.text = null;
+    }
+
+    void InitializeComponents()
+    {
+        // Initialize required components
+        uiText = GetComponent<TextMeshProUGUI>();
+        originalText = uiText.text;
         uiText.text = null;
     }
 
     IEnumerator LetterByLetter()
     {
+        // Display text letter by letter with a delay
         for (int i = 0; i <= originalText.Length; i++)
         {
+            // Check if chessScript is playing and exit the coroutine
             if (chessScript != null && chessScript.isPlaying)
             {
                 uiText.text = null;
                 yield break;
             }
+
             uiText.text = originalText[..i];
             yield return new WaitForSeconds(delay);
         }

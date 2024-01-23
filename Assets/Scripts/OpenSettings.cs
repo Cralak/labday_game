@@ -18,6 +18,7 @@ public class OpenSettings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Find and assign necessary GameObjects and components
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
         footsteps = player.GetComponent<AudioSource>();
@@ -29,9 +30,12 @@ public class OpenSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Toggle the settings canvas on/off when the Escape key is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             settingsCanvas.enabled = !settingsCanvas.enabled;
+
+            // If the settings canvas is enabled, save the current state and adjust settings
             if (settingsCanvas.enabled)
             {
                 cursorState = Cursor.lockState == CursorLockMode.Locked;
@@ -43,6 +47,7 @@ public class OpenSettings : MonoBehaviour
                 playerMovement.enabled = false;
                 footsteps.Pause();
             }
+            // If the settings canvas is disabled, restore the previous state
             else
             {
                 if (cursorState) Cursor.lockState = CursorLockMode.Locked;

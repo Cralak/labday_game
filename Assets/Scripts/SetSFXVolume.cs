@@ -1,20 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SetSFXVolume : MonoBehaviour
 {
     AudioSource forestSound;
 
-    // Start is called before the first frame update
     void Start()
     {
+        InitializeComponents();
+    }
+
+    void Update()
+    {
+        UpdateSFXVolume();
+    }
+
+    void InitializeComponents()
+    {
+        // Initialize required components
         forestSound = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateSFXVolume()
     {
+        // Update SFX volume based on player preferences
         forestSound.volume = PlayerPrefs.GetFloat("SFX");
     }
 }
+
