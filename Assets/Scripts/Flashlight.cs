@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    [SerializeField] Light lightComponent;
+    [SerializeField] Light lightComponent; // Reference to the Light component
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) lightComponent.enabled = !lightComponent.enabled;
+        // Toggle the flashlight on/off with the F key
+        if (Input.GetKeyDown(KeyCode.F)) 
+            lightComponent.enabled = !lightComponent.enabled;
     }
 }
+

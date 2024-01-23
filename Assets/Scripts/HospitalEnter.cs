@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class HospitalEnter : MonoBehaviour
 {
-    [SerializeField] GameObject key;
+    [SerializeField] GameObject key; // Reference to the key GameObject
 
     GameObject player;
     PlayerMovement playerMovement;
     Diary diary;
-    bool isTouching;
+    bool isTouching; // Flag to check if the player is touching the trigger area
     Canvas text;
     Inventory inventoryScript;
 
@@ -29,29 +29,34 @@ public class HospitalEnter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTouching == true && inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
+        // Check if the player is touching the trigger area, has the key, and presses the "e" key
+        if (isTouching && inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
         {
             StartCoroutine(LoadHospital());
         }
 
-        if (isTouching == true && !inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
+        // Check if the player is touching the trigger area, doesn't have the key, and presses the "e" key
+        if (isTouching && !inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
         {
             diary.events.Add("doorLock");
         }
     }
 
+    // Called when another collider enters the trigger area
     void OnTriggerEnter()
     {
         isTouching = true;
         text.enabled = true;
     }
 
+    // Called when another collider exits the trigger area
     void OnTriggerExit()
     {
         isTouching = false;
         text.enabled = false;
     }
 
+    // Coroutine to load the hospital scene
     IEnumerator LoadHospital()
     {
         playerMovement.enabled = false;
