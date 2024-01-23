@@ -10,16 +10,19 @@ public class LoadOutdoor : MonoBehaviour
 
     void Start()
     {
+        // Get the Image component of the loading screen
         loadScreen = GameObject.Find("LoadScreen").GetComponent<Image>();
     }
 
     public void LoadScene()
     {
+        // Start the asynchronous loading process
         StartCoroutine(Load());
     }
 
     IEnumerator Load()
     {
+        // Fade in the loading screen
         for (float i = 0; i <= 1; i += 0.05f)
         {
             Color c = loadScreen.color;
@@ -29,6 +32,7 @@ public class LoadOutdoor : MonoBehaviour
             yield return new WaitForSeconds(0.005f);
         }
 
+        // Load the outdoor scene
         SceneManager.LoadScene("OutdoorScene");
     }
 }

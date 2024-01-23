@@ -11,7 +11,7 @@ public class Monster : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // if no target specified, assume the player
+        // If no target is specified, assume the player
         if (target == null)
         {
             if (GameObject.FindWithTag("Player") != null)
@@ -24,19 +24,20 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If no target is assigned, do nothing
         if (target == null)
         {
             return;
         }
 
-        // face the target
+        // Face the target
         transform.LookAt(target);
         transform.rotation = Quaternion.Euler(0.0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
-        // get the distance between the chaser and the target
+        // Get the distance between the chaser and the target
         float distance = Vector3.Distance(transform.position, target.position);
 
-        // so long as the chaser is farther away than the minimum distance, move towards it at rate speed.
+        // Move towards the target at the specified speed as long as the distance is greater than the minimum distance
         if (distance > minDist)
             transform.position += transform.forward * speed * Time.deltaTime;
     }
