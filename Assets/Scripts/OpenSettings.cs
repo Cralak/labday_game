@@ -8,12 +8,14 @@ public class OpenSettings : MonoBehaviour
 {
     GameObject player;
     PlayerMovement playerMovement;
+    Inventory inventory;
     AudioSource footsteps;
     Canvas UI;
     Canvas settingsCanvas;
     bool cursorState;
     bool UIState;
     bool playerMovementState;
+    bool inventoryState;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class OpenSettings : MonoBehaviour
         // Find and assign necessary GameObjects and components
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
+        inventory = player.GetComponent<Inventory>();
         footsteps = player.GetComponent<AudioSource>();
         settingsCanvas = GameObject.Find("Settings").GetComponent<Canvas>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
@@ -41,10 +44,12 @@ public class OpenSettings : MonoBehaviour
                 cursorState = Cursor.lockState == CursorLockMode.Locked;
                 UIState = UI.enabled;
                 playerMovementState = playerMovement.enabled;
+                inventoryState = inventory.enabled;
 
                 Cursor.lockState = CursorLockMode.None;
                 UI.enabled = false;
                 playerMovement.enabled = false;
+                inventory.enabled = false;
                 footsteps.Pause();
             }
             // If the settings canvas is disabled, restore the previous state
@@ -53,6 +58,7 @@ public class OpenSettings : MonoBehaviour
                 if (cursorState) Cursor.lockState = CursorLockMode.Locked;
                 UI.enabled = UIState;
                 playerMovement.enabled = playerMovementState;
+                inventory.enabled = inventoryState;
             }
         }
     }

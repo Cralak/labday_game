@@ -105,11 +105,39 @@ public class Diary : MonoBehaviour
             else if (events.Contains("doorLock"))
             {
                 isBusy = true;
-                StartCoroutine(Write("I don't have the key, I need to find it"));
+                StartCoroutine(Write("I don't have the key, i need to find it"));
                 events.Remove("doorLock");
             }
-            // ... (other events)
-
+            else if (events.Contains("rustyKey"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Berk, why was that key in that body? So disgusting! And how did it get so rusty?"));
+                events.Remove("rustyKey");
+            }
+            else if (events.Contains("indoor"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"));
+                events.Remove("indoor");
+            }
+            else if (events.Contains("lightCorridor"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("What is illuminating the ceiling ? So scary! "));
+                events.Remove("lightCorridor");
+            }
+            else if (events.Contains("lightning"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("What an astounding lightning! It scared me so badly!"));
+                events.Remove("lightning");
+            }
+            else if (events.Contains("chess"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("Why did I have to play chess in this place?"));
+                events.Remove("chess");
+            }
         }
     }
 

@@ -19,6 +19,7 @@ public class Chess : MonoBehaviour
     // References to other game objects and components
     GameObject player;
     PlayerMovement playerMovement;
+    Inventory inventory;
     AudioSource footsteps;
     GameObject playerCamera;
     Camera componentCamera;
@@ -38,6 +39,7 @@ public class Chess : MonoBehaviour
         // Initialize references to game objects and components
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
+        inventory = player.GetComponent<Inventory>();
         footsteps = player.GetComponent<AudioSource>();
         playerCamera = GameObject.Find("PlayerCamera");
         componentCamera = playerCamera.GetComponent<Camera>();
@@ -96,6 +98,7 @@ public class Chess : MonoBehaviour
 
         isSwitching = false;
         playerMovement.enabled = true;
+        inventory.enabled = true;
         flashlight.SetActive(true);
         UI.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -106,6 +109,7 @@ public class Chess : MonoBehaviour
     {
         isPlaying = true;
         playerMovement.enabled = false;
+        inventory.enabled = true;
         flashlight.SetActive(false);
         footsteps.Pause();
         UI.enabled = false;

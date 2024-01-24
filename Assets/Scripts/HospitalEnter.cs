@@ -11,6 +11,7 @@ public class HospitalEnter : MonoBehaviour
     PlayerMovement playerMovement;
     Diary diary;
     bool isTouching; // Flag to check if the player is touching the trigger area
+    bool firstTry; // To check if player already tried to enter
     Canvas text;
     Inventory inventoryScript;
 
@@ -22,6 +23,7 @@ public class HospitalEnter : MonoBehaviour
         diary = GameObject.Find("Diary").GetComponent<Diary>();
         inventoryScript = player.GetComponent<Inventory>();
         isTouching = false;
+        firstTry = true;
         text = GetComponent<Canvas>();
         text.enabled = false;
     }
@@ -29,16 +31,19 @@ public class HospitalEnter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if the player is touching the trigger area, has the key, and presses the "e" key
-        if (isTouching && inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
+        // Check if the player is touching the trigger area, and presses the "e" key
+        if (isTouching && Input.GetKeyDown("e"))
         {
-            StartCoroutine(LoadHospital());
-        }
-
-        // Check if the player is touching the trigger area, doesn't have the key, and presses the "e" key
-        if (isTouching && !inventoryScript.inventory.Contains(key) && Input.GetKeyDown("e"))
-        {
-            diary.events.Add("doorLock");
+            // Check if the player has the key in inventory
+            if (inventoryScript.inventory.Contains(key))
+            {
+                StartCoroutine(LoadHospital());
+            }
+            else if (firstTry)
+            {
+                diary.events.Add("doorLock");
+                firstTry = false;
+            }
         }
     }
 
