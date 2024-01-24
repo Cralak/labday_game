@@ -32171,7 +32171,7 @@ MonoBehaviour:
   playerCamera: {fileID: 939477232}
   mouseSmoothTime: 0.03
   moveSmoothTime: 0.3
-  bobbingX: 0.005
+  bobbingX: 0
   bobbingY: 0.005
   frequency: 10
   gravity: -30
