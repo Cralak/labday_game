@@ -109,7 +109,7 @@ public class Chess : MonoBehaviour
     {
         isPlaying = true;
         playerMovement.enabled = false;
-        inventory.enabled = true;
+        inventory.enabled = false;
         flashlight.SetActive(false);
         footsteps.Pause();
         UI.enabled = false;
