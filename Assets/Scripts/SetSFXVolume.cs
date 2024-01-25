@@ -6,21 +6,11 @@ public class SetSFXVolume : MonoBehaviour
 
     void Start()
     {
-        InitializeComponents();
-    }
-
-    void Update()
-    {
-        UpdateSFXVolume();
-    }
-
-    void InitializeComponents()
-    {
         // Initialize required components
         forestSound = GetComponent<AudioSource>();
     }
 
-    void UpdateSFXVolume()
+    void Update()
     {
         // Update SFX volume based on player preferences
         forestSound.volume = PlayerPrefs.GetFloat("SFX");

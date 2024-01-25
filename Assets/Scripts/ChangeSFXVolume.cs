@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,11 +23,6 @@ public class ChangeSFXVolume : MonoBehaviour
         inputField.text = PlayerPrefs.GetFloat("SFX").ToString();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -34,13 +30,15 @@ public class ChangeSFXVolume : MonoBehaviour
         if (PlayerPrefs.GetFloat("SFX") != slider.value)
         {
             // Update PlayerPrefs with the new SFX volume value based on the slider, and update the input field text
+            slider.value = Mathf.Round(slider.value * 100.0f) / 100.0f;
             PlayerPrefs.SetFloat("SFX", slider.value);
             inputField.text = PlayerPrefs.GetFloat("SFX").ToString();
         }
         // Check if the SFX volume value in PlayerPrefs does not match the text in the input field
-        else if (PlayerPrefs.GetFloat("SFX").ToString() != inputField.text)
+        else if (Input.GetKeyDown(KeyCode.Return) && PlayerPrefs.GetFloat("SFX").ToString() != inputField.text)
         {
             // Update PlayerPrefs with the new SFX volume value based on the input field, and update the slider value
+            inputField.text = Math.Round(double.Parse(inputField.text), 2).ToString();
             PlayerPrefs.SetFloat("SFX", float.Parse(inputField.text));
             slider.value = PlayerPrefs.GetFloat("SFX");
         }
