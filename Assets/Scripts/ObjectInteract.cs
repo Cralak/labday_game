@@ -18,10 +18,7 @@ public class ObjectInteract : MonoBehaviour
     void Update()
     {
         // Check if colliding
-        if (isColliding)
-        {
-            Interact();
-        }
+        if (isColliding) Interact();
     }
 
     void OnTriggerEnter(Collider collider)

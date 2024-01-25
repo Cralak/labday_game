@@ -45,6 +45,8 @@ public class Diary : MonoBehaviour
         canvas = GetComponent<Canvas>();
         sound = GetComponent<AudioSource>();
         pageNumber = 0;
+
+        events.Add("start");
     }
 
     // Update is called once per frame
