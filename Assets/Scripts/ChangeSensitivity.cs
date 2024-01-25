@@ -19,7 +19,7 @@ public class ChangeSensitivity : MonoBehaviour
         inputField = GetComponentInChildren<TMP_InputField>();
 
         // Initialize the slider and input field values based on the saved sensitivity value in PlayerPrefs
-        slider.value = (PlayerPrefs.GetFloat("sensitivity") - 1.0f) / 9.0f;
+        slider.value = PlayerPrefs.GetFloat("sensitivity");
         inputField.text = PlayerPrefs.GetFloat("sensitivity").ToString();
     }
 
@@ -27,18 +27,20 @@ public class ChangeSensitivity : MonoBehaviour
     void Update()
     {
         // Check if the sensitivity value in PlayerPrefs does not match the calculated value from the slider
-        if (Math.Round(PlayerPrefs.GetFloat("sensitivity"), 5) != Math.Round(slider.value * 9.0f + 1.0f, 5))
+        if (PlayerPrefs.GetFloat("sensitivity") != slider.value)
         {
             // Update PlayerPrefs with the new sensitivity value based on the slider, and update the input field text
-            PlayerPrefs.SetFloat("sensitivity", slider.value * 9.0f + 1.0f);
+            slider.value = Mathf.Round(slider.value * 100.0f) / 100.0f;
+            PlayerPrefs.SetFloat("sensitivity", slider.value);
             inputField.text = PlayerPrefs.GetFloat("sensitivity").ToString();
         }
         // Check if the sensitivity value in PlayerPrefs does not match the text in the input field
-        else if (PlayerPrefs.GetFloat("sensitivity").ToString() != inputField.text)
+        else if (Input.GetKeyDown(KeyCode.Return) && PlayerPrefs.GetFloat("sensitivity").ToString() != inputField.text)
         {
             // Update PlayerPrefs with the new sensitivity value based on the input field, and update the slider value
+            inputField.text = Math.Round(double.Parse(inputField.text), 2).ToString();
             PlayerPrefs.SetFloat("sensitivity", float.Parse(inputField.text));
-            slider.value = (PlayerPrefs.GetFloat("sensitivity") - 1.0f) / 9.0f;
+            slider.value = PlayerPrefs.GetFloat("sensitivity");
         }
     }
 }
