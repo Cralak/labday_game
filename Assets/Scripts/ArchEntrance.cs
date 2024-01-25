@@ -37,10 +37,7 @@ public class ArchEntrance : MonoBehaviour
     void Update()
     {
         // Check if the player is touching and presses the interact key
-        if (isTouching)
-        {
-            PressToEnter();
-        }
+        if (isTouching) PressToEnter();
     }
 
     // Called when another Collider enters the trigger zone

@@ -145,7 +145,6 @@ public class PlayerMovement : MonoBehaviour
         // Perform jumping logic
         if (isGrounded && IsPressed("jump")) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock)) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
-        if (!isGrounded && controller.velocity.y < -1.0f) velocityY = -8.0f;
     }
 
     void UpdateHeadBobbing(Vector3 velocity)
