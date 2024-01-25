@@ -1,9 +1,11 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenSettings : MonoBehaviour
+public class Settings : MonoBehaviour
 {
+    readonly List<GameObject> sections = new();
+
     GameObject player;
     PlayerMovement playerMovement;
     Inventory inventory;
@@ -19,11 +21,15 @@ public class OpenSettings : MonoBehaviour
     void Start()
     {
         // Find and assign necessary GameObjects and components
+        sections.Add(GameObject.Find("General Section"));
+        sections.Add(GameObject.Find("Controls Section"));
+        ChangeSection("General Section");
+
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
         inventory = player.GetComponent<Inventory>();
         footsteps = player.GetComponent<AudioSource>();
-        settingsCanvas = GameObject.Find("Settings").GetComponent<Canvas>();
+        settingsCanvas = GetComponent<Canvas>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         settingsCanvas.enabled = false;
     }
@@ -33,6 +39,16 @@ public class OpenSettings : MonoBehaviour
     {
         // Toggle the settings canvas on/off when the settings key is pressed
         ChangeSettingsState();
+    }
+
+    public void ChangeSection(string name)
+    {
+        // Activate section with given name and desactive other ones
+        foreach (GameObject section in sections)
+        {
+            if (section.name == name) section.SetActive(true);
+            else section.SetActive(false);
+        }
     }
 
     void ToggleSettings()

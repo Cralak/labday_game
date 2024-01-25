@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,11 +12,7 @@ public class ChangeSFXVolume : MonoBehaviour
     {
         // Check if the "SFX" key is present in PlayerPrefs, if not, set it to a default value of 1
         if (!PlayerPrefs.HasKey("SFX")) PlayerPrefs.SetFloat("SFX", 1);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         // Get references to the Slider and TMP_InputField components within the children of this GameObject
         slider = GetComponentInChildren<Slider>();
         inputField = GetComponentInChildren<TMP_InputField>();
@@ -26,6 +20,11 @@ public class ChangeSFXVolume : MonoBehaviour
         // Initialize the slider and input field values based on the saved SFX volume value in PlayerPrefs
         slider.value = PlayerPrefs.GetFloat("SFX");
         inputField.text = PlayerPrefs.GetFloat("SFX").ToString();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
     }
 
     // Update is called once per frame
