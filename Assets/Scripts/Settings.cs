@@ -8,6 +8,7 @@ public class Settings : MonoBehaviour
 
     GameObject player;
     PlayerMovement playerMovement;
+    Diary diary;
     Inventory inventory;
     AudioSource footsteps;
     Canvas UI;
@@ -16,6 +17,7 @@ public class Settings : MonoBehaviour
     bool UIState;
     bool playerMovementState;
     bool inventoryState;
+    bool diaryState;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,8 @@ public class Settings : MonoBehaviour
 
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
-        inventory = player.GetComponent<Inventory>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
+        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         footsteps = player.GetComponent<AudioSource>();
         settingsCanvas = GetComponent<Canvas>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
@@ -61,11 +64,13 @@ public class Settings : MonoBehaviour
             cursorState = Cursor.lockState == CursorLockMode.Locked;
             UIState = UI.enabled;
             playerMovementState = playerMovement.enabled;
+            diaryState  = diary.enabled;
             inventoryState = inventory.enabled;
 
             Cursor.lockState = CursorLockMode.None;
             UI.enabled = false;
             playerMovement.enabled = false;
+            diary.enabled = false;
             inventory.enabled = false;
             footsteps.Pause();
         }
@@ -75,6 +80,7 @@ public class Settings : MonoBehaviour
             if (cursorState) Cursor.lockState = CursorLockMode.Locked;
             UI.enabled = UIState;
             playerMovement.enabled = playerMovementState;
+            diary.enabled = diaryState;
             inventory.enabled = inventoryState;
         }
     }

@@ -12,7 +12,7 @@ public class ObjectInteract : MonoBehaviour
         // Find the Player, Diary, and Inventory components
         player = GameObject.Find("Player");
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        inventoryScript = player.GetComponent<Inventory>();
+        inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
     }
 
     void Update()

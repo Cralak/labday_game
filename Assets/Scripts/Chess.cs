@@ -38,7 +38,7 @@ public class Chess : MonoBehaviour
         // Initialize references to game objects and components
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
-        inventory = player.GetComponent<Inventory>();
+        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         footsteps = player.GetComponent<AudioSource>();
         playerCamera = GameObject.Find("PlayerCamera");
         componentCamera = playerCamera.GetComponent<Camera>();

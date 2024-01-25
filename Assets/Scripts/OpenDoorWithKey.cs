@@ -17,7 +17,7 @@ public class OpenDoorWithKey : MonoBehaviour
         player = GameObject.Find("Player");
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         key = GameObject.Find("Key");
-        inventoryScript = player.GetComponent<Inventory>();
+        inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
         doorNoise = GetComponent<AudioSource>();
 
         isColliding = false;

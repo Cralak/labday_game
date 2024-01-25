@@ -27,11 +27,10 @@ public class Inventory : MonoBehaviour
     {
         // Get references to the UI Canvases
         UI = GameObject.Find("UI").GetComponent<Canvas>();
-        inventoryCanvas = GameObject.Find("Inventory").GetComponent<Canvas>();
+        inventoryCanvas = GetComponent<Canvas>();
 
         // Find and store the reference to the key GameObject
-        if (keyObject = GameObject.Find("Key"))
-            object2D[keyObject] = key2D;
+        if (keyObject = GameObject.Find("Key")) object2D[keyObject] = key2D;
 
         // Get references to the inventory slot content RawImages
         for (int i = 0; i < 6; i++)
@@ -47,8 +46,7 @@ public class Inventory : MonoBehaviour
         ChangeInventoryState();
 
         // Display or hide the inventory based on its current state
-        if (inventoryCanvas.enabled)
-            DisplayInventory();
+        if (inventoryCanvas.enabled) DisplayInventory();
     }
 
     void DisplayInventory()

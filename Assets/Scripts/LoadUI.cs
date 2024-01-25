@@ -20,10 +20,10 @@ public class LoadUI : MonoBehaviour
         UI.GetComponent<Canvas>().enabled = true;
 
         // Prevent specified GameObjects from being destroyed on scene changes
-        DontDestroyOnLoad(UI);
+        DontDestroyOnLoad(GameObject.Find("EventSystem"));
+        DontDestroyOnLoad(GameObject.Find("Settings"));
         DontDestroyOnLoad(GameObject.Find("OpenedDiary"));
         DontDestroyOnLoad(GameObject.Find("Inventory"));
-        DontDestroyOnLoad(GameObject.Find("Settings"));
-        DontDestroyOnLoad(GameObject.Find("EventSystem"));
+        DontDestroyOnLoad(UI);
     }
 }

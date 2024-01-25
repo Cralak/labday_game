@@ -31369,7 +31369,6 @@ GameObject:
   - component: {fileID: 759782716}
   - component: {fileID: 759782717}
   - component: {fileID: 759782715}
-  - component: {fileID: 759782720}
   - component: {fileID: 759782718}
   - component: {fileID: 759782719}
   m_Layer: 0
@@ -31586,22 +31585,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &759782720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 759782712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dd7526b85a08244d9f94cf4bfe575e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: []
-  cross: {fileID: 2800000, guid: 2bf714c0b6f8b2244a83bc12d942a73d, type: 3}
-  cube: {fileID: 2800000, guid: 0174e4ddd9d37ad43b42104de057c66a, type: 3}
-  key2D: {fileID: 2800000, guid: af0a2ab7048b0bd43b1ca4bf63a5e909, type: 3}
 --- !u!1 &761173028
 GameObject:
   m_ObjectHideFlags: 0
