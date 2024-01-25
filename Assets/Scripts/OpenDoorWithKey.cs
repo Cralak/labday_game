@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -17,9 +15,9 @@ public class OpenDoorWithKey : MonoBehaviour
     {
         // Find the Player, Diary, Key, and Inventory components
         player = GameObject.Find("Player");
-        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         key = GameObject.Find("Key");
-        inventoryScript = player.GetComponent<Inventory>();
+        inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
         doorNoise = GetComponent<AudioSource>();
 
         isColliding = false;

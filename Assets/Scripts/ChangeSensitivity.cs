@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,13 +12,8 @@ public class ChangeSensitivity : MonoBehaviour
     void Awake()
     {
         // Check if the "sensitivity" key is present in PlayerPrefs, if not, set it to a default value of 5.0f
-        if (!PlayerPrefs.HasKey("sensitivity"))
-            PlayerPrefs.SetFloat("sensitivity", 5.0f);
-    }
+        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5.0f);
 
-    // Start is called before the first frame update
-    void Start()
-    {
         // Get references to the Slider and TMP_InputField components within the children of this GameObject
         slider = GetComponentInChildren<Slider>();
         inputField = GetComponentInChildren<TMP_InputField>();

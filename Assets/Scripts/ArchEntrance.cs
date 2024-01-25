@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +19,7 @@ public class ArchEntrance : MonoBehaviour
     {
         // Find and assign references to necessary components and objects
         player = GameObject.Find("Player");
-        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         playerMovement = player.GetComponent<PlayerMovement>();
         blackScreen = canvas.GetComponentInChildren<Image>();
@@ -37,19 +36,10 @@ public class ArchEntrance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if the player is touching and presses the 'E' key
-        if (isTouching && Input.GetKeyDown(KeyCode.E))
+        // Check if the player is touching and presses the interact key
+        if (isTouching)
         {
-            // Disable player movement, pause player audio, and hide UI
-            playerMovement.enabled = false;
-            player.GetComponent<AudioSource>().Pause();
-            UI.enabled = false;
-
-            // Start the coroutine for the fake screen effect
-            StartCoroutine(FakeScreen());
-
-            // Reset the touching flag
-            isTouching = false;
+            PressToEnter();
         }
     }
 
@@ -101,5 +91,135 @@ public class ArchEntrance : MonoBehaviour
         diary.events.Add("archEnter");
         playerMovement.enabled = true;
         UI.enabled = true;
+    }
+
+    void Enter()
+    {
+        // Disable player movement, pause player audio, and hide UI
+        playerMovement.enabled = false;
+        player.GetComponent<AudioSource>().Pause();
+        UI.enabled = false;
+
+        // Start the coroutine for the fake screen effect
+        StartCoroutine(FakeScreen());
+
+        // Reset the touching flag
+        isTouching = false;
+    }
+
+    void PressToEnter()
+    {
+        // Enter the if interact button is pressed
+        switch (PlayerPrefs.GetString("interact"))
+        {
+            case "escape":
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Enter();
+                }
+                break;
+            case "tab":
+                if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    Enter();
+                }
+                break;
+            case "lock":
+                if (Input.GetKeyDown(KeyCode.CapsLock))
+                {
+                    Enter();
+                }
+                break;
+            case "backspace":
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    Enter();
+                }
+                break;
+            case "return":
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    Enter();
+                }
+                break;
+            case "space":
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Enter();
+                }
+                break;
+            case "shift":
+                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                {
+                    Enter();
+                }
+                break;
+            case "alt":
+                if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
+                {
+                    Enter();
+                }
+                break;
+            case "control":
+                if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+                {
+                    Enter();
+                }
+                break;
+            case "meta":
+                if (Input.GetKeyDown(KeyCode.LeftMeta) || Input.GetKeyDown(KeyCode.RightMeta))
+                {
+                    Enter();
+                }
+                break;
+            case "upArrow":
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    Enter();
+                }
+                break;
+            case "downArrow":
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    Enter();
+                }
+                break;
+            case "leftArrow":
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    Enter();
+                }
+                break;
+            case "rightArrow":
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    Enter();
+                }
+                break;
+            case "leftClick":
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    Enter();
+                }
+                break;
+            case "rightClick":
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    Enter();
+                }
+                break;
+            case "wheelClick":
+                if (Input.GetKeyDown(KeyCode.Mouse2))
+                {
+                    Enter();
+                }
+                break;
+            default:
+                if (Input.GetKeyDown(PlayerPrefs.GetString("interact")))
+                {
+                    Enter();
+                }
+                break;
+        }
     }
 }

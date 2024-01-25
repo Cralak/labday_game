@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -39,12 +38,12 @@ public class Chess : MonoBehaviour
         // Initialize references to game objects and components
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
-        inventory = player.GetComponent<Inventory>();
+        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         footsteps = player.GetComponent<AudioSource>();
         playerCamera = GameObject.Find("PlayerCamera");
         componentCamera = playerCamera.GetComponent<Camera>();
         flashlight = GameObject.Find("Flashlight");
-        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         isTouching = false;
         isPlaying = false;

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Lightcorridor : MonoBehaviour
@@ -16,7 +15,7 @@ public class Lightcorridor : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         lightComponent = GetComponent<Light>();
         lightSound = GetComponent<AudioSource>();
         lightSound.Play();

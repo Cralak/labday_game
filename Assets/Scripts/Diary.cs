@@ -29,6 +29,7 @@ public class Diary : MonoBehaviour
     GameObject player;
     PlayerMovement playerMovement;
     AudioSource footsteps;
+    Inventory inventory;
     Canvas canvas;
     AudioSource sound;
     bool isBusy; // Flag to check if the diary is currently writing or turning pages
@@ -40,6 +41,7 @@ public class Diary : MonoBehaviour
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
         footsteps = player.GetComponent<AudioSource>();
+        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         canvas = GetComponent<Canvas>();
         sound = GetComponent<AudioSource>();
         pageNumber = 0;
@@ -50,21 +52,7 @@ public class Diary : MonoBehaviour
     {
         sound.volume = PlayerPrefs.GetFloat("SFX");
 
-        // Toggle diary visibility and player movement
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            canvas.enabled = !canvas.enabled;
-            if (canvas.enabled)
-            {
-                playerMovement.enabled = false;
-                footsteps.Pause();
-            }
-            else
-            {
-                playerMovement.enabled = true;
-                footsteps.UnPause();
-            }
-        }
+        ChangeDiaryState();
 
         // Check if the diary is open and not busy
         if (canvas.enabled && !isBusy)
@@ -203,5 +191,139 @@ public class Diary : MonoBehaviour
         sound.Stop();
         pageNumber += n;
         isBusy = false;
+    }
+
+    // Toggle diary visibility and player movement
+    void ToggleDiary()
+    {
+        canvas.enabled = !canvas.enabled;
+        if (canvas.enabled)
+        {
+            playerMovement.enabled = false;
+            inventory.enabled = false;
+            footsteps.Pause();
+        }
+        else
+        {
+            playerMovement.enabled = true;
+            inventory.enabled = true;
+            footsteps.UnPause();
+        }
+    }
+
+    void ChangeDiaryState()
+    {
+        // Toggle the diary on/off with the diary key
+        switch (PlayerPrefs.GetString("diary"))
+        {
+            case "escape":
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "tab":
+                if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "lock":
+                if (Input.GetKeyDown(KeyCode.CapsLock))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "backspace":
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "return":
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "space":
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "shift":
+                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "alt":
+                if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "control":
+                if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "meta":
+                if (Input.GetKeyDown(KeyCode.LeftMeta) || Input.GetKeyDown(KeyCode.RightMeta))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "upArrow":
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "downArrow":
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "leftArrow":
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "rightArrow":
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "leftClick":
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "rightClick":
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    ToggleDiary();
+                }
+                break;
+            case "wheelClick":
+                if (Input.GetKeyDown(KeyCode.Mouse2))
+                {
+                    ToggleDiary();
+                }
+                break;
+            default:
+                if (Input.GetKeyDown(PlayerPrefs.GetString("diary")))
+                {
+                    ToggleDiary();
+                }
+                break;
+        }
     }
 }
