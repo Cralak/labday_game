@@ -20,7 +20,7 @@ public class HospitalEnter : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
-        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         inventoryScript = player.GetComponent<Inventory>();
         isTouching = false;
         firstTry = true;

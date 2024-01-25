@@ -16,7 +16,7 @@ public class Lightning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         lightningLight = GetComponent<Light>();
 
         // Create five AudioSource components for different lightning sounds

@@ -13,8 +13,7 @@ public class ChangeSFXVolume : MonoBehaviour
     void Awake()
     {
         // Check if the "SFX" key is present in PlayerPrefs, if not, set it to a default value of 1
-        if (!PlayerPrefs.HasKey("SFX"))
-            PlayerPrefs.SetFloat("SFX", 1);
+        if (!PlayerPrefs.HasKey("SFX")) PlayerPrefs.SetFloat("SFX", 1);
     }
 
     // Start is called before the first frame update

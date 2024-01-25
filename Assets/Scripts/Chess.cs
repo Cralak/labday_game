@@ -44,7 +44,7 @@ public class Chess : MonoBehaviour
         playerCamera = GameObject.Find("PlayerCamera");
         componentCamera = playerCamera.GetComponent<Camera>();
         flashlight = GameObject.Find("Flashlight");
-        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         isTouching = false;
         isPlaying = false;

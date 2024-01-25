@@ -94,14 +94,14 @@ public class PlayerMovement : MonoBehaviour
     void UpdateMouse()
     {
         // Update mouse look based on input
-        Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector2 targetMouseDelta = new(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
 
         // Adjust camera rotation based on mouse input
         cameraCap -= currentMouseDelta.y * sensitivity;
         cameraCap = Mathf.Clamp(cameraCap, -90.0f, 90.0f);
         playerCamera.localEulerAngles = Vector3.right * cameraCap;
-        transform.Rotate(Vector3.up * currentMouseDelta.x * sensitivity);
+        transform.Rotate(currentMouseDelta.x * sensitivity * Vector3.up);
     }
 
     void UpdateMove()
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, ground);
 
         // Get movement input and normalize it
-        Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 targetDir = new((IsPressed("right") ? 1 : 0) - (IsPressed("left") ? 1 : 0), (IsPressed("forward") ? 1 : 0) - (IsPressed("backward") ? 1 : 0));
         targetDir.Normalize();
 
         // Smoothly interpolate the current direction towards the target direction
@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
     void PerformJump()
     {
         // Perform jumping logic
-        if (isGrounded && Input.GetButtonDown("Jump")) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+        if (isGrounded && IsPressed("jump")) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock)) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         if (!isGrounded && controller.velocity.y < -1.0f) velocityY = -8.0f;
     }
@@ -168,13 +168,13 @@ public class PlayerMovement : MonoBehaviour
     void PerformCrouch()
     {
         // Perform crouching logic
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (IsPressed("crouch"))
         {
             isCrouched = true;
             speed = 3.0f;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (IsUnpressed("crouch"))
         {
             isCrouched = false;
             speed = 6.0f;
@@ -183,5 +183,239 @@ public class PlayerMovement : MonoBehaviour
         if (isCrouched && controller.height > 1.0f) controller.height -= 0.05f;
 
         if (!isCrouched && controller.height < 2.0f) controller.height += 0.05f;
+    }
+
+    bool IsPressed(string key)
+    {
+        // Detect if key is pressed 
+        switch (PlayerPrefs.GetString(key))
+        {
+            case "escape":
+                if (Input.GetKey(KeyCode.Escape))
+                {
+                    return true;
+                }
+                break;
+            case "tab":
+                if (Input.GetKey(KeyCode.Tab))
+                {
+                    return true;
+                }
+                break;
+            case "lock":
+                if (Input.GetKey(KeyCode.CapsLock))
+                {
+                    return true;
+                }
+                break;
+            case "backspace":
+                if (Input.GetKey(KeyCode.Backspace))
+                {
+                    return true;
+                }
+                break;
+            case "return":
+                if (Input.GetKey(KeyCode.Return))
+                {
+                    return true;
+                }
+                break;
+            case "space":
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    return true;
+                }
+                break;
+            case "shift":
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    return true;
+                }
+                break;
+            case "alt":
+                if (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
+                {
+                    return true;
+                }
+                break;
+            case "control":
+                if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+                {
+                    return true;
+                }
+                break;
+            case "meta":
+                if (Input.GetKey(KeyCode.LeftMeta) || Input.GetKey(KeyCode.RightMeta))
+                {
+                    return true;
+                }
+                break;
+            case "upArrow":
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    return true;
+                }
+                break;
+            case "downArrow":
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    return true;
+                }
+                break;
+            case "leftArrow":
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    return true;
+                }
+                break;
+            case "rightArrow":
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    return true;
+                }
+                break;
+            case "leftClick":
+                if (Input.GetKey(KeyCode.Mouse0))
+                {
+                    return true;
+                }
+                break;
+            case "rightClick":
+                if (Input.GetKey(KeyCode.Mouse1))
+                {
+                    return true;
+                }
+                break;
+            case "wheelClick":
+                if (Input.GetKey(KeyCode.Mouse2))
+                {
+                    return true;
+                }
+                break;
+            default:
+                if (Input.GetKey(PlayerPrefs.GetString(key)))
+                {
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
+
+    bool IsUnpressed(string key)
+    {
+        // Toggle the inventory on/off with the inventory key
+        switch (PlayerPrefs.GetString(key))
+        {
+            case "escape":
+                if (Input.GetKeyUp(KeyCode.Escape))
+                {
+                    return true;
+                }
+                break;
+            case "tab":
+                if (Input.GetKeyUp(KeyCode.Tab))
+                {
+                    return true;
+                }
+                break;
+            case "lock":
+                if (Input.GetKeyUp(KeyCode.CapsLock))
+                {
+                    return true;
+                }
+                break;
+            case "backspace":
+                if (Input.GetKeyUp(KeyCode.Backspace))
+                {
+                    return true;
+                }
+                break;
+            case "return":
+                if (Input.GetKeyUp(KeyCode.Return))
+                {
+                    return true;
+                }
+                break;
+            case "space":
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    return true;
+                }
+                break;
+            case "shift":
+                if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
+                {
+                    return true;
+                }
+                break;
+            case "alt":
+                if (Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt))
+                {
+                    return true;
+                }
+                break;
+            case "control":
+                if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
+                {
+                    return true;
+                }
+                break;
+            case "meta":
+                if (Input.GetKeyUp(KeyCode.LeftMeta) || Input.GetKeyUp(KeyCode.RightMeta))
+                {
+                    return true;
+                }
+                break;
+            case "upArrow":
+                if (Input.GetKeyUp(KeyCode.UpArrow))
+                {
+                    return true;
+                }
+                break;
+            case "UpArrow":
+                if (Input.GetKeyUp(KeyCode.UpArrow))
+                {
+                    return true;
+                }
+                break;
+            case "leftArrow":
+                if (Input.GetKeyUp(KeyCode.LeftArrow))
+                {
+                    return true;
+                }
+                break;
+            case "rightArrow":
+                if (Input.GetKeyUp(KeyCode.RightArrow))
+                {
+                    return true;
+                }
+                break;
+            case "leftClick":
+                if (Input.GetKeyUp(KeyCode.Mouse0))
+                {
+                    return true;
+                }
+                break;
+            case "rightClick":
+                if (Input.GetKeyUp(KeyCode.Mouse1))
+                {
+                    return true;
+                }
+                break;
+            case "wheelClick":
+                if (Input.GetKeyUp(KeyCode.Mouse2))
+                {
+                    return true;
+                }
+                break;
+            default:
+                if (Input.GetKeyUp(PlayerPrefs.GetString(key)))
+                {
+                    return true;
+                }
+                break;
+        }
+        return false;
     }
 }

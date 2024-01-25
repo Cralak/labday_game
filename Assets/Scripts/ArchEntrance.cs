@@ -20,7 +20,7 @@ public class ArchEntrance : MonoBehaviour
     {
         // Find and assign references to necessary components and objects
         player = GameObject.Find("Player");
-        diary = GameObject.Find("Diary").GetComponent<Diary>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         playerMovement = player.GetComponent<PlayerMovement>();
         blackScreen = canvas.GetComponentInChildren<Image>();

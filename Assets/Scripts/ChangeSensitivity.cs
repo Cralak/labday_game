@@ -14,8 +14,7 @@ public class ChangeSensitivity : MonoBehaviour
     void Awake()
     {
         // Check if the "sensitivity" key is present in PlayerPrefs, if not, set it to a default value of 5.0f
-        if (!PlayerPrefs.HasKey("sensitivity"))
-            PlayerPrefs.SetFloat("sensitivity", 5.0f);
+        if (!PlayerPrefs.HasKey("sensitivity")) PlayerPrefs.SetFloat("sensitivity", 5.0f);
     }
 
     // Start is called before the first frame update
