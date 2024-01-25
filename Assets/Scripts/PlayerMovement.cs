@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
     void UpdateHeadBobbing(Vector3 velocity)
     {
         // Update head bobbing motion and play/pause footsteps sound
-        if (Vector2.Distance(new Vector2(velocity.x, velocity.z), Vector2.zero) > 0.3f && isGrounded)
+        if (Vector2.Distance(new Vector2(controller.velocity.x, controller.velocity.z), Vector2.zero) > 0.3f && isGrounded)
         {
             playerCamera.localPosition += new Vector3(Mathf.Cos(Time.time * frequency / 2.0f) * bobbingX * 2.0f, Mathf.Sin(Time.time * frequency) * bobbingY, 0.0f);
             footsteps.UnPause();
