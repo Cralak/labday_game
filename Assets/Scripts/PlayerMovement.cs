@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsPressed("crouch"))
         {
             isCrouched = true;
-            speed = 3.0f;
+            speed = 2.0f;
         }
 
         if (IsUnpressed("crouch"))
