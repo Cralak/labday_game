@@ -30,6 +30,7 @@ public class Diary : MonoBehaviour
     PlayerMovement playerMovement;
     AudioSource footsteps;
     Inventory inventory;
+    Settings settings;
     Canvas canvas;
     AudioSource sound;
     bool isBusy; // Flag to check if the diary is currently writing or turning pages
@@ -42,6 +43,7 @@ public class Diary : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         footsteps = player.GetComponent<AudioSource>();
         inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        settings = GameObject.Find("Settings").GetComponent<Settings>();
         canvas = GetComponent<Canvas>();
         sound = GetComponent<AudioSource>();
         pageNumber = 0;
@@ -203,12 +205,14 @@ public class Diary : MonoBehaviour
         {
             playerMovement.enabled = false;
             inventory.enabled = false;
+            settings.enabled = false;
             footsteps.Pause();
         }
         else
         {
             playerMovement.enabled = true;
             inventory.enabled = true;
+            settings.enabled = true;
             footsteps.UnPause();
         }
     }
