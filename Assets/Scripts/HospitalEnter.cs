@@ -21,10 +21,10 @@ public class HospitalEnter : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
-        isTouching = false;
-        firstTry = true;
         text = GetComponent<Canvas>();
         text.enabled = false;
+        isTouching = false;
+        firstTry = true;
     }
 
     // Update is called once per frame
