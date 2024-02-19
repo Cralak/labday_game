@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         if (ToggleActions.IsHeld("crouch"))
         {
             isCrouched = true;
-            speed = 3.0f;
+            speed = 2.0f;
         }
 
         if (ToggleActions.IsUnpressed("crouch"))

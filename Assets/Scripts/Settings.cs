@@ -53,7 +53,7 @@ public class Settings : MonoBehaviour
         }
     }
 
-    void ToggleSettings()
+    public void ToggleSettings()
     {
         settingsCanvas.enabled = !settingsCanvas.enabled;
 
