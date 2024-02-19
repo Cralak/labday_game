@@ -22,6 +22,7 @@ public class LoadUI : MonoBehaviour
         DontDestroyOnLoad(GameObject.Find("Settings"));
         DontDestroyOnLoad(GameObject.Find("OpenedDiary"));
         DontDestroyOnLoad(GameObject.Find("Inventory"));
+        DontDestroyOnLoad(GameObject.Find("FlyingPage"));
         DontDestroyOnLoad(UI);
     }
 }
