@@ -40,7 +40,7 @@ public class Settings : MonoBehaviour
     void Update()
     {
         // Toggle the settings canvas on/off when the settings key is pressed
-        ChangeSettingsState();
+        if (ToggleActions.IsPressed("settings")) ToggleSettings();
     }
 
     public void ChangeSection(string name)
@@ -63,7 +63,7 @@ public class Settings : MonoBehaviour
             cursorState = Cursor.lockState == CursorLockMode.Locked;
             UIState = UI.enabled;
             playerMovementState = playerMovement.enabled;
-            diaryState  = diary.enabled;
+            diaryState = diary.enabled;
             inventoryState = inventory.enabled;
 
             Cursor.lockState = CursorLockMode.None;
@@ -81,122 +81,6 @@ public class Settings : MonoBehaviour
             playerMovement.enabled = playerMovementState;
             diary.enabled = diaryState;
             inventory.enabled = inventoryState;
-        }
-    }
-
-    void ChangeSettingsState()
-    {
-        // Toggle the settings on/off with the settings key
-        switch (PlayerPrefs.GetString("settings"))
-        {
-            case "escape":
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "tab":
-                if (Input.GetKeyDown(KeyCode.Tab))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "lock":
-                if (Input.GetKeyDown(KeyCode.CapsLock))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "backspace":
-                if (Input.GetKeyDown(KeyCode.Backspace))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "return":
-                if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "space":
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "shift":
-                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "alt":
-                if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "control":
-                if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "meta":
-                if (Input.GetKeyDown(KeyCode.LeftMeta) || Input.GetKeyDown(KeyCode.RightMeta))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "upArrow":
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "downArrow":
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "leftArrow":
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "rightArrow":
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "leftClick":
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "rightClick":
-                if (Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    ToggleSettings();
-                }
-                break;
-            case "wheelClick":
-                if (Input.GetKeyDown(KeyCode.Mouse2))
-                {
-                    ToggleSettings();
-                }
-                break;
-            default:
-                if (Input.GetKeyDown(PlayerPrefs.GetString("settings")))
-                {
-                    ToggleSettings();
-                }
-                break;
         }
     }
 }
