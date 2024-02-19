@@ -9,10 +9,10 @@ public class HospitalEnter : MonoBehaviour
     GameObject player;
     PlayerMovement playerMovement;
     Diary diary;
+    Inventory inventoryScript;
     bool isTouching; // Flag to check if the player is touching the trigger area
     bool firstTry; // To check if player already tried to enter
     Canvas text;
-    Inventory inventoryScript;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class HospitalEnter : MonoBehaviour
     void Update()
     {
         // Check if the player is touching the trigger area, and presses the "e" key
-        if (isTouching) PressToEnter();
+        if (isTouching && ToggleActions.IsPressed("interact")) Enter();
     }
 
     // Called when another collider enters the trigger area
@@ -73,122 +73,6 @@ public class HospitalEnter : MonoBehaviour
         {
             diary.events.Add("doorLock");
             firstTry = false;
-        }
-    }
-
-    void PressToEnter()
-    {
-        // Toggle the inventory on/off with the inventory key
-        switch (PlayerPrefs.GetString("interact"))
-        {
-            case "escape":
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    Enter();
-                }
-                break;
-            case "tab":
-                if (Input.GetKeyDown(KeyCode.Tab))
-                {
-                    Enter();
-                }
-                break;
-            case "lock":
-                if (Input.GetKeyDown(KeyCode.CapsLock))
-                {
-                    Enter();
-                }
-                break;
-            case "backspace":
-                if (Input.GetKeyDown(KeyCode.Backspace))
-                {
-                    Enter();
-                }
-                break;
-            case "return":
-                if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    Enter();
-                }
-                break;
-            case "space":
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Enter();
-                }
-                break;
-            case "shift":
-                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
-                {
-                    Enter();
-                }
-                break;
-            case "alt":
-                if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
-                {
-                    Enter();
-                }
-                break;
-            case "control":
-                if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
-                {
-                    Enter();
-                }
-                break;
-            case "meta":
-                if (Input.GetKeyDown(KeyCode.LeftMeta) || Input.GetKeyDown(KeyCode.RightMeta))
-                {
-                    Enter();
-                }
-                break;
-            case "upArrow":
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    Enter();
-                }
-                break;
-            case "downArrow":
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    Enter();
-                }
-                break;
-            case "leftArrow":
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    Enter();
-                }
-                break;
-            case "rightArrow":
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    Enter();
-                }
-                break;
-            case "leftClick":
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    Enter();
-                }
-                break;
-            case "rightClick":
-                if (Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    Enter();
-                }
-                break;
-            case "wheelClick":
-                if (Input.GetKeyDown(KeyCode.Mouse2))
-                {
-                    Enter();
-                }
-                break;
-            default:
-                if (Input.GetKeyDown(PlayerPrefs.GetString("interact")))
-                {
-                    Enter();
-                }
-                break;
         }
     }
 }

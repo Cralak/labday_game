@@ -58,14 +58,14 @@ public class Chess : MonoBehaviour
         if (!isPlaying)
         {
             // Check if player is touching and not currently switching, and interact key is pressed
-            if (isTouching && !isSwitching && HasInteracted()) StartCoroutine(Play()); // Start chess puzzle
+            if (isTouching && !isSwitching && ToggleActions.IsPressed("interact")) StartCoroutine(Play()); // Start chess puzzle
         }
         else
         {
             StartCoroutine(Puzzle()); // Continue puzzle logic
 
             // Check if player is touching and not currently switching, and interact key is pressed
-            if (isTouching && !isSwitching && HasInteracted()) StartCoroutine(Unplay()); // End chess puzzle
+            if (isTouching && !isSwitching && ToggleActions.IsPressed("interact")) StartCoroutine(Unplay()); // End chess puzzle
         }
     }
 
@@ -198,123 +198,5 @@ public class Chess : MonoBehaviour
                 lastClicked = square.name; // Update the last clicked square
             }
         }
-    }
-
-
-    bool HasInteracted()
-    {
-        // Detect if key is pressed 
-        switch (PlayerPrefs.GetString("interact"))
-        {
-            case "escape":
-                if (Input.GetKey(KeyCode.Escape))
-                {
-                    return true;
-                }
-                break;
-            case "tab":
-                if (Input.GetKey(KeyCode.Tab))
-                {
-                    return true;
-                }
-                break;
-            case "lock":
-                if (Input.GetKey(KeyCode.CapsLock))
-                {
-                    return true;
-                }
-                break;
-            case "backspace":
-                if (Input.GetKey(KeyCode.Backspace))
-                {
-                    return true;
-                }
-                break;
-            case "return":
-                if (Input.GetKey(KeyCode.Return))
-                {
-                    return true;
-                }
-                break;
-            case "space":
-                if (Input.GetKey(KeyCode.Space))
-                {
-                    return true;
-                }
-                break;
-            case "shift":
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                {
-                    return true;
-                }
-                break;
-            case "alt":
-                if (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
-                {
-                    return true;
-                }
-                break;
-            case "control":
-                if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-                {
-                    return true;
-                }
-                break;
-            case "meta":
-                if (Input.GetKey(KeyCode.LeftMeta) || Input.GetKey(KeyCode.RightMeta))
-                {
-                    return true;
-                }
-                break;
-            case "upArrow":
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    return true;
-                }
-                break;
-            case "downArrow":
-                if (Input.GetKey(KeyCode.DownArrow))
-                {
-                    return true;
-                }
-                break;
-            case "leftArrow":
-                if (Input.GetKey(KeyCode.LeftArrow))
-                {
-                    return true;
-                }
-                break;
-            case "rightArrow":
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
-                    return true;
-                }
-                break;
-            case "leftClick":
-                if (Input.GetKey(KeyCode.Mouse0))
-                {
-                    return true;
-                }
-                break;
-            case "rightClick":
-                if (Input.GetKey(KeyCode.Mouse1))
-                {
-                    return true;
-                }
-                break;
-            case "wheelClick":
-                if (Input.GetKey(KeyCode.Mouse2))
-                {
-                    return true;
-                }
-                break;
-            default:
-                if (Input.GetKey(PlayerPrefs.GetString("interact")))
-                {
-                    return true;
-                }
-                break;
-        }
-        return false;
     }
 }
