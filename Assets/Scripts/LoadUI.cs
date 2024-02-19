@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class LoadUI : MonoBehaviour
 {
-    GameObject UI;
-
     void Awake()
     {
         // Load the UI scene in additive mode
@@ -14,7 +12,7 @@ public class LoadUI : MonoBehaviour
     void Start()
     {
         // Find the UI GameObject in the scene
-        UI = GameObject.Find("UI");
+        GameObject UI = GameObject.Find("UI");
 
         // Activate UI's display canvas
         UI.GetComponent<Canvas>().enabled = true;
