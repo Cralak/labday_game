@@ -28,18 +28,15 @@ public class Lightcorridor : MonoBehaviour
     {
         lightSound.volume = PlayerPrefs.GetFloat("SFX");
 
-        // Check the distance between the light and the player to trigger the light cycle
-        if (Vector3.Distance(transform.position, player.transform.position) < 10.0f && !hasStarted)
-            StartCoroutine(LightCycle(interval));
+        StartCoroutine(LightCycle(interval));
     }
 
     IEnumerator LightCycle(float interval)
     {
         // Add an event to the diary when the light cycle starts
-        diary.events.Add("lightCorridor");
         hasStarted = true;
 
-        for (int i = 0; i < 10; i++)
+        while (true)
         {
             // Increase light intensity and enable the light
             yield return new WaitForSeconds(interval);
