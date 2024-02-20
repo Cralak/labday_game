@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Georgian, by Tokyo Liu/Prefabs/Table.prefab.meta
 guid: 0c8fd08c36c84854791d5de97103b43c
 timeCreated: 1494360437
+========
+guid: 358f6ff6f6135b24ebfc22d9612f2000
+timeCreated: 1472339945
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks/Source/Materials/Legacy/Rock1.mat.meta
 licenseType: Store
 NativeFormatImporter:
   userData: 

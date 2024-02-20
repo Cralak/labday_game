@@ -1,9 +1,17 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Images/FlyingPage2D.png.meta
 guid: 6cd0c21feaab4f74496ca981caa06116
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
+========
+guid: e96ae62c405173a438f2b57e16892c6f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 10
+>>>>>>>> Outside:Assets/Assets/Sybaris/MB01/Textures/FloorTex.png.meta
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -34,12 +42,21 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<<< HEAD:Assets/Images/FlyingPage2D.png.meta
     filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 0
     wrapV: 0
     wrapW: 0
+========
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: -1
+    wrapV: -1
+    wrapW: -1
+>>>>>>>> Outside:Assets/Assets/Sybaris/MB01/Textures/FloorTex.png.meta
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -62,14 +79,17 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+<<<<<<<< HEAD:Assets/Images/FlyingPage2D.png.meta
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
   cookieLightType: 0
+========
+>>>>>>>> Outside:Assets/Assets/Sybaris/MB01/Textures/FloorTex.png.meta
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -95,7 +115,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -106,6 +126,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<<< HEAD:Assets/Images/FlyingPage2D.png.meta
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -119,6 +140,8 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+========
+>>>>>>>> Outside:Assets/Assets/Sybaris/MB01/Textures/FloorTex.png.meta
   spriteSheet:
     serializedVersion: 2
     sprites: []

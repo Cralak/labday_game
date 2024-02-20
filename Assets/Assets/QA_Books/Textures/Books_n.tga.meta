@@ -1,15 +1,20 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/QA_Books/Textures/Books_n.tga.meta
 guid: 4c5baded30d73c548af3399963326b0b
 timeCreated: 1521202139
+========
+guid: 27cfd5114f148ff49acff242847ce022
+timeCreated: 1472337977
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks/Source/Textures/Rock3.tif.meta
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
-  serializedVersion: 4
+  serializedVersion: 2
   mipmaps:
-    mipMapMode: 0
+    mipMapMode: 1
     enableMipMap: 1
-    sRGBTexture: 0
     linearTexture: 0
+    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -19,12 +24,14 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
-  generateCubemap: 6
+  generateCubemap: 0
   cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: 1
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
@@ -33,7 +40,9 @@ TextureImporter:
     wrapMode: -1
   nPOTScale: 1
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
@@ -41,8 +50,8 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaUsage: 1
   alphaIsTransparency: 0
+<<<<<<<< HEAD:Assets/Assets/QA_Books/Textures/Books_n.tga.meta
   spriteTessellationDetail: -1
   textureType: 1
   textureShape: 1
@@ -52,14 +61,16 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+========
+  textureType: 5
+  buildTargetSettings:
+  - buildTarget: Web
+    maxTextureSize: 1024
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks/Source/Textures/Rock3.tif.meta
     textureFormat: -1
-    textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
-    serializedVersion: 2
     sprites: []
     outline: []
   spritePackingTag: 

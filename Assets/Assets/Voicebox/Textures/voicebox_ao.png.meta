@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Voicebox/Textures/voicebox_ao.png.meta
 guid: c971b22855bc6d64aa9b67f4f92ac893
 timeCreated: 1516841885
+========
+guid: 950ab89bde59b1f4ba48b12ddcb00a84
+timeCreated: 1504466559
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Textures/Textures/Leaf/GrassAlbedoAlpha.tif.meta
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}

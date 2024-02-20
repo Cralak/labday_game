@@ -1,9 +1,26 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Assets/Georgian, by Tokyo Liu/Prefabs.meta
 guid: db6aecb7dc1fe6744a0bf3e6ff007021
 folderAsset: yes
 timeCreated: 1494359658
+========
+guid: 8e74734055c3cf64dbbb0f1793dc9764
+folderAsset: yes
+timeCreated: 1472336054
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks/Prefabs.meta
 licenseType: Store
 DefaultImporter:
+=======
+<<<<<<<< HEAD:Assets/3dObjects/old-monitor-v1t.meta
+guid: 6c337ad0428a54a4bbf683e528eb294e
+========
+guid: db6aecb7dc1fe6744a0bf3e6ff007021
+>>>>>>>> Outside:Assets/Assets/Georgian, by Tokyo Liu/Prefabs.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> Outside
   userData: 
   assetBundleName: 
   assetBundleVariant: 

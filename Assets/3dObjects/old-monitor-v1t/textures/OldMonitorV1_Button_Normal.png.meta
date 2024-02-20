@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/3dObjects/old-monitor-v1t/textures/OldMonitorV1_Button_Normal.png.meta
 guid: 2c3b5e3cdc41a48d5863523696909927
+========
+guid: 0ca39975a59294e2fb18ffc4079787fd
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree13_Textures/normal_specular.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -78,6 +82,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
+<<<<<<<< HEAD:Assets/3dObjects/old-monitor-v1t/textures/OldMonitorV1_Button_Normal.png.meta
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -91,6 +96,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
+========
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree13_Textures/normal_specular.png.meta
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3

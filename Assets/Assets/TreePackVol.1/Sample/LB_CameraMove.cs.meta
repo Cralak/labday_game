@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/SignClickMe.cs.meta
+guid: a349b38bd9bc80345bb47c92c9508129
+========
+guid: e6a5da44cc5ad734fa882ffb97b84f3f
+timeCreated: 1497034986
+licenseType: Store
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Sample/LB_CameraMove.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/SignClickMe.cs.meta
 guid: 7254dc29321984e3b97a9946a33709bb
+========
+guid: e6a5da44cc5ad734fa882ffb97b84f3f
+timeCreated: 1497034986
+licenseType: Store
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Sample/LB_CameraMove.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
