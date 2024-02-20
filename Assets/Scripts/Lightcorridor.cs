@@ -20,7 +20,6 @@ public class Lightcorridor : MonoBehaviour
         lightSound = GetComponent<AudioSource>();
         lightSound.Play();
         lightSound.Pause();
-        hasStarted = false;
     }
 
     // Update is called once per frame
@@ -33,9 +32,6 @@ public class Lightcorridor : MonoBehaviour
 
     IEnumerator LightCycle(float interval)
     {
-        // Add an event to the diary when the light cycle starts
-        hasStarted = true;
-
         while (true)
         {
             // Increase light intensity and enable the light
