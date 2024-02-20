@@ -62,11 +62,14 @@ public class PlayerMovement : MonoBehaviour
     // Camera pitch cap
     float cameraCap;
 
-    void Start()
+    void Awake()
     {
         // Make the GameObject persistent between scenes
         DontDestroyOnLoad(gameObject);
+    }
 
+    void Start()
+    {
         // Initialize components and variables
         controller = GetComponent<CharacterController>();
         footsteps = GetComponent<AudioSource>();
