@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SignClickMe : MonoBehaviour
@@ -19,7 +17,6 @@ public class SignClickMe : MonoBehaviour
     {
         if (isTouching && Input.GetMouseButtonDown(0))
         {
-            print("sign display");
             settings.ChangeSection("Controls Section");
             settings.ToggleSettings();
         }
