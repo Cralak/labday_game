@@ -73,7 +73,7 @@ public class Cell1 : MonoBehaviour
         }
 
         // Move the player to a specific position
-        player.transform.position = new Vector3(-30, 1, -4);
+        player.transform.position = new Vector3(-30, 1, -5);
 
         // Fade out the black screen
         for (float i = 1.0f; i >= 0; i -= 0.01f)
@@ -86,7 +86,7 @@ public class Cell1 : MonoBehaviour
             yield return new WaitForSeconds(0.005f);
         }
 
-        // Add an event to the diary, and enable player movement and UI
+        //enable player movement and UI
         playerMovement.enabled = true;
         UI.enabled = true;
     }

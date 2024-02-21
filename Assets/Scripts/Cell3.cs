@@ -26,7 +26,6 @@ public class Cell3 : MonoBehaviour
         blackScreen = canvas.GetComponentInChildren<Image>();
         text = GetComponent<Canvas>();
         isTouching = false;
-        text.enabled = false;
 
         // Set the initial alpha value of the black screen to 0
         Color c = blackScreen.color;
@@ -38,7 +37,11 @@ public class Cell3 : MonoBehaviour
     void Update()
     {
         // Check if the player is touching and presses the interact key
-        if (isTouching && ToggleActions.IsPressed("interact")) Enter();
+        if (isTouching && ToggleActions.IsPressed("interact")) 
+        {
+            print("touche");
+            Enter();
+        }
     }
 
     // Called when another Collider enters the trigger zone
@@ -46,7 +49,6 @@ public class Cell3 : MonoBehaviour
     {
         // Set the touching flag to true and enable the associated text Canvas
         isTouching = true;
-        text.enabled = true;
     }
 
     // Called when another Collider exits the trigger zone
@@ -54,14 +56,13 @@ public class Cell3 : MonoBehaviour
     {
         // Set the touching flag to false and disable the associated text Canvas
         isTouching = false;
-        text.enabled = false;
     }
 
     // Coroutine for the fake screen effect
     IEnumerator FakeScreen()
     {
         // Fade in the black screen
-        for (float i = 0; i <= 1; i += 0.05f)
+        for (float i = 0; i <= 1; i += 0.01f)
         {
             Color c = blackScreen.color;
             c.a = i;
@@ -72,10 +73,10 @@ public class Cell3 : MonoBehaviour
         }
 
         // Move the player to a specific position
-        player.transform.position = new Vector3(22, 1, 50);
+        player.transform.position = new Vector3(-61, 1, -5);
 
         // Fade out the black screen
-        for (float i = 1.0f; i >= 0; i -= 0.05f)
+        for (float i = 1.0f; i >= 0; i -= 0.01f)
         {
             Color c = blackScreen.color;
             c.a = i;
@@ -85,8 +86,7 @@ public class Cell3 : MonoBehaviour
             yield return new WaitForSeconds(0.005f);
         }
 
-        // Add an event to the diary, and enable player movement and UI
-        diary.events.Add("archEnter");
+        //enable player movement and UI
         playerMovement.enabled = true;
         UI.enabled = true;
     }
