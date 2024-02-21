@@ -83,60 +83,14 @@ public class Diary : MonoBehaviour
             text2.text = writtenEvents.Count > rightPage ? writtenEvents[rightPage] : "";
 
             // Check for specific game events and display corresponding diary entries
-            if (events.Contains("start"))
-            {
-                isBusy = true;
-                StartCoroutine(Write("Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."));
-                events.Remove("start");
-            }
-            else if (events.Contains("archEnter"))
-            {
-                isBusy = true;
-                StartCoroutine(Write("OH NO! I can't go out... Why did it take so long to enter by the way?"));
-                events.Remove("archEnter");
-            }
-            else if (events.Contains("doorLock"))
-            {
-                isBusy = true;
-                StartCoroutine(Write("I don't have the key, i need to find it"));
-                events.Remove("doorLock");
-            }
-            else if (events.Contains("rustyKey"))
-            {
-                isBusy = true;
-                StartCoroutine(Write("Berk, why was that key in that body? So disgusting! And how did it get so rusty?"));
-                events.Remove("rustyKey");
-            }
-            else if (events.Contains("indoor"))
-            {
-                isBusy = true;
-                StartCoroutine(Write("Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"));
-                events.Remove("indoor");
-            }
-            else if (events.Contains("lightCorridor"))
-            {
-                isBusy = true;
-                StartCoroutine(Write("What is illuminating the ceiling ? So scary! "));
-                events.Remove("lightCorridor");
-            }
-            else if (events.Contains("lightning"))
-            {
-                isBusy = true;
-                StartCoroutine(Write("What an astounding lightning! It scared me so badly!"));
-                events.Remove("lightning");
-            }
-            else if (events.Contains("chess"))
-            {
-                isBusy = true;
-                StartCoroutine(Write("Why did I have to play chess in this place?"));
-                events.Remove("chess");
-            }
+            CheckEvents();
         }
     }
 
     // Coroutine to write text in the diary
     IEnumerator Write(string sentence)
     {
+        isBusy = true;
         sound.clip = writingSound;
         sound.Play();
 
@@ -215,6 +169,56 @@ public class Diary : MonoBehaviour
             inventory.enabled = true;
             settings.enabled = true;
             footsteps.UnPause();
+        }
+    }
+
+    // Check for specific game events and display corresponding diary entries
+    void CheckEvents()
+    {
+        if (events.Contains("start"))
+        {
+            StartCoroutine(Write("Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."));
+            events.Remove("start");
+        }
+        else if (events.Contains("archEnter"))
+        {
+            StartCoroutine(Write("OH NO! I can't go out... Why did it take so long to enter by the way?"));
+            events.Remove("archEnter");
+        }
+        else if (events.Contains("TV"))
+        {
+            StartCoroutine(Write("AH THAT SOUND, so noisy. I'll likely have an earache."));
+            events.Remove("TV");
+        }
+        else if (events.Contains("doorLock"))
+        {
+            StartCoroutine(Write("I don't have the key, i need to find it"));
+            events.Remove("doorLock");
+        }
+        else if (events.Contains("rustyKey"))
+        {
+            StartCoroutine(Write("Berk, why was that key in that body? So disgusting! And how did it get so rusty?"));
+            events.Remove("rustyKey");
+        }
+        else if (events.Contains("indoor"))
+        {
+            StartCoroutine(Write("Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"));
+            events.Remove("indoor");
+        }
+        else if (events.Contains("lightCorridor"))
+        {
+            StartCoroutine(Write("What is illuminating the ceiling ? So scary! "));
+            events.Remove("lightCorridor");
+        }
+        else if (events.Contains("lightning"))
+        {
+            StartCoroutine(Write("What an astounding lightning! It scared me so badly!"));
+            events.Remove("lightning");
+        }
+        else if (events.Contains("chess"))
+        {
+            StartCoroutine(Write("Why did I have to play chess in this place?"));
+            events.Remove("chess");
         }
     }
 }
