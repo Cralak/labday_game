@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HospitalEnter : MonoBehaviour
 {
     [SerializeField] GameObject key; // Reference to the key GameObject
+    [SerializeField] Image blackScreen; // Reference to the Image component for the black screen effect
+    [SerializeField] Canvas canvas; // Reference to the Canvas component
 
     GameObject player;
     PlayerMovement playerMovement;
@@ -21,6 +24,7 @@ public class HospitalEnter : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
+        blackScreen = canvas.GetComponentInChildren<Image>();
         text = GetComponent<Canvas>();
         text.enabled = false;
         isTouching = false;
@@ -52,14 +56,17 @@ public class HospitalEnter : MonoBehaviour
     IEnumerator LoadHospital()
     {
         playerMovement.enabled = false;
-        player.transform.position = new Vector3(4.0f, 1.0f, 2.0f);
+        Color c = blackScreen.color;
+        c.a = 255;
+        blackScreen.color = c;
+        player.transform.position = new Vector3(0f, 1.0f, -12.0f);
         inventoryScript.inventory.Remove(key);
 
         yield return new WaitForSeconds(0.1f);
 
         diary.events.Add("indoor");
         playerMovement.enabled = true;
-        SceneManager.LoadScene("IndoorScene");
+        SceneManager.LoadScene("TestIndoor");
     }
 
     void Enter()
