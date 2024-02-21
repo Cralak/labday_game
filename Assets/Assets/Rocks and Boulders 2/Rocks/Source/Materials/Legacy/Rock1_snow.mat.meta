@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Georgian, by Tokyo Liu/Materials and textures/brass/Brass.mat.meta
+guid: 9141ec426e3c2c448bac5e938473a031
+timeCreated: 1492887657
+========
 guid: 6c761102f2fe9c341bb4e17f06e858b9
 timeCreated: 1472339945
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks/Source/Materials/Legacy/Rock1_snow.mat.meta
 licenseType: Store
 NativeFormatImporter:
   userData: 

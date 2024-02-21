@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Georgian, by Tokyo Liu/Materials and textures.meta
+guid: dceba2e5f7db6c94d8cf16b233a2e564
+folderAsset: yes
+timeCreated: 1492200393
+========
 guid: 5a07d96d4bb8ac2459658b691520ce35
 folderAsset: yes
 timeCreated: 1454541862
+>>>>>>>> Outside:Assets/Assets/laxer tree pkg/Models.meta
 licenseType: Store
 DefaultImporter:
   userData: 

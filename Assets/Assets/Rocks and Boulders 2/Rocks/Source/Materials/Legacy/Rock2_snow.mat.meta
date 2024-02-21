@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Georgian, by Tokyo Liu/Materials and textures/chair/Chair.mat.meta
+guid: be02affb3c916e44c86f15f04b5ec8e8
+timeCreated: 1493056836
+========
 guid: 37231b28393bb2545a6fc69025929708
 timeCreated: 1472339945
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks/Source/Materials/Legacy/Rock2_snow.mat.meta
 licenseType: Store
 NativeFormatImporter:
   userData: 

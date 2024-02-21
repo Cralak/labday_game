@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/3dObjects/old-monitor-v1t/textures/OldMonitorV1_Button_Normal.png.meta
+guid: f14bd0c1a56349a40872c109107f6f8d
+========
 guid: 0ca39975a59294e2fb18ffc4079787fd
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree13_Textures/normal_specular.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -54,7 +58,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 1
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -78,6 +82,22 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
+<<<<<<<< HEAD:Assets/3dObjects/old-monitor-v1t/textures/OldMonitorV1_Button_Normal.png.meta
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+========
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree13_Textures/normal_specular.png.meta
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3

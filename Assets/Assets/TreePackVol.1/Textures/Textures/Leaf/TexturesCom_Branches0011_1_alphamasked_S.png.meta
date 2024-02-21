@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Georgian, by Tokyo Liu/Materials and textures/brown/04 - Default_Mixed_AO.tga.meta
+guid: cf180a06caad1224ab7ab33c9aec703c
+timeCreated: 1492202355
+========
 guid: 5c741ae67f555054ca416354bdcbbb0c
 timeCreated: 1515996149
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Textures/Textures/Leaf/TexturesCom_Branches0011_1_alphamasked_S.png.meta
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}

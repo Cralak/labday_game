@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Georgian, by Tokyo Liu/Materials and textures/brown/04 - Default_Height.tga.meta
+guid: a768e3f8ae3114c4083bcb7fadce45c7
+timeCreated: 1492201447
+========
 guid: 95a21e66a4f1ff84c96289896940b5a6
 timeCreated: 1515996150
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Textures/Textures/Leaf/TexturesCom_Branches0012_1_alphamasked_S.png.meta
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}

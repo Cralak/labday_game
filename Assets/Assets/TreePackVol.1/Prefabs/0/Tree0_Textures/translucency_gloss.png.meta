@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/QA_Books/Textures/BooksA_n.tga.meta
+guid: 1a274d2a005a4f74781490692a17e8fa
+timeCreated: 1521202731
+licenseType: Store
+========
 guid: 78160032ef3141a47aca3bb5cc556ad4
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree0_Textures/translucency_gloss.png.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -28,7 +34,10 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
+<<<<<<<< HEAD:Assets/Assets/QA_Books/Textures/BooksA_n.tga.meta
+========
     serializedVersion: 2
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree0_Textures/translucency_gloss.png.meta
     filterMode: -1
     aniso: -1
     mipBias: -1
@@ -49,7 +58,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 1
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0

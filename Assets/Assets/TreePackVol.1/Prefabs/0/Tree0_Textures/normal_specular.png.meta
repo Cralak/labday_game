@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Furniture/Textures/chair_old_n.png.meta
+guid: e9b4f61537a597e418a220879ceac22f
+timeCreated: 1507730856
+licenseType: Store
+========
 guid: e8a2df8ea33574547a3f8f1f5919c0a0
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree0_Textures/normal_specular.png.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -49,7 +55,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 1
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -72,12 +78,15 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
+<<<<<<<< HEAD:Assets/Assets/Furniture/Textures/chair_old_n.png.meta
+========
     bones: []
     spriteID: 
     vertices: []
     indices: 
     edges: []
     weights: []
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree0_Textures/normal_specular.png.meta
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Clipboard.meta
+guid: 63c840f2a76900f4b99dc9ad722b583b
+========
 guid: 1d216a8b27f174feba99413e69671b92
+>>>>>>>> Outside:Assets/Assets/HangingPlantsVolumeFive.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/QA_Books/Textures/Books_n.tga.meta
+guid: 278044ea491d1ce41a8df0ac1d9767a0
+timeCreated: 1521202139
+========
 guid: 27cfd5114f148ff49acff242847ce022
 timeCreated: 1472337977
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks/Source/Textures/Rock3.tif.meta
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
@@ -46,10 +51,22 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 0
+<<<<<<<< HEAD:Assets/Assets/QA_Books/Textures/Books_n.tga.meta
+  spriteTessellationDetail: -1
+  textureType: 1
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+========
   textureType: 5
   buildTargetSettings:
   - buildTarget: Web
     maxTextureSize: 1024
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks/Source/Textures/Rock3.tif.meta
     textureFormat: -1
     compressionQuality: 50
     allowsAlphaSplitting: 0

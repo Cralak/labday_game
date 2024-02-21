@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Voicebox.meta
+guid: ae99df77843c9b643a415a463016f03d
+folderAsset: yes
+timeCreated: 1516841972
+========
 guid: e2272ccdfc6870f4b962910707e21594
 folderAsset: yes
 timeCreated: 1472336053
+>>>>>>>> Outside:Assets/Assets/Rocks and Boulders 2/Rocks.meta
 licenseType: Store
 DefaultImporter:
   userData: 

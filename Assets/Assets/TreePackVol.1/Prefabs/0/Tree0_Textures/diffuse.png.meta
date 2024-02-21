@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Georgian, by Tokyo Liu/Materials and textures/brown/04 - Default_Metallic.png.meta
+guid: 362e04827359f154eade348bcce2cf65
+timeCreated: 1492202157
+licenseType: Store
+========
 guid: 94457ac713225fd43a5957c8c674bace
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Prefabs/0/Tree0_Textures/diffuse.png.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -47,7 +53,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
   textureShape: 1

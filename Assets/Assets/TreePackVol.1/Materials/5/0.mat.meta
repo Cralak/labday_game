@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Voicebox/3dobjects/Materials/voicebox-LED.mat.meta
+guid: 3d4c9a7e333a94942a81721602752327
+timeCreated: 1510107796
+========
 guid: 33cb348b1dc1d2d45b80aa48183e7343
 timeCreated: 1520161940
+>>>>>>>> Outside:Assets/Assets/TreePackVol.1/Materials/5/0.mat.meta
 licenseType: Store
 NativeFormatImporter:
   externalObjects: {}

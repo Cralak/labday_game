@@ -20,48 +20,43 @@ public class Lightcorridor : MonoBehaviour
         lightSound = GetComponent<AudioSource>();
         lightSound.Play();
         lightSound.Pause();
-        hasStarted = false;
+        StartCoroutine(LightCycle(interval));
     }
 
     // Update is called once per frame
     void Update()
     {
         lightSound.volume = PlayerPrefs.GetFloat("SFX");
-
-        // Check the distance between the light and the player to trigger the light cycle
-        if (Vector3.Distance(transform.position, player.transform.position) < 10.0f && !hasStarted)
-            StartCoroutine(LightCycle(interval));
     }
 
     IEnumerator LightCycle(float interval)
     {
-        // Add an event to the diary when the light cycle starts
-        diary.events.Add("lightCorridor");
-        hasStarted = true;
-
-        for (int i = 0; i < 10; i++)
+        while (true)
         {
-            // Increase light intensity and enable the light
-            yield return new WaitForSeconds(interval);
-            lightSound.UnPause();
-            lightComponent.intensity = 3;
-            lightComponent.enabled = true;
+            for (int i = 0; i<200; i++)
+            {
+                // Increase light intensity and enable the light
+                lightSound.UnPause();
+                lightComponent.intensity = 1f;
+                lightComponent.enabled = true;
 
-            // Pause sound and disable the light
-            yield return new WaitForSeconds(interval);
-            lightSound.Pause();
-            lightComponent.enabled = false;
+                // Pause sound and disable the light
+                yield return new WaitForSeconds(interval);
+                lightSound.Pause();
+                lightComponent.enabled = false;
 
-            // Unpause sound, reset light intensity, and enable the light
-            yield return new WaitForSeconds(interval);
-            lightSound.UnPause();
-            lightComponent.intensity = 1;
-            lightComponent.enabled = true;
+                // Unpause sound, reset light intensity, and enable the light
+                yield return new WaitForSeconds(interval);
+                lightSound.UnPause();
+                lightComponent.intensity = 0.5f;
+                lightComponent.enabled = true;
 
-            // Pause sound and disable the light
-            yield return new WaitForSeconds(interval);
-            lightSound.Pause();
-            lightComponent.enabled = false;
+                // Pause sound and disable the light
+                yield return new WaitForSeconds(interval);
+                lightSound.Pause();
+                lightComponent.enabled = false;
+            }
+            yield return new WaitForSeconds(7);
         }
     }
 }

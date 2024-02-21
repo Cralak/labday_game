@@ -62,11 +62,14 @@ public class PlayerMovement : MonoBehaviour
     // Camera pitch cap
     float cameraCap;
 
-    void Start()
+    void Awake()
     {
         // Make the GameObject persistent between scenes
         DontDestroyOnLoad(gameObject);
+    }
 
+    void Start()
+    {
         // Initialize components and variables
         controller = GetComponent<CharacterController>();
         footsteps = GetComponent<AudioSource>();
@@ -136,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
     void UpdateVelocityY()
     {
         // Update vertical velocity based on gravity
+        if (controller.velocity.y == 0.0f && velocityY > 1.0f) velocityY = -8.0f; 
         if (controller.velocity.y == 0.0f && velocityY < -1.0f) velocityY = 0.0f;
         velocityY += gravity * 2.0f * Time.deltaTime;
     }
