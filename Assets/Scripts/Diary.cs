@@ -95,6 +95,12 @@ public class Diary : MonoBehaviour
                 StartCoroutine(Write("OH NO! I can't go out... Why did it take so long to enter by the way?"));
                 events.Remove("archEnter");
             }
+            else if (events.Contains("TV"))
+            {
+                isBusy = true;
+                StartCoroutine(Write("AH THAT SOUND, so noisy. I'll likely have an earache."));
+                events.Remove("TV");
+            }
             else if (events.Contains("doorLock"))
             {
                 isBusy = true;
