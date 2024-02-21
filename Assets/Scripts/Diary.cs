@@ -172,6 +172,7 @@ public class Diary : MonoBehaviour
         }
     }
 
+    // Check for specific game events and display corresponding diary entries
     void CheckEvents()
     {
         if (events.Contains("start"))
