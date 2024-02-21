@@ -1,19 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExitCell2 : MonoBehaviour
+public class Cell : MonoBehaviour
 {
-    [SerializeField] Image blackScreen; // Reference to the Image component for the black screen effect
     [SerializeField] Canvas canvas; // Reference to the Canvas component
+    [SerializeField] Vector3 endingPosition; // Position where player gets teleported to
 
+    Image blackScreen; // Reference to the Image component for the black screen effect
     GameObject player; // Reference to the player GameObject
     Diary diary; // Reference to the Diary script
-    Canvas UI; // Reference to the UI Canvas
     bool isTouching; // Flag to check if the player is touching the trigger area
     PlayerMovement playerMovement; // Reference to the PlayerMovement script
-    Canvas text; // Reference to another Canvas component (possibly for displaying text)
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +19,8 @@ public class ExitCell2 : MonoBehaviour
         // Find and assign references to necessary components and objects
         player = GameObject.Find("Player");
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        UI = GameObject.Find("UI").GetComponent<Canvas>();
         playerMovement = player.GetComponent<PlayerMovement>();
         blackScreen = canvas.GetComponentInChildren<Image>();
-        text = GetComponent<Canvas>();
         isTouching = false;
 
         // Set the initial alpha value of the black screen to 0
@@ -39,7 +35,6 @@ public class ExitCell2 : MonoBehaviour
         // Check if the player is touching and presses the interact key
         if (isTouching && ToggleActions.IsPressed("interact")) 
         {
-            print("touche");
             Enter();
         }
     }
@@ -73,7 +68,7 @@ public class ExitCell2 : MonoBehaviour
         }
 
         // Move the player to a specific position
-        player.transform.position = new Vector3(-52, 1, 0);
+        player.transform.position = endingPosition;
 
         // Fade out the black screen
         for (float i = 1.0f; i >= 0; i -= 0.01f)
@@ -88,7 +83,6 @@ public class ExitCell2 : MonoBehaviour
 
         //enable player movement and UI
         playerMovement.enabled = true;
-        UI.enabled = true;
     }
 
     void Enter()
@@ -96,7 +90,6 @@ public class ExitCell2 : MonoBehaviour
         // Disable player movement, pause player audio, and hide UI
         playerMovement.enabled = false;
         player.GetComponent<AudioSource>().Pause();
-        UI.enabled = false;
 
         // Start the coroutine for the fake screen effect
         StartCoroutine(FakeScreen());
