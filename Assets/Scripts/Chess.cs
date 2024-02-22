@@ -121,7 +121,7 @@ public class Chess : MonoBehaviour
     // Coroutine to handle chess puzzle logic
     IEnumerator Puzzle()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (Physics.Raycast(componentCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
