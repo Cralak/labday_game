@@ -1,18 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyEvents : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    static readonly List<string> events = new();
+
+    static public string chessCode;
+
+    static public void AddEvent(string eventName)
     {
-        
+        events.Add(eventName);
     }
 
-    // Update is called once per frame
-    void Update()
+    static public bool CheckEvent(string eventName)
     {
-        
+        return events.Contains(eventName);
     }
 }

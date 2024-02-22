@@ -211,7 +211,8 @@ public class Chess : MonoBehaviour
                         yield return new WaitForSeconds(0.3f);
 
                         // Add chess puzzle completion event to the diary
-                        diary.AddEvents("chess");
+                        diary.AddEvent("chess");
+                        KeyEvents.AddEvent("chess");
                         StartCoroutine(Unplay());
                     }
                 }

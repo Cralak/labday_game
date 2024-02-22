@@ -51,7 +51,7 @@ public class ObjectInteract : MonoBehaviour
         // If the object is a key, add an event to the diary
         if (name == "Key")
         {
-            diary.AddEvents("rustyKey");
+            diary.AddEvent("rustyKey");
         }
     }
 }

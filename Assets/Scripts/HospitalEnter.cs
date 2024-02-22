@@ -62,13 +62,13 @@ public class HospitalEnter : MonoBehaviour
         if (inventoryScript.inventory.Contains(key))
         {
             inventoryScript.inventory.Remove(key);
-            diary.AddEvents("indoor");
+            diary.AddEvent("indoor");
             CreateIndoorBGM();
             StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 1.0f, -12.0f), "TestIndoor"));
         }
         else if (firstTry)
         {
-            diary.AddEvents("doorLock");
+            diary.AddEvent("doorLock");
             firstTry = false;
         }
     }

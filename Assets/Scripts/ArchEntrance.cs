@@ -47,7 +47,7 @@ public class ArchEntrance : MonoBehaviour
         StartCoroutine(Teleport.GoTo(player, new Vector3(22, 1, 50)));
 
         // Add corresponding event in the diary
-        diary.AddEvents("archEnter");
+        diary.AddEvent("archEnter");
 
         // Reset the touching flag
         isTouching = false;
