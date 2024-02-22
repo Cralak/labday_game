@@ -31,7 +31,7 @@ public class TV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < 2.0f)
+        if (Vector3.Distance(player.transform.position, transform.position) < 5.0f)
         {
             source.clip = TVGlitch;
             if (!source.isPlaying) source.Play();
