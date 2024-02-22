@@ -239,7 +239,7 @@ public class Diary : MonoBehaviour
         }
         else if (events.Contains("firstFloor"))
         {
-            StartCoroutine(Write("Oh, finally some light. Seems like it is not working properly though..."));
+            StartCoroutine(Write("Oh, what a scary corridor, I hop no one is here..."));
             events.Remove("firstFloor");
         }
         else if (events.Contains("sewers"))
