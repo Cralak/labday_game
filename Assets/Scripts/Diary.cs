@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class Diary : MonoBehaviour
 {
-    // List to store game events
-    public List<string> events = new();
-
     // Reference to the first text element
     [SerializeField] TMP_Text text1;
 
     // Reference to the second text element
     [SerializeField] TMP_Text text2;
+
+    // Sound clip when a notification is added
+    [SerializeField] AudioClip notificationSound;
 
     // Sound clip for writing effect
     [SerializeField] AudioClip writingSound;
@@ -23,6 +23,9 @@ public class Diary : MonoBehaviour
 
     // Writing speed parameter
     [SerializeField, Range(0.005f, 0.05f)] float writingSpeed = 0.01f;
+
+    // List to store game events
+    readonly List<string> events = new();
 
     // List to store written events in the diary
     readonly List<string> writtenEvents = new();
@@ -92,6 +95,7 @@ public class Diary : MonoBehaviour
     {
         isBusy = true;
         sound.clip = writingSound;
+        sound.loop = true;
         sound.Play();
 
         if (text1.text == "")
@@ -102,6 +106,7 @@ public class Diary : MonoBehaviour
                 yield return new WaitForSeconds(writingSpeed);
             }
             sound.Stop();
+            sound.loop = false;
 
             yield return new WaitForSeconds(2.0f);
 
@@ -116,6 +121,7 @@ public class Diary : MonoBehaviour
                 yield return new WaitForSeconds(writingSpeed);
             }
             sound.Stop();
+            sound.loop = false;
 
             yield return new WaitForSeconds(2.0f);
 
@@ -128,11 +134,11 @@ public class Diary : MonoBehaviour
             text2.text = "";
 
             sound.clip = pageSound;
+            sound.loop = false;
             sound.Play();
 
             yield return new WaitForSeconds(0.5f);
 
-            sound.Stop();
             pageNumber += 1;
 
             StartCoroutine(Write(sentence));
@@ -147,7 +153,6 @@ public class Diary : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        sound.Stop();
         pageNumber += n;
         isBusy = false;
     }
@@ -170,6 +175,18 @@ public class Diary : MonoBehaviour
             settings.enabled = true;
             footsteps.UnPause();
         }
+    }
+
+    public int GetEventsCount()
+    {
+        return events.Count;
+    }
+
+    public void AddEvents(string eventName)
+    {
+        sound.clip = notificationSound;
+        sound.Play();
+        events.Add(eventName);
     }
 
     // Check for specific game events and display corresponding diary entries
