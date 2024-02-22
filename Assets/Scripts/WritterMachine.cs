@@ -10,10 +10,12 @@ public class WriterMachine : MonoBehaviour
 
     string originalText;
     TextMeshProUGUI uiText;
+    IEnumerator coroutine;
 
     void Start()
     {
         InitializeComponents();
+        coroutine = LetterByLetter();
     }
 
     void Update()
@@ -22,14 +24,14 @@ public class WriterMachine : MonoBehaviour
         if (chessScript.isPlaying)
         {
             uiText.text = null;
+            StopCoroutine(coroutine);
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
         // Start the coroutine when triggered
-        StartCoroutine(LetterByLetter());
-        print("beute");
+        StartCoroutine(coroutine);
     }
 
     void OnTriggerExit(Collider collider)
