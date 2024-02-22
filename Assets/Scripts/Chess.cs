@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class Chess : MonoBehaviour
 {
     public bool isPlaying; // Flag to check if the chess puzzle is currently in progress
 
     // References to chess pieces GameObjects
+    [SerializeField] GameObject board;
     [SerializeField] GameObject pieceWhite1;
     [SerializeField] GameObject pieceWhite2;
     [SerializeField] GameObject pieceWhite3;
@@ -25,10 +27,15 @@ public class Chess : MonoBehaviour
     GameObject flashlight;
     Diary diary;
     Canvas UI;
+    TMP_Text text;
+    Light boardLight;
+
     bool isTouching;
     bool isSwitching;
+    Vector3 initialRotation;
     GameObject square;
     string lastClicked;
+    GameObject destinationSquare;
     bool firstMoveDone;
     bool secondMoveDone;
 
@@ -45,6 +52,8 @@ public class Chess : MonoBehaviour
         flashlight = GameObject.Find("Flashlight");
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
+        text = GetComponentInChildren<TMP_Text>();
+        boardLight = board.transform.parent.GetComponentInChildren<Light>();
         isTouching = false;
         isPlaying = false;
         isSwitching = false;
@@ -54,6 +63,8 @@ public class Chess : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        text.enabled = isTouching;
+
         // Check if chess puzzle is not in progress
         if (!isPlaying)
         {
@@ -72,21 +83,22 @@ public class Chess : MonoBehaviour
     // Triggered when another collider enters the trigger zone
     void OnTriggerEnter(Collider collider)
     {
-        if (collider == player.GetComponent<CharacterController>()) isTouching = true;
+        isTouching = true;
     }
 
     // Triggered when another collider exits the trigger zone
     void OnTriggerExit(Collider collider)
     {
-        if (collider == player.GetComponent<CharacterController>()) isTouching = false;
+        isTouching = false;
     }
 
     // Coroutine to exit chess puzzle mode
     IEnumerator Unplay()
     {
+        boardLight.enabled = false;
         isPlaying = false;
         playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2);
-        playerCamera.transform.DORotate(new Vector3(0.0f, 0.0f, 0.0f), 2);
+        playerCamera.transform.DORotate(initialRotation, 2);
         isSwitching = true;
 
         yield return new WaitForSeconds(2.0f);
@@ -108,12 +120,14 @@ public class Chess : MonoBehaviour
         flashlight.SetActive(false);
         footsteps.Pause();
         UI.enabled = false;
-        playerCamera.transform.DOMove(new Vector3(-12.31f, 1.75f, 12.7f), 2);
-        playerCamera.transform.DORotate(new Vector3(90.0f, 0.0f, 0.0f), 2);
+        initialRotation = playerCamera.transform.eulerAngles;
+        playerCamera.transform.DOMove(board.transform.position + new Vector3(0.0f, 0.6f, 0.0f), 2);
+        playerCamera.transform.DORotate(new Vector3(90.0f, board.transform.eulerAngles.y, 0.0f), 2);
         isSwitching = true;
 
         yield return new WaitForSeconds(2.0f);
 
+        boardLight.enabled = true;
         isSwitching = false;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -142,11 +156,13 @@ public class Chess : MonoBehaviour
                     if (lastClicked == "19" && square.name == "17")
                     {
                         // Move chess pieces with animations
-                        pieceWhite1.transform.DOMoveX(-12.537f, 2.0f);
+                        destinationSquare = GameObject.Find("17");
+                        pieceWhite1.transform.DOMove(new Vector3(destinationSquare.transform.position.x, pieceWhite1.transform.position.y, destinationSquare.transform.position.z), 2.0f);
 
                         yield return new WaitForSeconds(2.0f);
-
-                        pieceBlack1.transform.DOMoveX(-12.641f, 2.0f);
+                        
+                        destinationSquare = GameObject.Find("56");
+                        pieceBlack1.transform.DOMove(new Vector3(destinationSquare.transform.position.x, pieceBlack1.transform.position.y, destinationSquare.transform.position.z), 2.0f);
 
                         yield return new WaitForSeconds(2.0f);
 
@@ -158,7 +174,8 @@ public class Chess : MonoBehaviour
                     if (lastClicked == "24" && square.name == "42")
                     {
                         // Move chess pieces with animations
-                        pieceWhite2.transform.DOMove(new Vector3(-12.45f, 1.3315f, 12.826f), 2.0f);
+                        destinationSquare = GameObject.Find("42");
+                        pieceWhite2.transform.DOMove(new Vector3(destinationSquare.transform.position.x, pieceWhite2.transform.position.y, destinationSquare.transform.position.z), 2.0f);
 
                         yield return new WaitForSeconds(1.6f);
 
@@ -166,7 +183,9 @@ public class Chess : MonoBehaviour
 
                         yield return new WaitForSeconds(0.4f);
 
-                        pieceBlack3.transform.DOMove(new Vector3(-12.45f, 1.3315f, 12.826f), 2.0f);
+                        // Move chess pieces with animations
+                        destinationSquare = GameObject.Find("42");
+                        pieceBlack3.transform.DOMove(new Vector3(destinationSquare.transform.position.x, pieceBlack3.transform.position.y, destinationSquare.transform.position.z), 2.0f);
 
                         yield return new WaitForSeconds(1.0f);
 
@@ -182,7 +201,8 @@ public class Chess : MonoBehaviour
                     if (lastClicked == "3" && square.name == "59")
                     {
                         // Move chess pieces with animations
-                        pieceWhite3.transform.DOMoveZ(13.022f, 2.0f);
+                        destinationSquare = GameObject.Find("59");
+                        pieceWhite3.transform.DOMove(new Vector3(destinationSquare.transform.position.x, pieceWhite3.transform.position.y, destinationSquare.transform.position.z), 2.0f);
 
                         yield return new WaitForSeconds(1.7f);
 

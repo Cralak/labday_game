@@ -51,6 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "PsyKtric.sln",
+    "dotnet.defaultSolution": "labday_game.sln",
     "dotnet.preferCSharpExtension": true
 }
