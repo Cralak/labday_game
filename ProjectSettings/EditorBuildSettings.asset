@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: f320b6d9127a57c41892f5dda5eaaea5
-  - enabled: 0
-    path: Assets/Scenes/Settings.unity
-    guid: 81cf6ebfe0612224892784650e84a5d4
   - enabled: 1
     path: Assets/Scenes/UI.unity
     guid: f8c5d66c5bfc43041acea71fa8bc20b2
@@ -31,8 +28,11 @@ EditorBuildSettings:
     guid: 91f49a00388b9d6408bdd569da33ec1a
   - enabled: 1
     path: Assets/Scenes/TestIndoor.unity
-    guid: 73b75e26d14d7452ebd6b9559804b36e
+    guid: 852d7492d7febfe40a13702abca41bdc
   - enabled: 1
     path: Assets/Scenes/FirstFloor.unity
     guid: 0d70d3d2f2d2a0245aa912a5f1776c1b
+  - enabled: 1
+    path: Assets/Scenes/Sewers.unity
+    guid: 9b978e5697c87460e91c315cfa62bb3b
   m_configObjects: {}

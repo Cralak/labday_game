@@ -237,5 +237,10 @@ public class Diary : MonoBehaviour
             StartCoroutine(Write("Why did I have to play chess in this place?"));
             events.Remove("chess");
         }
+        else if (events.Contains("sewers"))
+        {
+            StartCoroutine(Write("Wah, it's so dark in here. Thankfully I've got that flashlight"));
+            events.Remove("sewers");
+        }
     }
 }
