@@ -1,13 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HospitalEnter : MonoBehaviour
 {
     [SerializeField] GameObject key; // Reference to the key GameObject
+    [SerializeField] Canvas canvas; // Reference to the Canvas component
+    [SerializeField] AudioClip BGMClip; // Reference to the Canvas component
 
+    Image blackScreen; // Reference to the Image component for the black screen effect
     GameObject player;
     PlayerMovement playerMovement;
+    AudioSource footsteps;
     Diary diary;
     Inventory inventoryScript;
     bool isTouching; // Flag to check if the player is touching the trigger area
@@ -19,8 +24,10 @@ public class HospitalEnter : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
+        footsteps = player.GetComponent<AudioSource>();
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
+        blackScreen = canvas.GetComponentInChildren<Image>();
         text = GetComponent<Canvas>();
         text.enabled = false;
         isTouching = false;
@@ -48,18 +55,34 @@ public class HospitalEnter : MonoBehaviour
         text.enabled = false;
     }
 
+    void CreateIndoorBGM()
+    {
+        GameObject music = new("BGM");
+        AudioSource BGMSource = music.AddComponent<AudioSource>();
+        BGMSource.clip = BGMClip;
+        BGMSource.loop = true;
+        BGMSource.Play();
+        music.AddComponent<SetSFXVolume>();
+        DontDestroyOnLoad(music);
+    }
+
     // Coroutine to load the hospital scene
     IEnumerator LoadHospital()
     {
         playerMovement.enabled = false;
-        player.transform.position = new Vector3(4.0f, 1.0f, 2.0f);
+        Color c = blackScreen.color;
+        c.a = 255;
+        blackScreen.color = c;
+        player.transform.position = new Vector3(0f, 1.0f, -12.0f);
         inventoryScript.inventory.Remove(key);
+        footsteps.Pause();
 
         yield return new WaitForSeconds(0.1f);
 
-        diary.events.Add("indoor");
+        diary.AddEvents("indoor");
         playerMovement.enabled = true;
-        SceneManager.LoadScene("IndoorScene");
+        CreateIndoorBGM();
+        SceneManager.LoadScene("TestIndoor");
     }
 
     void Enter()
@@ -71,7 +94,7 @@ public class HospitalEnter : MonoBehaviour
         }
         else if (firstTry)
         {
-            diary.events.Add("doorLock");
+            diary.AddEvents("doorLock");
             firstTry = false;
         }
     }
