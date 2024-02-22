@@ -45,11 +45,6 @@ public class Cell : MonoBehaviour
 
     void Enter()
     {
-        // Disable player movement, pause player audio, and hide UI
-        playerMovement.enabled = false;
-        player.GetComponent<AudioSource>().Pause();
-
-        // Start the coroutine for the fake screen effect
         StartCoroutine(Teleport.GoTo(player, endingPosition));
 
         // Reset the touching flag
