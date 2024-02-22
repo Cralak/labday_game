@@ -16,7 +16,7 @@ public class CorridorDoor : MonoBehaviour
     void Update()
     {
         // Check if the player is touching the door and presses the 'E' key
-        if (isTouching && Input.GetKeyDown(KeyCode.E))
+        if (isTouching && ToggleActions.IsPressed("interact"))
         {
             // Toggle the door state between open and closed
             if (close)
