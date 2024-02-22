@@ -3,11 +3,16 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CreditsScroll : MonoBehaviour
+public class Credits : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
+        GameObject sacrifice = new("sacrifice");
+        DontDestroyOnLoad(sacrifice);
+
+        foreach (GameObject thing in sacrifice.scene.GetRootGameObjects()) Destroy(thing);
+
         StartCoroutine(DisplayCredits());
     }
 

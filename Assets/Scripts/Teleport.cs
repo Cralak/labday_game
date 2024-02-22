@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class Teleport : MonoBehaviour
 {
+    static public IEnumerator GoTo(string sceneName)
+    {
+        CreateBlackScreen();
+
+        yield return new WaitForSeconds(0.1f);
+
+        SceneManager.LoadScene(sceneName);
+    }
+
     static public IEnumerator GoTo(GameObject player, Vector3 endingPosition, string sceneName)
     {
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
@@ -63,19 +72,27 @@ public class Teleport : MonoBehaviour
 
     static GameObject CreateBlackScreen()
     {
+        // creation of parent element
         GameObject parent = new("LoadScreen");
+
         Canvas canvas = parent.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
         CanvasScaler canvasScaler = parent.AddComponent<CanvasScaler>();
         canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         canvasScaler.referenceResolution = new Vector2(1920.0f, 1080.0f);
+
         parent.AddComponent<GraphicRaycaster>();
 
+        // creation of child element
         GameObject child = new("BlackScreen");
         child.transform.parent = parent.transform;
+
         child.AddComponent<CanvasRenderer>();
+
         Image blackScreen = child.AddComponent<Image>();
         blackScreen.color = Color.black;
+
         RectTransform trans = child.GetComponent<RectTransform>();
         trans.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         trans.sizeDelta = new Vector2(2000.0f, 1500.0f);
