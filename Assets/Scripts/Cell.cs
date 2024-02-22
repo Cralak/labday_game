@@ -50,7 +50,7 @@ public class Cell : MonoBehaviour
         player.GetComponent<AudioSource>().Pause();
 
         // Start the coroutine for the fake screen effect
-        StartCoroutine(ChangeScene.GoTo(player, endingPosition));
+        StartCoroutine(Teleport.GoTo(player, endingPosition));
 
         // Reset the touching flag
         isTouching = false;
