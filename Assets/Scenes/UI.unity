@@ -1503,7 +1503,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &332570754
 MonoBehaviour:
@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 45b9dfaa87045654f85f339f29ce8918, type: 3}
+  m_Texture: {fileID: 2800000, guid: 96bb719f5631fbd49801ecf055636fef, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4030,7 +4030,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 781312503}
-  - component: {fileID: 781312504}
   m_Layer: 5
   m_Name: Notification
   m_TagString: Untagged
@@ -4059,19 +4058,6 @@ RectTransform:
   m_AnchoredPosition: {x: 60, y: 60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &781312504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781312502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d4316ba7e807ad488059c15c65463f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  diary: {fileID: 1812759325}
 --- !u!1 &793779746
 GameObject:
   m_ObjectHideFlags: 0
@@ -6200,6 +6186,7 @@ GameObject:
   - component: {fileID: 1336822306}
   - component: {fileID: 1336822305}
   - component: {fileID: 1336822304}
+  - component: {fileID: 1336822308}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -6290,6 +6277,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1336822308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336822302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4316ba7e807ad488059c15c65463f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1369121227
 GameObject:
   m_ObjectHideFlags: 0
@@ -8552,9 +8551,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1138a0e470b175249b8ec9cf3951cac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  events: []
   text1: {fileID: 860299831}
   text2: {fileID: 1503016354}
+  notificationSound: {fileID: 8300000, guid: c193a4c48bfee7c4b8927b9a3b198ec8, type: 3}
   writingSound: {fileID: 8300000, guid: be2c26635ccaed14eaa32ac4b0a8aaf3, type: 3}
   pageSound: {fileID: 8300000, guid: 0ab989fac87548046860ca7c630aa8d8, type: 3}
   writingSpeed: 0.01
@@ -8572,7 +8571,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

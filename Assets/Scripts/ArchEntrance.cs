@@ -85,7 +85,7 @@ public class ArchEntrance : MonoBehaviour
         }
 
         // Add an event to the diary, and enable player movement and UI
-        diary.events.Add("archEnter");
+        diary.AddEvents("archEnter");
         playerMovement.enabled = true;
         UI.enabled = true;
     }

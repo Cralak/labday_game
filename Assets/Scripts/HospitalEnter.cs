@@ -79,7 +79,7 @@ public class HospitalEnter : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        diary.events.Add("indoor");
+        diary.AddEvents("indoor");
         playerMovement.enabled = true;
         CreateIndoorBGM();
         SceneManager.LoadScene("TestIndoor");
@@ -94,7 +94,7 @@ public class HospitalEnter : MonoBehaviour
         }
         else if (firstTry)
         {
-            diary.events.Add("doorLock");
+            diary.AddEvents("doorLock");
             firstTry = false;
         }
     }

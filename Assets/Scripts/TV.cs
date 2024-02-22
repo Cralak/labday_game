@@ -39,7 +39,7 @@ public class TV : MonoBehaviour
             if (!hasGlitched)
             {
                 hasGlitched = true;
-                diary.events.Add("TV");
+                diary.AddEvents("TV");
             }
         }
         else
