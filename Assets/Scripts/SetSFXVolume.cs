@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class SetSFXVolume : MonoBehaviour
 {
-    AudioSource forestSound;
+    AudioSource source;
 
     void Start()
     {
         // Initialize required components
-        forestSound = GetComponent<AudioSource>();
+        source = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         // Update SFX volume based on player preferences
-        forestSound.volume = PlayerPrefs.GetFloat("SFX");
+        source.volume = PlayerPrefs.GetFloat("SFX");
     }
 }
 

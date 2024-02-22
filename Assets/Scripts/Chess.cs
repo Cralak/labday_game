@@ -121,7 +121,7 @@ public class Chess : MonoBehaviour
     // Coroutine to handle chess puzzle logic
     IEnumerator Puzzle()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (Physics.Raycast(componentCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
@@ -191,7 +191,7 @@ public class Chess : MonoBehaviour
                         yield return new WaitForSeconds(0.3f);
 
                         // Add chess puzzle completion event to the diary
-                        diary.events.Add("chess");
+                        diary.AddEvents("chess");
                         StartCoroutine(Unplay());
                     }
                 }
