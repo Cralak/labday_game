@@ -1805,7 +1805,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.3443396, g: 0, b: 0.026487598, a: 1}
+  m_Color: {r: 0, g: 0.19215687, b: 0.7490196, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 179
@@ -11410,8 +11410,8 @@ MonoBehaviour:
   TVSound: {fileID: 8300000, guid: fd71197eb92b76d41a9802a7db83eb5b, type: 3}
   TVGlitch: {fileID: 8300000, guid: 6144ed83880a95e498278502f881b537, type: 3}
   interval: 3
-  lightBlue: {r: 1, g: 0, b: 0, a: 0}
-  darkBlue: {r: 0.34509805, g: 0, b: 0.02745098, a: 0}
+  lightBlue: {r: 0.3460751, g: 0.50399417, b: 0.9528302, a: 0}
+  darkBlue: {r: 0, g: 0.19215687, b: 0.7490196, a: 0.003921569}
 --- !u!82 &1540746984
 AudioSource:
   m_ObjectHideFlags: 0
