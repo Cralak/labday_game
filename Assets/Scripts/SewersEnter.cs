@@ -1,16 +1,8 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class SewersEnter : MonoBehaviour
 {
-    [SerializeField] Canvas canvas; // Reference to the Canvas component
-
-    Image blackScreen; // Reference to the Image component for the black screen effect
     GameObject player;
-    PlayerMovement playerMovement;
-    AudioSource footsteps;
     Diary diary;
     bool isColliding;
 
@@ -18,10 +10,7 @@ public class SewersEnter : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        playerMovement = player.GetComponent<PlayerMovement>();
-        footsteps = player.GetComponent<AudioSource>();
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        blackScreen = canvas.GetComponentInChildren<Image>();
 
         isColliding = false;
     }
@@ -46,6 +35,7 @@ public class SewersEnter : MonoBehaviour
     void Enter()
     {
         diary.AddEvents("sewers");
-        StartCoroutine(ChangeScene.GoTo(player, "sewers", new Vector3(0.0f, 1.0f, 0.0f)));
+        Destroy(GameObject.Find("BGM"));
+        StartCoroutine(ChangeScene.GoTo(player, new Vector3(0.0f, 1.0f, 0.0f), "Sewers"));
     }
 }
