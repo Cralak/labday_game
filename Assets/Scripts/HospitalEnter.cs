@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class HospitalEnter : MonoBehaviour
 {
     [SerializeField] GameObject key; // Reference to the key GameObject
-    [SerializeField] Image blackScreen; // Reference to the Image component for the black screen effect
     [SerializeField] Canvas canvas; // Reference to the Canvas component
+    [SerializeField] AudioClip BGMClip; // Reference to the Canvas component
 
+    Image blackScreen; // Reference to the Image component for the black screen effect
     GameObject player;
     PlayerMovement playerMovement;
+    AudioSource footsteps;
     Diary diary;
     Inventory inventoryScript;
     bool isTouching; // Flag to check if the player is touching the trigger area
@@ -22,6 +24,7 @@ public class HospitalEnter : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
+        footsteps = player.GetComponent<AudioSource>();
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
         blackScreen = canvas.GetComponentInChildren<Image>();
@@ -52,6 +55,17 @@ public class HospitalEnter : MonoBehaviour
         text.enabled = false;
     }
 
+    void CreateIndoorBGM()
+    {
+        GameObject music = new("BGM");
+        AudioSource BGMSource = music.AddComponent<AudioSource>();
+        BGMSource.clip = BGMClip;
+        BGMSource.loop = true;
+        BGMSource.Play();
+        music.AddComponent<SetSFXVolume>();
+        DontDestroyOnLoad(music);
+    }
+
     // Coroutine to load the hospital scene
     IEnumerator LoadHospital()
     {
@@ -61,11 +75,13 @@ public class HospitalEnter : MonoBehaviour
         blackScreen.color = c;
         player.transform.position = new Vector3(0f, 1.0f, -12.0f);
         inventoryScript.inventory.Remove(key);
+        footsteps.Pause();
 
         yield return new WaitForSeconds(0.1f);
 
         diary.events.Add("indoor");
         playerMovement.enabled = true;
+        CreateIndoorBGM();
         SceneManager.LoadScene("TestIndoor");
     }
 
