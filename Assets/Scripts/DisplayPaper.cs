@@ -7,12 +7,14 @@ public class DisplayPaper : MonoBehaviour
 
     GameObject flyingPage;
     Canvas canvas;
+    Canvas UI; // Reference to the main UI canvas
     TMP_Text textField;
     bool isColliding;
 
     // Start is called before the first frame update
     void Start()
     {
+        UI = GameObject.Find("UI").GetComponent<Canvas>();
         flyingPage = GameObject.Find("FlyingPage");
         canvas = flyingPage.GetComponent<Canvas>();
         textField = flyingPage.GetComponentInChildren<TMP_Text>();
@@ -21,9 +23,9 @@ public class DisplayPaper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact"))
+        if (isColliding && ToggleActions.IsPressed("interact"))
         {
-            if (!canvas.enabled) ShowPaper();
+            if (!canvas.enabled && !UIState.isBusy) ShowPaper();
             else HidePaper();
         }
     }
@@ -33,6 +35,7 @@ public class DisplayPaper : MonoBehaviour
         UIState.isBusy = true;
         ChangePlayerState.Disable();
         textField.text = text;
+        UI.enabled = false;
         canvas.enabled = true;
     }
 
@@ -40,6 +43,7 @@ public class DisplayPaper : MonoBehaviour
     {
         UIState.isBusy = false;
         ChangePlayerState.Enable();
+        UI.enabled = true;
         canvas.enabled = false;
     }
 

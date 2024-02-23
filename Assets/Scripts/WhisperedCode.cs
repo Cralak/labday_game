@@ -19,7 +19,7 @@ public class WhisperedCode : MonoBehaviour
 
         code = UnityEngine.Random.Range(0, 99999).ToString();
         code = new string('0', 5 - code.Length) + code;
-        KeyEvents.chessCode = code;
+        KeyEvents.chessCode ??= code;
     }
 
     // Update is called once per frame
