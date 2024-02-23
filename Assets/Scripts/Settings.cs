@@ -76,7 +76,7 @@ public class Settings : MonoBehaviour
         // If the settings canvas is disabled, restore the previous state
         else
         {
-            if (cursorState) Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = cursorState ? CursorLockMode.Locked : CursorLockMode.None;
             UI.enabled = UIState;
             playerMovement.enabled = playerMovementState;
             diary.enabled = diaryState;

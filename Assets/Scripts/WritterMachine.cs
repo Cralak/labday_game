@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI; 
 
 public class WriterMachine : MonoBehaviour
 {
@@ -23,8 +22,7 @@ public class WriterMachine : MonoBehaviour
         // Check if chessScript is playing and reset the text
         if (chessScript.isPlaying)
         {
-            uiText.text = null;
-            StopCoroutine(coroutine);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 

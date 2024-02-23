@@ -96,7 +96,7 @@ public class Lightning : MonoBehaviour
             // Add the lightning event to the diary if it's the first occurrence
             if (firstTime)
             {
-                diary.AddEvents("lightning");
+                diary.AddEvent("lightning");
                 firstTime = false;
             }
         }

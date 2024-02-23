@@ -42,7 +42,7 @@ public class OpenDoorWithKey : MonoBehaviour
             doorNoise.Play();
 
             // Add an event to the diary
-            diary.AddEvents("rustyKey");
+            diary.AddEvent("rustyKey");
         }
     }
 

@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TV : MonoBehaviour
@@ -39,7 +38,7 @@ public class TV : MonoBehaviour
             if (!hasGlitched)
             {
                 hasGlitched = true;
-                diary.AddEvents("TV");
+                diary.AddEvent("TV");
             }
         }
         else

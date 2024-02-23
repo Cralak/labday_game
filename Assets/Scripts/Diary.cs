@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Diary : MonoBehaviour
 {
@@ -182,7 +181,7 @@ public class Diary : MonoBehaviour
         return events.Count;
     }
 
-    public void AddEvents(string eventName)
+    public void AddEvent(string eventName)
     {
         sound.clip = notificationSound;
         sound.Play();
@@ -234,7 +233,7 @@ public class Diary : MonoBehaviour
         }
         else if (events.Contains("chess"))
         {
-            StartCoroutine(Write("Why did I have to play chess in this place?"));
+            StartCoroutine(Write("Why did I have to play chess in this place with that scary old mother? And what is it that she whispered? " + KeyEvents.chessCode + ", I wonder what it could be"));
             events.Remove("chess");
         }
         else if (events.Contains("firstFloor"))

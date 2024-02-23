@@ -1,15 +1,28 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LoadCredits : MonoBehaviour
 {
-    void OnTriggerEnter(Collider Collider)
+    bool isColliding;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        GameObject sacrifice = new GameObject("sacrifice");
-        DontDestroyOnLoad(sacrifice);
+        isColliding = false;
+    }
 
-        foreach (GameObject thing in sacrifice.scene.GetRootGameObjects()) Destroy(thing);
+    // Update is called once per frame
+    void Update()
+    {
+        if (isColliding && ToggleActions.IsPressed("interact")) StartCoroutine(Teleport.GoTo("Credits"));
+    }
 
-        SceneManager.LoadScene("Credits");
+    void OnTriggerEnter(Collider collider)
+    {
+        isColliding = true;
+    }
+
+    void OnTriggerExit(Collider collider)
+    {
+        isColliding = false;
     }
 }

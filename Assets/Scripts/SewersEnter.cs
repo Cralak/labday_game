@@ -34,7 +34,7 @@ public class SewersEnter : MonoBehaviour
     // Coroutine to load the hospital scene
     void Enter()
     {
-        diary.AddEvents("sewers");
+        diary.AddEvent("sewers");
         Destroy(GameObject.Find("BGM"));
         StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 1.0f, 0.0f), "Sewers"));
     }
