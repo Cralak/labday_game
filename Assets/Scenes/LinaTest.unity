@@ -4775,7 +4775,7 @@ GameObject:
   - component: {fileID: 533107261}
   - component: {fileID: 533107260}
   - component: {fileID: 533107259}
-  m_Layer: 4
+  m_Layer: 10
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6351,6 +6351,7 @@ GameObject:
   - component: {fileID: 696201648}
   - component: {fileID: 696201647}
   - component: {fileID: 696201646}
+  - component: {fileID: 696201649}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -6408,6 +6409,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &696201649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696201645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d01caa6ad2ee5469df8921ee5f40d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &700697869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14269,6 +14282,7 @@ GameObject:
   - component: {fileID: 1391259823}
   - component: {fileID: 1391259822}
   - component: {fileID: 1391259821}
+  - component: {fileID: 1391259824}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -14374,6 +14388,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1391259824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391259819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6d018deb03584488261bb990b20420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1392854285
 PrefabInstance:
   m_ObjectHideFlags: 0

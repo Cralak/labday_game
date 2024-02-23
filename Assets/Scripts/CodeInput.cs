@@ -47,6 +47,7 @@ public class CodeInput : MonoBehaviour
             if (input == KeyEvents.chessCode)
             {
                 KeyEvents.AddEvent("digicodeDoor");
+                ChangePlayerState.Enable();
                 canvas.enabled = false;
                 UIState.isBusy = false;
                 Cursor.lockState = CursorLockMode.Locked;
