@@ -25,9 +25,9 @@ public class Teleport : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        playerMovement.enabled = true;
-        player.transform.position = endingPosition;
         SceneManager.LoadScene(sceneName);
+        player.transform.position = endingPosition;
+        playerMovement.enabled = true;
     }
 
     static public IEnumerator GoTo(GameObject player, Vector3 endingPosition)
