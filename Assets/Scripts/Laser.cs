@@ -12,7 +12,7 @@ public class Laser : MonoBehaviour
     void Update()
     {
         // Toggle the laser on/off with the L key
-        if (Input.GetKeyDown(KeyCode.L)) 
+        if (!UIState.isBusy && Input.GetKeyDown(KeyCode.L)) 
             laser.enabled = !laser.enabled;
 
         // Change the laser color periodically when it is enabled

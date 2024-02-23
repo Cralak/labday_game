@@ -3266,6 +3266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   endingPosition: {x: -30, y: 1.1, z: 0}
 --- !u!65 &400311487
 BoxCollider:
@@ -3288,6 +3289,9 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 2, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+=======
+  endingPosition: {x: -30, y: 1, z: 0}
+>>>>>>> Kaylan
 --- !u!1001 &414753319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7632,6 +7636,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 2, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
+--- !u!4 &1036750441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036750438}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.809998, y: -0.39999998, z: 0.82000005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 111683708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1036750442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036750438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endingPosition: {x: -61, y: 1, z: -5}
+>>>>>>> Kaylan
 --- !u!1 &1042228695
 GameObject:
   m_ObjectHideFlags: 0
@@ -11140,6 +11175,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 2, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
+--- !u!4 &1461510856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461510853}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.369999, y: -0.39999998, z: -0.55999994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 111683708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1461510857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461510853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endingPosition: {x: -52, y: 1, z: 0}
+>>>>>>> Kaylan
 --- !u!1 &1461930875
 GameObject:
   m_ObjectHideFlags: 0
@@ -12338,6 +12404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   endingPosition: {x: -30, y: 1.1, z: -5}
 --- !u!4 &1647875384
 Transform:
@@ -12356,6 +12423,11 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: -44.228, z: 0}
 --- !u!65 &1647875385
 BoxCollider:
+=======
+  endingPosition: {x: -30, y: 1, z: -5}
+--- !u!135 &1647875383
+SphereCollider:
+>>>>>>> Kaylan
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -12420,6 +12492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   endingPosition: {x: -52, y: 1.1, z: -5}
 --- !u!65 &1686026236
 BoxCollider:
@@ -12442,6 +12515,9 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+=======
+  endingPosition: {x: -52, y: 1, z: -5}
+>>>>>>> Kaylan
 --- !u!1001 &1693341090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15192,6 +15268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   endingPosition: {x: -61, y: 1.1, z: 0}
 --- !u!65 &1994636425
 BoxCollider:
@@ -15214,6 +15291,9 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 2, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+=======
+  endingPosition: {x: -61, y: 1, z: 0}
+>>>>>>> Kaylan
 --- !u!1001 &1994694792
 PrefabInstance:
   m_ObjectHideFlags: 0

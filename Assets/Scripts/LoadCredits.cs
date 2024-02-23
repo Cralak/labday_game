@@ -13,7 +13,7 @@ public class LoadCredits : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isColliding && ToggleActions.IsPressed("interact")) StartCoroutine(Teleport.GoTo("Credits"));
+        if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact")) StartCoroutine(Teleport.GoTo("Credits"));
     }
 
     void OnTriggerEnter(Collider collider)

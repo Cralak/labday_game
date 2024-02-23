@@ -18,7 +18,7 @@ public class SignClickMe : MonoBehaviour
         if (isTouching && Input.GetMouseButtonDown(0))
         {
             settings.ChangeSection("Controls Section");
-            settings.ToggleSettings();
+            settings.ShowSettings();
         }
 
     }

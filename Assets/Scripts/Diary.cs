@@ -29,11 +29,6 @@ public class Diary : MonoBehaviour
     // List to store written events in the diary
     readonly List<string> writtenEvents = new();
 
-    GameObject player;
-    PlayerMovement playerMovement;
-    AudioSource footsteps;
-    Inventory inventory;
-    Settings settings;
     Canvas canvas;
     AudioSource sound;
     bool isBusy; // Flag to check if the diary is currently writing or turning pages
@@ -42,11 +37,6 @@ public class Diary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        playerMovement = player.GetComponent<PlayerMovement>();
-        footsteps = player.GetComponent<AudioSource>();
-        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
-        settings = GameObject.Find("Settings").GetComponent<Settings>();
         canvas = GetComponent<Canvas>();
         sound = GetComponent<AudioSource>();
         pageNumber = 0;
@@ -59,7 +49,17 @@ public class Diary : MonoBehaviour
     {
         sound.volume = PlayerPrefs.GetFloat("SFX");
 
-        if (ToggleActions.IsPressed("diary")) ToggleDiary();
+        if (ToggleActions.IsPressed("diary"))
+        {
+            if (!canvas.enabled)
+            {
+                if (!UIState.isBusy) ShowDiary();
+            }
+            else
+            {
+                HideDiary();
+            }
+        }
 
         // Check if the diary is open and not busy
         if (canvas.enabled && !isBusy)
@@ -157,18 +157,18 @@ public class Diary : MonoBehaviour
     }
 
     // Toggle diary visibility and player movement
-    void ToggleDiary()
+    void ShowDiary()
     {
-        canvas.enabled = !canvas.enabled;
-        if (canvas.enabled)
-        {
-            ChangeActionsState.DisableAll();
-            enabled = true;
-        }
-        else
-        {
-            ChangeActionsState.EnableAll();
-        }
+        canvas.enabled = true;
+        UIState.isBusy = true;
+        ChangePlayerState.Disable();
+    }
+
+    void HideDiary()
+    {
+        canvas.enabled = false;
+        UIState.isBusy = false;
+        ChangePlayerState.Enable();
     }
 
     public int GetEventsCount()

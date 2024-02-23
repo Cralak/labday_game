@@ -18,7 +18,7 @@ public class SewersEnter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isColliding && ToggleActions.IsPressed("interact")) Enter();
+        if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact")) Enter();
     }
 
     void OnTriggerEnter(Collider collider)

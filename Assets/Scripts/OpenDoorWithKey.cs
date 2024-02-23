@@ -30,7 +30,7 @@ public class OpenDoorWithKey : MonoBehaviour
         doorNoise.volume = PlayerPrefs.GetFloat("SFX");
 
         // Check for collision, 'E' key press, and presence of the key in the inventory
-        if (isColliding && Input.GetKeyDown(KeyCode.E) && inventoryScript.inventory.Contains(key))
+        if (isColliding && !UIState.isBusy && inventoryScript.inventory.Contains(key) && ToggleActions.IsPressed("interact"))
         {
             // Remove the key from the inventory
             inventoryScript.inventory.Remove(key);
