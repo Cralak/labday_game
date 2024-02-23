@@ -43,6 +43,7 @@ public class Settings : MonoBehaviour
     {
         UIState.isBusy = true;
         ChangePlayerState.Disable();
+        print("beute");
         Cursor.lockState = CursorLockMode.None;
         UI.enabled = false;
         settingsCanvas.enabled = true;

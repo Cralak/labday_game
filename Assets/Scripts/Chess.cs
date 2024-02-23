@@ -23,6 +23,7 @@ public class Chess : MonoBehaviour
     Camera componentCamera;
     GameObject flashlight;
     Diary diary;
+    Canvas UI;
     TMP_Text text;
     Light boardLight;
 
@@ -44,6 +45,7 @@ public class Chess : MonoBehaviour
         player = playerCamera.transform.parent.gameObject;
         componentCamera = playerCamera.GetComponent<Camera>();
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
+        UI = GameObject.Find("UI").GetComponent<Canvas>();
         text = GetComponentInChildren<TMP_Text>();
         boardLight = board.transform.parent.GetComponentInChildren<Light>();
         isTouching = false;
@@ -97,6 +99,7 @@ public class Chess : MonoBehaviour
 
         isSwitching = false;
         UIState.isBusy = false;
+        UI.enabled = true;
         ChangePlayerState.Enable();
         flashlight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
@@ -107,6 +110,7 @@ public class Chess : MonoBehaviour
     {
         isPlaying = true;
         UIState.isBusy = true;
+        UI.enabled = false;
         ChangePlayerState.Disable();
         flashlight.SetActive(false);
         initialRotation = playerCamera.transform.eulerAngles;

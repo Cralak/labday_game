@@ -14,12 +14,14 @@ public class WhisperedCode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textField = GetComponentInChildren<TMP_Text>();
-        isLaunched = false;
+        if (KeyEvents.chessCode != null) Destroy(transform.parent.gameObject);
 
+        textField = GetComponentInChildren<TMP_Text>();
+
+        isLaunched = false;
         code = UnityEngine.Random.Range(0, 99999).ToString();
         code = new string('0', 5 - code.Length) + code;
-        KeyEvents.chessCode ??= code;
+        KeyEvents.chessCode = code;
     }
 
     // Update is called once per frame
@@ -62,6 +64,6 @@ public class WhisperedCode : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
 
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }
