@@ -60,27 +60,12 @@ public class Settings : MonoBehaviour
         // If the settings canvas is enabled, save the current state and adjust settings
         if (settingsCanvas.enabled)
         {
-            cursorState = Cursor.lockState == CursorLockMode.Locked;
-            UIState = UI.enabled;
-            playerMovementState = playerMovement.enabled;
-            diaryState = diary.enabled;
-            inventoryState = inventory.enabled;
-
-            Cursor.lockState = CursorLockMode.None;
-            UI.enabled = false;
-            playerMovement.enabled = false;
-            diary.enabled = false;
-            inventory.enabled = false;
-            footsteps.Pause();
+            ChangeActionsState.DisableAllAndSaveStates();
         }
         // If the settings canvas is disabled, restore the previous state
         else
         {
-            Cursor.lockState = cursorState ? CursorLockMode.Locked : CursorLockMode.None;
-            UI.enabled = UIState;
-            playerMovement.enabled = playerMovementState;
-            diary.enabled = diaryState;
-            inventory.enabled = inventoryState;
+            ChangeActionsState.RestoreAll();
         }
     }
 }

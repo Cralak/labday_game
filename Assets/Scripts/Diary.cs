@@ -163,14 +163,11 @@ public class Diary : MonoBehaviour
         if (canvas.enabled)
         {
             ChangeActionsState.DisableAll();
-            inventory.enabled = false;
-            settings.enabled = false;
+            enabled = true;
         }
         else
         {
-            ChangeActionsState.EnablePlayer();
-            inventory.enabled = true;
-            settings.enabled = true;
+            ChangeActionsState.EnableAll();
         }
     }
 

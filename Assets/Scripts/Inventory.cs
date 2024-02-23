@@ -9,8 +9,6 @@ public class Inventory : MonoBehaviour
     // Textures for inventory items
     [SerializeField] Texture2D cross;
 
-    [SerializeField] Texture2D cube;
-
     [SerializeField] Texture2D key2D;
 
     // List to store references to inventory slot content
@@ -43,7 +41,11 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         // Change inventory state if inventory key has been toggled
-        if (ToggleActions.IsPressed("inventory")) ToggleInventory();
+        if (ToggleActions.IsPressed("inventory"))
+        {
+            if (inventoryCanvas.enabled) DisableInventory();
+            else EnableInventory();
+        }
 
         // Display or hide the inventory based on its current state
         if (inventoryCanvas.enabled) DisplayInventory();
@@ -58,10 +60,16 @@ public class Inventory : MonoBehaviour
         for (int i = inventory.Count; i < 6; i++) inventorySlotsContent[i].texture = cross;
     }
 
-    void ToggleInventory()
+    void DisableInventory()
     {
-        // Switch UI and inventory's states
-        inventoryCanvas.enabled = !inventoryCanvas.enabled;
-        UI.enabled = !UI.enabled;
+        ChangeActionsState.EnableUI();
+        inventoryCanvas.enabled = false;
+    }
+
+    void EnableInventory()
+    {
+        ChangeActionsState.DisableUI();
+        inventoryCanvas.enabled = true;
+        enabled = true;
     }
 }
