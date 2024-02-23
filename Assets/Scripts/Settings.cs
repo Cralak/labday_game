@@ -1,22 +1,13 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
     readonly List<GameObject> sections = new();
 
-    GameObject player;
-    PlayerMovement playerMovement;
-    Diary diary;
-    Inventory inventory;
-    AudioSource footsteps;
     Canvas UI;
     Canvas settingsCanvas;
-    bool cursorState;
-    bool UIState;
-    bool playerMovementState;
-    bool inventoryState;
-    bool diaryState;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +17,6 @@ public class Settings : MonoBehaviour
         sections.Add(GameObject.Find("Controls Section"));
         ChangeSection("General Section");
 
-        player = GameObject.Find("Player");
-        playerMovement = player.GetComponent<PlayerMovement>();
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
-        footsteps = player.GetComponent<AudioSource>();
         settingsCanvas = GetComponent<Canvas>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         settingsCanvas.enabled = false;
@@ -40,7 +26,35 @@ public class Settings : MonoBehaviour
     void Update()
     {
         // Toggle the settings canvas on/off when the settings key is pressed
-        if (ToggleActions.IsPressed("settings")) ToggleSettings();
+        if (ToggleActions.IsPressed("settings"))
+        {
+            if (!settingsCanvas.enabled)
+            {
+                if (!UIState.isBusy) ShowSettings();
+            }
+            else
+            {
+                HideSettings();
+            }
+        }
+    }
+
+    public void ShowSettings()
+    {
+        UIState.isBusy = true;
+        ChangePlayerState.Disable();
+        Cursor.lockState = CursorLockMode.None;
+        UI.enabled = false;
+        settingsCanvas.enabled = true;
+    }
+
+    void HideSettings()
+    {
+        UIState.isBusy = false;
+        ChangePlayerState.Enable();
+        Cursor.lockState = CursorLockMode.Locked;
+        UI.enabled = true;
+        settingsCanvas.enabled = false;
     }
 
     public void ChangeSection(string name)
@@ -50,22 +64,6 @@ public class Settings : MonoBehaviour
         {
             if (section.name == name) section.SetActive(true);
             else section.SetActive(false);
-        }
-    }
-
-    public void ToggleSettings()
-    {
-        settingsCanvas.enabled = !settingsCanvas.enabled;
-
-        // If the settings canvas is enabled, save the current state and adjust settings
-        if (settingsCanvas.enabled)
-        {
-            ChangeActionsState.DisableAllAndSaveStates();
-        }
-        // If the settings canvas is disabled, restore the previous state
-        else
-        {
-            ChangeActionsState.RestoreAll();
         }
     }
 }

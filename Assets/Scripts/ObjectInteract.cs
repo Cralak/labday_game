@@ -18,7 +18,7 @@ public class ObjectInteract : MonoBehaviour
     void Update()
     {
         // Check if colliding
-        if (isColliding && ToggleActions.IsPressed("interact")) TakeObject();
+        if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact")) TakeObject();
     }
 
     void OnTriggerEnter(Collider collider)

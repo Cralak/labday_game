@@ -21,27 +21,26 @@ public class DisplayPaper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isColliding)
+        if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact"))
         {
-            if (ToggleActions.IsPressed("interact"))
-            {
-                if (!canvas.enabled) ShowPaper();
-                else HidePaper();
-            }
+            if (!canvas.enabled) ShowPaper();
+            else HidePaper();
         }
     }
 
     void ShowPaper()
     {
+        UIState.isBusy = true;
+        ChangePlayerState.Disable();
         textField.text = text;
         canvas.enabled = true;
-        ChangeActionsState.DisableAll();
     }
 
     void HidePaper()
     {
+        UIState.isBusy = false;
+        ChangePlayerState.Enable();
         canvas.enabled = false;
-        ChangeActionsState.EnableAll();
     }
 
     void OnTriggerEnter(Collider collider)

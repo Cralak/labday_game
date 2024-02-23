@@ -28,7 +28,7 @@ public class HospitalEnter : MonoBehaviour
     void Update()
     {
         // Check if the player is touching the trigger area, and presses the "e" key
-        if (isTouching && ToggleActions.IsPressed("interact")) Enter();
+        if (isTouching && !UIState.isBusy && ToggleActions.IsPressed("interact")) Enter();
     }
 
     // Called when another collider enters the trigger area
