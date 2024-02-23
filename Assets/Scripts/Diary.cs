@@ -193,13 +193,8 @@ public class Diary : MonoBehaviour
         }
         else if (events.Contains("archEnter"))
         {
-            StartCoroutine(Write("OH NO! I can't go out... Why did it take so long to enter by the way?"));
+            StartCoroutine(Write("OH NO! I can't go out... Huh, let's find Pixelle before thinking about that."));
             events.Remove("archEnter");
-        }
-        else if (events.Contains("TV"))
-        {
-            StartCoroutine(Write("AH THAT SOUND, so noisy. I'll likely have an earache."));
-            events.Remove("TV");
         }
         else if (events.Contains("doorLock"))
         {
@@ -233,8 +228,13 @@ public class Diary : MonoBehaviour
         }
         else if (events.Contains("firstFloor"))
         {
-            StartCoroutine(Write("Oh, what a scary corridor, I hop no one is here..."));
+            StartCoroutine(Write("Oh, what a scary corridor, I hope no one is here..."));
             events.Remove("firstFloor");
+        }
+        else if (events.Contains("TV"))
+        {
+            StartCoroutine(Write("AH THAT SOUND, so noisy. I'll likely have an earache."));
+            events.Remove("TV");
         }
         else if (events.Contains("sewers"))
         {
