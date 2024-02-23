@@ -74,6 +74,6 @@ public class RoomEnter : MonoBehaviour
     void Enter()
     {
         diary.AddEvent("firstFloor");
-        StartCoroutine(Teleport.GoTo(player, new Vector3(-12f, 1.0f, 0f), "FirstFloor"));
+        StartCoroutine(Teleport.GoTo(player, new Vector3(-12f, 1.10f, 0f), "FirstFloor"));
     }
 }
