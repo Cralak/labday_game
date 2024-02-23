@@ -48,7 +48,7 @@ public class CodeInput : MonoBehaviour
             {
                 KeyEvents.AddEvent("digicodeDoor");
                 canvas.enabled = false;
-                ChangeActionsState.EnableAll();
+                UIState.isBusy = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
             else

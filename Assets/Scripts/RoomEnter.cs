@@ -26,13 +26,13 @@ public class RoomEnter : MonoBehaviour
         // Check if the player is touching the trigger area, and presses the "e" key
         if (KeyEvents.CheckEvent("digicodeDoor"))
         {
-            if (isTouching && ToggleActions.IsPressed("interact")) Enter();
+            if (isTouching && !UIState.isBusy && ToggleActions.IsPressed("interact")) Enter();
         }
         else
         {
             if (!isInputing)
             {
-                if (isTouching && ToggleActions.IsPressed("interact")) StartCodeInput();
+                if (isTouching && !UIState.isBusy && ToggleActions.IsPressed("interact")) StartCodeInput();
             }
             else
             {
@@ -57,23 +57,25 @@ public class RoomEnter : MonoBehaviour
 
     void StartCodeInput()
     {
-        digicodeCanvas.enabled = true;
         isInputing = true;
-        ChangeActionsState.DisableAll();
+        UIState.isBusy = true;
+        ChangePlayerState.Disable();
         Cursor.lockState = CursorLockMode.None;
+        digicodeCanvas.enabled = true;
     }
 
     void StopCodeInput()
     {
-        digicodeCanvas.enabled = false;
         isInputing = false;
-        ChangeActionsState.EnableAll();
+        UIState.isBusy = false;
+        ChangePlayerState.Enable();
         Cursor.lockState = CursorLockMode.Locked;
+        digicodeCanvas.enabled = false;
     }
 
     void Enter()
     {
         diary.AddEvent("firstFloor");
-        StartCoroutine(Teleport.GoTo(player, new Vector3(-12f, 1.0f, 0f), "FirstFloor"));
+        StartCoroutine(Teleport.GoTo(player, new Vector3(-12f, 1.1f, 0f), "FirstFloor"));
     }
 }

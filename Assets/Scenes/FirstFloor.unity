@@ -3153,7 +3153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1281077091}
   endingPosition: {x: -30, y: 1, z: 0}
 --- !u!1001 &414753319
 PrefabInstance:
@@ -7391,7 +7390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1281077091}
   endingPosition: {x: -61, y: 1, z: -5}
 --- !u!1 &1042228695
 GameObject:
@@ -10900,7 +10898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1281077091}
   endingPosition: {x: -52, y: 1, z: 0}
 --- !u!1 &1461930875
 GameObject:
@@ -12100,7 +12097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1281077091}
   endingPosition: {x: -30, y: 1, z: -5}
 --- !u!135 &1647875383
 SphereCollider:
@@ -12204,7 +12200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1281077091}
   endingPosition: {x: -52, y: 1, z: -5}
 --- !u!1001 &1693341090
 PrefabInstance:
@@ -14840,7 +14835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6aebb646658480cb9479786f0fb9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1281077091}
   endingPosition: {x: -61, y: 1, z: 0}
 --- !u!1001 &1994694792
 PrefabInstance:
@@ -15210,7 +15204,7 @@ Transform:
   m_GameObject: {fileID: 2026447688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.4299453, z: -0, w: 0.902855}
-  m_LocalPosition: {x: -12, y: 1, z: 0.28}
+  m_LocalPosition: {x: -12, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

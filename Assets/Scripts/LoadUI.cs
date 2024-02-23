@@ -17,6 +17,8 @@ public class LoadUI : MonoBehaviour
         // Activate UI's display canvas
         UI.GetComponent<Canvas>().enabled = true;
 
+        UIState.isBusy = false;
+
         // Prevent specified GameObjects from being destroyed on scene changes
         foreach (GameObject thing in UI.scene.GetRootGameObjects()) DontDestroyOnLoad(thing);
     }

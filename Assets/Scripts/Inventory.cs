@@ -43,8 +43,14 @@ public class Inventory : MonoBehaviour
         // Change inventory state if inventory key has been toggled
         if (ToggleActions.IsPressed("inventory"))
         {
-            if (inventoryCanvas.enabled) DisableInventory();
-            else EnableInventory();
+            if (!inventoryCanvas.enabled)
+            {
+                if (!UIState.isBusy) ShowInventory();
+            }
+            else
+            {
+                HideInventory();
+            }
         }
 
         // Display or hide the inventory based on its current state
@@ -60,16 +66,17 @@ public class Inventory : MonoBehaviour
         for (int i = inventory.Count; i < 6; i++) inventorySlotsContent[i].texture = cross;
     }
 
-    void DisableInventory()
+    void HideInventory()
     {
-        ChangeActionsState.EnableUI();
+        UIState.isBusy = false;
+        UI.enabled = true;
         inventoryCanvas.enabled = false;
     }
 
-    void EnableInventory()
+    void ShowInventory()
     {
-        ChangeActionsState.DisableUI();
+        UIState.isBusy = true;
+        UI.enabled = false;
         inventoryCanvas.enabled = true;
-        enabled = true;
     }
 }

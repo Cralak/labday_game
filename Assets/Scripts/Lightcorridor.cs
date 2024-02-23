@@ -9,7 +9,6 @@ public class Lightcorridor : MonoBehaviour
     Diary diary;
     Light lightComponent;
     AudioSource lightSound;
-    bool hasStarted;
 
     // Start is called before the first frame update
     void Start()
