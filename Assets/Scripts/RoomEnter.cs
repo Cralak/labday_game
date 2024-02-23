@@ -5,37 +5,70 @@ public class RoomEnter : MonoBehaviour
     GameObject player;
     Diary diary;
     bool isTouching; // Flag to check if the player is touching the trigger area
-    Canvas text;
+    bool isInputing;
+    Canvas areaText;
+    Canvas digicodeCanvas;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        text = GetComponent<Canvas>();
-        text.enabled = false;
+        areaText = GetComponent<Canvas>();
+        areaText.enabled = false;
         isTouching = false;
+        digicodeCanvas = GameObject.Find("Digicode").GetComponent<Canvas>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Check if the player is touching the trigger area, and presses the "e" key
-        if (isTouching && ToggleActions.IsPressed("interact")) Enter();
+        if (KeyEvents.CheckEvent("digicodeDoor"))
+        {
+            if (isTouching && ToggleActions.IsPressed("interact")) Enter();
+        }
+        else
+        {
+            if (!isInputing)
+            {
+                if (isTouching && ToggleActions.IsPressed("interact")) StartCodeInput();
+            }
+            else
+            {
+                if (ToggleActions.IsPressed("interact")) StopCodeInput();
+            }
+        }
     }
 
     // Called when another collider enters the trigger area
     void OnTriggerEnter()
     {
         isTouching = true;
-        text.enabled = true;
+        areaText.enabled = true;
     }
 
     // Called when another collider exits the trigger area
     void OnTriggerExit()
     {
         isTouching = false;
-        text.enabled = false;
+        areaText.enabled = false;
+    }
+
+    void StartCodeInput()
+    {
+        digicodeCanvas.enabled = true;
+        isInputing = true;
+        ChangeActionsState.DisableAll();
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    void StopCodeInput()
+    {
+        digicodeCanvas.enabled = false;
+        isInputing = false;
+        ChangeActionsState.EnableAll();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Enter()

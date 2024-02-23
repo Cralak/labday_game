@@ -162,17 +162,15 @@ public class Diary : MonoBehaviour
         canvas.enabled = !canvas.enabled;
         if (canvas.enabled)
         {
-            playerMovement.enabled = false;
+            ChangeActionsState.DisableAll();
             inventory.enabled = false;
             settings.enabled = false;
-            footsteps.Pause();
         }
         else
         {
-            playerMovement.enabled = true;
+            ChangeActionsState.EnablePlayer();
             inventory.enabled = true;
             settings.enabled = true;
-            footsteps.UnPause();
         }
     }
 

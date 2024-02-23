@@ -26,7 +26,7 @@ public class DisplayPaper : MonoBehaviour
             if (ToggleActions.IsPressed("interact"))
             {
                 if (!canvas.enabled) ShowPaper();
-                else canvas.enabled = false;
+                else HidePaper();
             }
         }
     }
@@ -35,6 +35,13 @@ public class DisplayPaper : MonoBehaviour
     {
         textField.text = text;
         canvas.enabled = true;
+        ChangeActionsState.DisableAll();
+    }
+
+    void HidePaper()
+    {
+        canvas.enabled = false;
+        ChangeActionsState.EnableAll();
     }
 
     void OnTriggerEnter(Collider collider)
@@ -47,6 +54,5 @@ public class DisplayPaper : MonoBehaviour
     {
         // Reset the colliding flag when the player exits the trigger zone
         isColliding = false;
-        canvas.enabled = false;
     }
 }

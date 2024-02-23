@@ -19,14 +19,9 @@ public class Chess : MonoBehaviour
 
     // References to other game objects and components
     GameObject player;
-    PlayerMovement playerMovement;
-    Inventory inventory;
-    AudioSource footsteps;
     GameObject playerCamera;
     Camera componentCamera;
-    GameObject flashlight;
     Diary diary;
-    Canvas UI;
     TMP_Text text;
     Light boardLight;
 
@@ -44,14 +39,9 @@ public class Chess : MonoBehaviour
     {
         // Initialize references to game objects and components
         player = GameObject.Find("Player");
-        playerMovement = player.GetComponent<PlayerMovement>();
-        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
-        footsteps = player.GetComponent<AudioSource>();
         playerCamera = GameObject.Find("PlayerCamera");
         componentCamera = playerCamera.GetComponent<Camera>();
-        flashlight = GameObject.Find("Flashlight");
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        UI = GameObject.Find("UI").GetComponent<Canvas>();
         text = GetComponentInChildren<TMP_Text>();
         boardLight = board.transform.parent.GetComponentInChildren<Light>();
         isTouching = false;
@@ -104,10 +94,8 @@ public class Chess : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
 
         isSwitching = false;
-        playerMovement.enabled = true;
-        inventory.enabled = true;
-        flashlight.SetActive(true);
-        UI.enabled = true;
+        ChangeActionsState.EnableAll();
+        ChangeActionsState.HideFlashlight();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -115,11 +103,8 @@ public class Chess : MonoBehaviour
     IEnumerator Play()
     {
         isPlaying = true;
-        playerMovement.enabled = false;
-        inventory.enabled = false;
-        flashlight.SetActive(false);
-        footsteps.Pause();
-        UI.enabled = false;
+        ChangeActionsState.DisableAll();
+        ChangeActionsState.HideFlashlight();
         initialRotation = playerCamera.transform.eulerAngles;
         playerCamera.transform.DOMove(board.transform.position + new Vector3(0.0f, 0.6f, 0.0f), 2);
         playerCamera.transform.DORotate(new Vector3(90.0f, board.transform.eulerAngles.y, 0.0f), 2);
