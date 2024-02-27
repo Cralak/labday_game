@@ -12,7 +12,7 @@ public class WhisperedCode : MonoBehaviour
     bool isLaunched;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (KeyEvents.chessCode != null) Destroy(transform.parent.gameObject);
 

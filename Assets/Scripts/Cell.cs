@@ -7,7 +7,6 @@ public class Cell : MonoBehaviour
     GameObject player; // Reference to the player GameObject
     Diary diary; // Reference to the Diary script
     bool isTouching; // Flag to check if the player is touching the trigger area
-    PlayerMovement playerMovement; // Reference to the PlayerMovement script
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +14,6 @@ public class Cell : MonoBehaviour
         // Find and assign references to necessary components and objects
         player = GameObject.Find("Player");
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        playerMovement = player.GetComponent<PlayerMovement>();
         isTouching = false;
     }
 
