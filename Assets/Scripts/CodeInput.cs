@@ -51,6 +51,7 @@ public class CodeInput : MonoBehaviour
                 canvas.enabled = false;
                 UIState.isBusy = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                Destroy(gameObject);
             }
             else
             {
