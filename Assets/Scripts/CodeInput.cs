@@ -48,7 +48,6 @@ public class CodeInput : MonoBehaviour
             {
                 KeyEvents.AddEvent("digicodeDoor");
                 ChangePlayerState.Enable();
-                canvas.enabled = false;
                 UIState.isBusy = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 Destroy(gameObject);
