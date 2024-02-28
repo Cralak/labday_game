@@ -44,13 +44,13 @@ public class CodeInput : MonoBehaviour
 
         if (input.Length == 5)
         {
-            if (input == KeyEvents.chessCode)
+            if (!KeyEvents.CheckEvent("digicodeDoor") && input == KeyEvents.chessCode)
             {
                 KeyEvents.AddEvent("digicodeDoor");
                 ChangePlayerState.Enable();
                 UIState.isBusy = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                Destroy(gameObject);
+                canvas.enabled = false;
             }
             else
             {
