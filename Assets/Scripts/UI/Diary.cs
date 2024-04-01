@@ -31,7 +31,7 @@ public class Diary : MonoBehaviour
     readonly List<string> writtenEvents = new();
 
     // List to match events and their sentences
-    readonly Dictionary<string, string> sentences = new() {
+    readonly Dictionary<string, string> eventsSentences = new() {
         {"start", "Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."},
         {"archEnter", "OH NO! I can't go out... Huh, let's find Pixelle before thinking about that."},
         {"doorLock", "I don't have the key, i need to find it."},
@@ -96,8 +96,8 @@ public class Diary : MonoBehaviour
             int rightPage = pageNumber * 2 + 1;
 
             // Display text on left and right pages
-            text1.text = writtenEvents.Count > leftPage ? sentences[writtenEvents[leftPage]] : "";
-            text2.text = writtenEvents.Count > rightPage ? sentences[writtenEvents[rightPage]] : "";
+            text1.text = writtenEvents.Count > leftPage ? eventsSentences[writtenEvents[leftPage]] : "";
+            text2.text = writtenEvents.Count > rightPage ? eventsSentences[writtenEvents[rightPage]] : "";
 
             // Check for specific game events and display corresponding diary entries
             CheckEvents();
@@ -114,7 +114,7 @@ public class Diary : MonoBehaviour
 
         if (text1.text == "")
         {
-            string sentence = sentences[eventName];
+            string sentence = eventsSentences[eventName];
             foreach (char letter in sentence)
             {
                 text1.text += letter;
@@ -130,7 +130,7 @@ public class Diary : MonoBehaviour
         }
         else if (text2.text == "")
         {
-            string sentence = sentences[eventName];
+            string sentence = eventsSentences[eventName];
             foreach (char letter in sentence)
             {
                 text2.text += letter;
@@ -208,7 +208,7 @@ public class Diary : MonoBehaviour
     // Check for specific game events and display corresponding diary entries
     void CheckEvents()
     {
-        foreach (string eventName in sentences.Keys)
+        foreach (string eventName in eventsSentences.Keys)
         {
             if (events.Contains(eventName))
             {
