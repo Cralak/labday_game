@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Diary : MonoBehaviour
@@ -21,13 +22,27 @@ public class Diary : MonoBehaviour
     [SerializeField] AudioClip pageSound;
 
     // Writing speed parameter
-    [SerializeField, Range(0.005f, 0.05f)] float writingSpeed = 0.01f;
+    [SerializeField, Range(0.005f, 0.05f)] readonly float writingSpeed = 0.01f;
 
     // List to store game events
     readonly List<string> events = new();
 
     // List to store written events in the diary
     readonly List<string> writtenEvents = new();
+
+    // List to match events and their sentences
+    readonly Dictionary<string, string> eventsSentences = new() {
+        {"start", "Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."},
+        {"archEnter", "OH NO! I can't go out... Huh, let's find Pixelle before thinking about that."},
+        {"doorLock", "I don't have the key, i need to find it."},
+        {"rustyKey", "Berk, why was that key in that body? So disgusting! And how did it get so rusty?"},
+        {"indoor", "Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"},
+        {"lightCorridor", "What is illuminating the ceiling ? So scary!"},
+        {"lightning", "What an astounding lightning! It scared me so badly!"},
+        {"chess", "Why did I have to play chess in this place with that scary old mother? And what is it that she whispered? " + KeyEvents.chessCode + ", I wonder what it could be"},
+        {"firstFloor", "Oh, what a scary corridor, I hope no one is here..."},
+        {"TV", "AH THAT SOUND, so noisy. I'll likely have an earache."},
+        {"sewers", "Wah, it's so dark in here. Thankfully I've got that flashlight."}};
 
     Canvas canvas;
     AudioSource sound;
@@ -81,8 +96,8 @@ public class Diary : MonoBehaviour
             int rightPage = pageNumber * 2 + 1;
 
             // Display text on left and right pages
-            text1.text = writtenEvents.Count > leftPage ? writtenEvents[leftPage] : "";
-            text2.text = writtenEvents.Count > rightPage ? writtenEvents[rightPage] : "";
+            text1.text = writtenEvents.Count > leftPage ? eventsSentences[writtenEvents[leftPage]] : "";
+            text2.text = writtenEvents.Count > rightPage ? eventsSentences[writtenEvents[rightPage]] : "";
 
             // Check for specific game events and display corresponding diary entries
             CheckEvents();
@@ -90,7 +105,7 @@ public class Diary : MonoBehaviour
     }
 
     // Coroutine to write text in the diary
-    IEnumerator Write(string sentence)
+    IEnumerator Write(string eventName)
     {
         isBusy = true;
         sound.clip = writingSound;
@@ -99,6 +114,7 @@ public class Diary : MonoBehaviour
 
         if (text1.text == "")
         {
+            string sentence = eventsSentences[eventName];
             foreach (char letter in sentence)
             {
                 text1.text += letter;
@@ -109,11 +125,12 @@ public class Diary : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
-            writtenEvents.Add(sentence);
+            writtenEvents.Add(eventName);
             isBusy = false;
         }
         else if (text2.text == "")
         {
+            string sentence = eventsSentences[eventName];
             foreach (char letter in sentence)
             {
                 text2.text += letter;
@@ -124,7 +141,7 @@ public class Diary : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
-            writtenEvents.Add(sentence);
+            writtenEvents.Add(eventName);
             isBusy = false;
         }
         else
@@ -140,7 +157,7 @@ public class Diary : MonoBehaviour
 
             pageNumber += 1;
 
-            StartCoroutine(Write(sentence));
+            StartCoroutine(Write(eventName));
         }
     }
 
@@ -191,60 +208,13 @@ public class Diary : MonoBehaviour
     // Check for specific game events and display corresponding diary entries
     void CheckEvents()
     {
-        if (events.Contains("start"))
+        foreach (string eventName in eventsSentences.Keys)
         {
-            StartCoroutine(Write("Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."));
-            events.Remove("start");
-        }
-        else if (events.Contains("archEnter"))
-        {
-            StartCoroutine(Write("OH NO! I can't go out... Huh, let's find Pixelle before thinking about that."));
-            events.Remove("archEnter");
-        }
-        else if (events.Contains("doorLock"))
-        {
-            StartCoroutine(Write("I don't have the key, i need to find it"));
-            events.Remove("doorLock");
-        }
-        else if (events.Contains("rustyKey"))
-        {
-            StartCoroutine(Write("Berk, why was that key in that body? So disgusting! And how did it get so rusty?"));
-            events.Remove("rustyKey");
-        }
-        else if (events.Contains("indoor"))
-        {
-            StartCoroutine(Write("Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"));
-            events.Remove("indoor");
-        }
-        else if (events.Contains("lightCorridor"))
-        {
-            StartCoroutine(Write("What is illuminating the ceiling ? So scary! "));
-            events.Remove("lightCorridor");
-        }
-        else if (events.Contains("lightning"))
-        {
-            StartCoroutine(Write("What an astounding lightning! It scared me so badly!"));
-            events.Remove("lightning");
-        }
-        else if (events.Contains("chess"))
-        {
-            StartCoroutine(Write("Why did I have to play chess in this place with that scary old mother? And what is it that she whispered? " + KeyEvents.chessCode + ", I wonder what it could be"));
-            events.Remove("chess");
-        }
-        else if (events.Contains("firstFloor"))
-        {
-            StartCoroutine(Write("Oh, what a scary corridor, I hope no one is here..."));
-            events.Remove("firstFloor");
-        }
-        else if (events.Contains("TV"))
-        {
-            StartCoroutine(Write("AH THAT SOUND, so noisy. I'll likely have an earache."));
-            events.Remove("TV");
-        }
-        else if (events.Contains("sewers"))
-        {
-            StartCoroutine(Write("Wah, it's so dark in here. Thankfully I've got that flashlight"));
-            events.Remove("sewers");
+            if (events.Contains(eventName))
+            {
+                StartCoroutine(Write(eventName));
+                events.Remove(eventName);
+            }
         }
     }
 }
