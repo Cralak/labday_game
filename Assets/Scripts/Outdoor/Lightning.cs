@@ -81,9 +81,13 @@ public class Lightning : MonoBehaviour
 
             // Adjust the lightning intensity over the next few seconds
             lightningLight.intensity = 2.0f;
+
             yield return new WaitForSeconds(lightningTime);
+
             lightningLight.intensity = 1.0f;
+
             yield return new WaitForSeconds(lightningTime);
+
             lightningLight.intensity = 0.5f;
 
             yield return new WaitForSeconds(lightningTime);
@@ -92,7 +96,7 @@ public class Lightning : MonoBehaviour
             lightningLight.enabled = false;
 
             // Add the lightning event to the diary if it's the first occurrence
-            if (diary.IsEventAdded("lightning")) diary.AddEvent("lightning");
+            if (!diary.IsEventAdded("lightning")) diary.AddEvent("lightning");
         }
     }
 }
