@@ -90,8 +90,6 @@ public class PlayerMovement : MonoBehaviour
         sensitivity = PlayerPrefs.GetFloat("sensitivity");
         UpdateMouse();
         UpdateMove();
-
-        print(KeyEvents.chessCode);
     }
 
     void UpdateMouse()
