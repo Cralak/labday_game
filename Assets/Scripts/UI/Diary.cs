@@ -208,60 +208,13 @@ public class Diary : MonoBehaviour
     // Check for specific game events and display corresponding diary entries
     void CheckEvents()
     {
-        if (events.Contains("start"))
+        foreach (string eventName in sentences.Keys)
         {
-            StartCoroutine(Write("start"));
-            events.Remove("start");
-        }
-        else if (events.Contains("archEnter"))
-        {
-            StartCoroutine(Write("archEnter"));
-            events.Remove("archEnter");
-        }
-        else if (events.Contains("doorLock"))
-        {
-            StartCoroutine(Write("doorLock"));
-            events.Remove("doorLock");
-        }
-        else if (events.Contains("rustyKey"))
-        {
-            StartCoroutine(Write("rustyKey"));
-            events.Remove("rustyKey");
-        }
-        else if (events.Contains("indoor"))
-        {
-            StartCoroutine(Write("indoor"));
-            events.Remove("indoor");
-        }
-        else if (events.Contains("lightCorridor"))
-        {
-            StartCoroutine(Write("lightCorridor"));
-            events.Remove("lightCorridor");
-        }
-        else if (events.Contains("lightning"))
-        {
-            StartCoroutine(Write("lightning"));
-            events.Remove("lightning");
-        }
-        else if (events.Contains("chess"))
-        {
-            StartCoroutine(Write("chess"));
-            events.Remove("chess");
-        }
-        else if (events.Contains("firstFloor"))
-        {
-            StartCoroutine(Write("firstFloor"));
-            events.Remove("firstFloor");
-        }
-        else if (events.Contains("TV"))
-        {
-            StartCoroutine(Write("TV"));
-            events.Remove("TV");
-        }
-        else if (events.Contains("sewers"))
-        {
-            StartCoroutine(Write("sewers"));
-            events.Remove("sewers");
+            if (events.Contains(eventName))
+            {
+                StartCoroutine(Write(eventName));
+                events.Remove(eventName);
+            }
         }
     }
 }
