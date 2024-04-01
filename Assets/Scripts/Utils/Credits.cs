@@ -18,7 +18,7 @@ public class Credits : MonoBehaviour
 
     IEnumerator DisplayCredits()
     {
-        transform.DOMoveY(11700.0f, 60.0f).SetEase(Ease.Linear);
+        transform.DOMoveY(10.8f * Screen.height, 6.0f).SetEase(Ease.Linear);
 
         yield return new WaitForSeconds(63.0f);
 

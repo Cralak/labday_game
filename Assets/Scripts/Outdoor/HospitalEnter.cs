@@ -9,7 +9,6 @@ public class HospitalEnter : MonoBehaviour
     Diary diary;
     Inventory inventoryScript;
     bool isTouching; // Flag to check if the player is touching the trigger area
-    bool firstTry; // To check if player already tried to enter
     Canvas text;
 
     // Start is called before the first frame update
@@ -21,7 +20,6 @@ public class HospitalEnter : MonoBehaviour
         text = GetComponent<Canvas>();
         text.enabled = false;
         isTouching = false;
-        firstTry = true;
     }
 
     // Update is called once per frame
@@ -66,10 +64,6 @@ public class HospitalEnter : MonoBehaviour
             CreateIndoorBGM();
             StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 1.0f, -12.0f), "TestIndoor"));
         }
-        else if (firstTry)
-        {
-            diary.AddEvent("doorLock");
-            firstTry = false;
-        }
+        else if (diary.IsEventAdded("doorLock")) diary.AddEvent("doorLock");
     }
 }

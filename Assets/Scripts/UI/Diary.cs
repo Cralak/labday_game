@@ -176,6 +176,11 @@ public class Diary : MonoBehaviour
         return events.Count;
     }
 
+    public bool IsEventAdded(string eventName)
+    {
+        return events.Contains(eventName) || writtenEvents.Contains(eventName);
+    }
+
     public void AddEvent(string eventName)
     {
         sound.clip = notificationSound;

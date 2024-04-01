@@ -42,8 +42,6 @@ public class Lightning : MonoBehaviour
 
     private IEnumerator Flash(float interval)
     {
-        bool firstTime = true;
-
         while (true)
         {
             yield return new WaitForSeconds(interval);
@@ -94,11 +92,7 @@ public class Lightning : MonoBehaviour
             lightningLight.enabled = false;
 
             // Add the lightning event to the diary if it's the first occurrence
-            if (firstTime)
-            {
-                diary.AddEvent("lightning");
-                firstTime = false;
-            }
+            if (diary.IsEventAdded("lightning")) diary.AddEvent("lightning");
         }
     }
 }
