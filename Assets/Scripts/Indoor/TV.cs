@@ -13,7 +13,6 @@ public class TV : MonoBehaviour
     GameObject player;
     Diary diary;
     Light screenLight;
-    bool hasGlitched;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +21,6 @@ public class TV : MonoBehaviour
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         source = GetComponent<AudioSource>();
         screenLight = GetComponentInChildren<Light>();
-        hasGlitched = false;
 
         StartCoroutine(LightGlitch(interval));
     }
@@ -35,11 +33,8 @@ public class TV : MonoBehaviour
             source.clip = TVGlitch;
             if (!source.isPlaying) source.Play();
 
-            if (!hasGlitched)
-            {
-                hasGlitched = true;
-                diary.AddEvent("TV");
-            }
+            if (!diary.IsEventAdded("TV")) diary.AddEvent("TV");
+
         }
         else
         {
