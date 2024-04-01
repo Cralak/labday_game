@@ -64,6 +64,6 @@ public class WhisperedCode : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
 
-        Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
     }
 }
