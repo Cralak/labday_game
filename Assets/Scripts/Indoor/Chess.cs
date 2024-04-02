@@ -91,8 +91,8 @@ public class Chess : MonoBehaviour
     {
         boardLight.enabled = false;
         isPlaying = false;
-        playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2);
-        playerCamera.transform.DORotate(initialRotation, 2);
+        playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2.0f);
+        playerCamera.transform.DORotate(initialRotation, 2.0f);
         isSwitching = true;
 
         yield return new WaitForSeconds(2.0f);
@@ -114,8 +114,8 @@ public class Chess : MonoBehaviour
         ChangePlayerState.Disable();
         flashlight.SetActive(false);
         initialRotation = playerCamera.transform.eulerAngles;
-        playerCamera.transform.DOMove(board.transform.position + new Vector3(0.0f, 0.6f, 0.0f), 2);
-        playerCamera.transform.DORotate(new Vector3(90.0f, board.transform.eulerAngles.y, 0.0f), 2);
+        playerCamera.transform.DOMove(board.transform.position + new Vector3(0.0f, 0.6f, 0.0f), 2.0f);
+        playerCamera.transform.DORotate(new Vector3(90.0f, board.transform.eulerAngles.y, 0.0f), 2.0f);
         isSwitching = true;
 
         yield return new WaitForSeconds(2.0f);
