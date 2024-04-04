@@ -33,7 +33,6 @@ public class OpenInput : MonoBehaviour
         if (isTouching && ToggleActions.IsPressed("interact") && !isTyping && !isResolved)
         {
             isTyping = true;
-            print("touche et touche");
             ChangePlayerState.Disable();
             canvas.enabled = !canvas.enabled;
             Cursor.lockState = CursorLockMode.None;
@@ -44,18 +43,16 @@ public class OpenInput : MonoBehaviour
     void OnTriggerEnter()
     {
         isTouching = true;
-        print("touche");
     }
     void OnTriggerExit()
     {
         isTouching = false;
-        print("touche plus");
     }
 
     public void Check()
     {
         answer = inputField.text;
-        if (answer == "death")
+        if (answer == KeyEvents.wordleCode)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0,130,0));
             isResolved = true;
@@ -67,7 +64,6 @@ public class OpenInput : MonoBehaviour
     public void Exit()
     {
         isTyping = false;
-        print("touche et touche");
         ChangePlayerState.Enable();
         canvas.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;

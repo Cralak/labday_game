@@ -15,7 +15,7 @@ public class SignClickMe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTouching && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isTouching && !UIState.isBusy)
         {
             settings.ChangeSection("Controls Section");
             settings.ShowSettings();

@@ -43,7 +43,7 @@ public class KeyChange : MonoBehaviour
     {
         text.text = PlayerPrefs.GetString(move);
 
-        if (pushed && Input.anyKey)
+        if (pushed && Input.anyKeyDown)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {

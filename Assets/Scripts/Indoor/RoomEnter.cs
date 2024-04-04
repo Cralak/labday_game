@@ -24,7 +24,7 @@ public class RoomEnter : MonoBehaviour
     void Update()
     {
         // Check if the player is touching the trigger area, and presses the "e" key
-        if (KeyEvents.CheckEvent("digicodeDoor"))
+        if (diary.CheckEvent("digicodeDoor"))
         {
             if (isTouching && !UIState.isBusy && ToggleActions.IsPressed("interact")) Enter();
         }
@@ -75,7 +75,7 @@ public class RoomEnter : MonoBehaviour
 
     void Enter()
     {
-        if (!diary.IsEventAdded("firstFloor")) diary.AddEvent("firstFloor");
+        if (!diary.CheckEvent("firstFloor")) diary.AddEvent("firstFloor");
         StartCoroutine(Teleport.GoTo(player, new Vector3(-12f, 1.1f, 0f), "FirstFloor"));
     }
 }

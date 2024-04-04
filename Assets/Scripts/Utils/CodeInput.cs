@@ -5,16 +5,16 @@ public class CodeInput : MonoBehaviour
 {
     Canvas canvas;
     TMP_Text displayed;
-    string input;
-    bool hasEnded;
+    string input = "";
+    bool hasEnded = false;
+    Diary diary;
 
     // Start is called before the first frame update
     void Start()
     {
         canvas = GetComponent<Canvas>();
         displayed = GetComponentInChildren<TMP_Text>();
-        input = "";
-        hasEnded = false;
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
     }
 
     // Update is called once per frame
@@ -44,9 +44,9 @@ public class CodeInput : MonoBehaviour
 
         if (input.Length == 5)
         {
-            if (!KeyEvents.CheckEvent("digicodeDoor") && input == KeyEvents.chessCode)
+            if (!diary.CheckEvent("digicodeDoor") && input == KeyEvents.chessCode)
             {
-                KeyEvents.AddEvent("digicodeDoor");
+                diary.AddEvent("digicodeDoor");
                 ChangePlayerState.Enable();
                 UIState.isBusy = false;
                 Cursor.lockState = CursorLockMode.Locked;

@@ -33,7 +33,7 @@ public class TV : MonoBehaviour
             source.clip = TVGlitch;
             if (!source.isPlaying) source.Play();
 
-            if (!diary.IsEventAdded("TV")) diary.AddEvent("TV");
+            if (!diary.CheckEvent("TV")) diary.AddEvent("TV");
 
         }
         else

@@ -10,6 +10,7 @@ public class WhisperedCode : MonoBehaviour
     TMP_Text textField;
     string code;
     bool isLaunched;
+    Diary diary;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +21,7 @@ public class WhisperedCode : MonoBehaviour
         }
 
         textField = GetComponentInChildren<TMP_Text>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
 
         isLaunched = false;
         code = UnityEngine.Random.Range(0, 99999).ToString();
@@ -30,7 +32,7 @@ public class WhisperedCode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isLaunched && KeyEvents.CheckEvent("chess"))
+        if (!isLaunched && diary.CheckEvent("chess"))
         {
             StartCoroutine(Write());
             isLaunched = true;

@@ -57,14 +57,13 @@ public class Wordle : MonoBehaviour
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         greenGuess = new Color(0.0f, 0.79f, 0.0f);
         yellowGuess = new Color(1.0f, 0.79f, 0.0f);
-        mysteryWord = RandomWord();
-        print(mysteryWord);
         setLettersRed = SetLettersRed();
+        mysteryWord = RandomWord();
     }
 
     void Update()
     {
-        if (!isPlaying && isTouching && !isSwitching && !UIState.isBusy && !KeyEvents.wordle && ToggleActions.IsPressed("interact"))
+        if (!isPlaying && isTouching && !isSwitching && !UIState.isBusy && KeyEvents.wordleCode != null && ToggleActions.IsPressed("interact"))
         {
             StartCoroutine(Play());
         }
@@ -93,7 +92,7 @@ public class Wordle : MonoBehaviour
 
     public IEnumerator Unplay()
     {
-        if (KeyEvents.wordle) yield return new WaitForSeconds(1.0f);
+        if (KeyEvents.wordleCode != null) yield return new WaitForSeconds(1.0f);
 
         isSwitching = true;
         isPlaying = false;
@@ -220,7 +219,7 @@ public class Wordle : MonoBehaviour
             {
                 if (CheckWord())
                 {
-                    KeyEvents.wordle = true;
+                    KeyEvents.wordleCode = mysteryWord;
                     diary.AddEvent("wordle");
                     StartCoroutine(Unplay());
                 }

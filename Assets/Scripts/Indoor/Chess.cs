@@ -205,7 +205,6 @@ public class Chess : MonoBehaviour
 
                         // Add chess puzzle completion event to the diary
                         diary.AddEvent("chess");
-                        KeyEvents.AddEvent("chess");
                         StartCoroutine(Unplay());
                     }
                 }
