@@ -3,9 +3,6 @@ using UnityEngine.UI;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine.PlayerLoop;
-using System.Xml.Linq;
 using System;
 using TMPro;
 using DG.Tweening;
@@ -14,17 +11,20 @@ public class Wordle : MonoBehaviour
 {
     [SerializeField] TMP_FontAsset computerFont;
 
-    StreamReader reader = new StreamReader("Assets/Scripts/indoor/wordle/validWords.txt");
-    StreamReader reader2 = new StreamReader("Assets/Scripts/indoor/wordle/wordChoice.txt");
+    readonly StreamReader reader = new("Assets/Scripts/indoor/wordle/validWords.txt");
+    readonly StreamReader reader2 = new("Assets/Scripts/indoor/wordle/wordChoice.txt");
     List<string> validWords;
     List<string> wordChoice;
+
+    public bool isPlaying = false;
+
     bool isTouching = false;
     bool isSwitching = false;
-    bool isPlaying = false;
     GameObject player;
     GameObject playerCamera;
     GameObject flashlight;
     Vector3 initialRotation;
+    Canvas UI;
     string mysteryWord;
     string guess = "";
     int attempts = 0;
@@ -33,7 +33,6 @@ public class Wordle : MonoBehaviour
 
     void Start()
     {
-        
         validWords = new List<string>(reader.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
         wordChoice = new List<string>(reader2.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
         reader.Close();
@@ -41,15 +40,16 @@ public class Wordle : MonoBehaviour
 
         for (int i = 0; i < validWords.Count; i++)
         {
-            validWords[i] = validWords[i].Substring(0, 5);
+            validWords[i] = validWords[i][..5];
         }
         for (int i = 0; i < wordChoice.Count; i++)
         {
-            wordChoice[i] = wordChoice[i].Substring(0, 5);
+            wordChoice[i] = wordChoice[i][..5];
         }
         flashlight = GameObject.Find("Flashlight");
         playerCamera = flashlight.transform.parent.gameObject;
         player = playerCamera.transform.parent.gameObject;
+        UI = GameObject.Find("UI").GetComponent<Canvas>();
         greenGuess = new Color(0.0f, 0.79f, 0.0f);
         yellowGuess = new Color(1.0f, 0.79f, 0.0f);
         mysteryWord = RandomWord();
@@ -70,6 +70,7 @@ public class Wordle : MonoBehaviour
     {
         isSwitching = true;
         initialRotation = playerCamera.transform.eulerAngles;
+        UI.enabled = false;
         UIState.isBusy = true;
         ChangePlayerState.Disable();
         flashlight.SetActive(false);
@@ -80,27 +81,25 @@ public class Wordle : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
 
         isPlaying = true;
-        isSwitching = false;
         Cursor.lockState = CursorLockMode.None;
+        isSwitching = false;
     }
 
     IEnumerator Unplay()
     {
-        if (isPlaying)
-        {
-            isSwitching = true;
-            isPlaying = false;
-            playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2);
-            playerCamera.transform.DORotate(initialRotation, 2);
+        isSwitching = true;
+        isPlaying = false;
+        playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2);
+        playerCamera.transform.DORotate(initialRotation, 2);
 
-            yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.0f);
 
-            UIState.isBusy = false;
-            ChangePlayerState.Enable();
-            flashlight.SetActive(true);
-            isSwitching = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        UI.enabled = true;
+        UIState.isBusy = false;
+        ChangePlayerState.Enable();
+        flashlight.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        isSwitching = false;
     }
 
     public void Quit()
@@ -119,9 +118,11 @@ public class Wordle : MonoBehaviour
         {
             for (int l = 0; l < 5; l++)
             {
-                GameObject background = new GameObject();
-                background.name = "square" + w + l;
-                background.transform.parent = gameObject.GetComponentInChildren<Canvas>().transform;
+                GameObject background = new()
+                {
+                    name = "square" + w + l
+                };
+                background.transform.parent = GetComponentInChildren<Canvas>().transform;
 
                 RectTransform backgroundTransform = background.AddComponent<RectTransform>();
                 backgroundTransform.localPosition = new Vector3(minX + l * (maxX - minX) / 4, maxY - w * (maxY - minY) / 5, 0.0f);
@@ -133,8 +134,10 @@ public class Wordle : MonoBehaviour
                 Image image = background.AddComponent<Image>();
 
 
-                GameObject letter = new GameObject();
-                letter.name = "letter" + w + l;
+                GameObject letter = new()
+                {
+                    name = "letter" + w + l
+                };
                 letter.transform.parent = background.transform;
 
                 RectTransform letterTransform = letter.AddComponent<RectTransform>();
@@ -154,11 +157,11 @@ public class Wordle : MonoBehaviour
 
     string RandomWord()
     {
-        System.Random random = new System.Random();
+        System.Random random = new();
         return wordChoice[random.Next(wordChoice.Count)];
     }
 
-    bool checkWord()
+    bool CheckWord()
     {
         List<bool> availabilities = new() { true, true, true, true, true };
         guess = guess.ToLower();
@@ -231,7 +234,7 @@ public class Wordle : MonoBehaviour
         {
             if (validWords.Contains(guess.ToLower()))
             {
-                if (checkWord())
+                if (CheckWord())
                 {
                     StartCoroutine(Unplay());
                     KeyEvents.wordle = true;

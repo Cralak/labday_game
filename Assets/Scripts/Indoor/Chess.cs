@@ -108,21 +108,21 @@ public class Chess : MonoBehaviour
     // Coroutine to enter chess puzzle mode
     IEnumerator Play()
     {
-        isPlaying = true;
-        UIState.isBusy = true;
+        isSwitching = true;
+        initialRotation = playerCamera.transform.eulerAngles;
         UI.enabled = false;
+        UIState.isBusy = true;
         ChangePlayerState.Disable();
         flashlight.SetActive(false);
-        initialRotation = playerCamera.transform.eulerAngles;
         playerCamera.transform.DOMove(board.transform.position + new Vector3(0.0f, 0.6f, 0.0f), 2.0f);
         playerCamera.transform.DORotate(new Vector3(90.0f, board.transform.eulerAngles.y, 0.0f), 2.0f);
-        isSwitching = true;
 
         yield return new WaitForSeconds(2.0f);
 
         boardLight.enabled = true;
-        isSwitching = false;
+        isPlaying = true;
         Cursor.lockState = CursorLockMode.None;
+        isSwitching = false;
     }
 
     // Coroutine to handle chess puzzle logic

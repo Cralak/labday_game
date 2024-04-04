@@ -839,7 +839,7 @@ Canvas:
   m_GameObject: {fileID: 158397621}
   m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -8171,7 +8171,7 @@ Canvas:
   m_GameObject: {fileID: 1336822302}
   m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -8286,7 +8286,7 @@ Canvas:
   m_GameObject: {fileID: 1344429568}
   m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -8889,7 +8889,7 @@ Canvas:
   m_GameObject: {fileID: 1453206693}
   m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -11319,7 +11319,6 @@ MonoBehaviour:
   notificationSound: {fileID: 8300000, guid: c193a4c48bfee7c4b8927b9a3b198ec8, type: 3}
   writingSound: {fileID: 8300000, guid: be2c26635ccaed14eaa32ac4b0a8aaf3, type: 3}
   pageSound: {fileID: 8300000, guid: 0ab989fac87548046860ca7c630aa8d8, type: 3}
-  writingSpeed: 0.01
 --- !u!82 &1812759326
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11465,7 +11464,7 @@ Canvas:
   m_GameObject: {fileID: 1812759324}
   m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -12091,7 +12090,7 @@ Canvas:
   m_GameObject: {fileID: 1917747111}
   m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
