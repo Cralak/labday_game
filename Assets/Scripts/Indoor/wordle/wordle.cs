@@ -1,36 +1,212 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine.PlayerLoop;
-using System.Xml.Linq;
 using System;
 using TMPro;
+using DG.Tweening;
 
-public class validWords : MonoBehaviour
+public class Wordle : MonoBehaviour
 {
-    StreamReader reader = new StreamReader("Assets/Scripts//wordle/validWords.txt");
-    StreamReader reader2 = new StreamReader("Assets/Scripts//wordle/wordChoice.txt");
-    private static List<string> validWordsList;
-    private static List<string> wordChoice;
+    [SerializeField] TMP_FontAsset computerFont;
 
-    public TextMeshPro tmp;
+    readonly StreamReader reader = new("Assets/Scripts/indoor/wordle/validWords.txt");
+    readonly StreamReader reader2 = new("Assets/Scripts/indoor/wordle/wordChoice.txt");
+    List<string> validWords;
+    List<string> wordChoice;
 
-    void Start(){
-        validWordsList = new List<string>((reader.ReadToEnd()).Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
-        wordChoice = new List<string>((reader2.ReadToEnd()).Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
-    }
+    public bool isPlaying = false;
 
-    public static string randomWord(){
-        System.Random random = new System.Random();
-        return validWordsList[random.Next(validWordsList.Count)];
-    }
+    bool isTouching = false;
+    bool isSwitching = false;
+    GameObject player;
+    GameObject playerCamera;
+    GameObject flashlight;
+    Vector3 initialRotation;
+    Canvas UI;
+    string mysteryWord;
+    string guess = "";
+    int attempts = 0;
+    Color greenGuess;
+    Color yellowGuess;
 
-    public static void gameLoop(string word){
-        bool wordFound = false;
-        int attempts = 6;
-        while(!wordFound && attempts>0){
+    void Start()
+    {
+        validWords = new List<string>(reader.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
+        wordChoice = new List<string>(reader2.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
+        reader.Close();
+        reader2.Close();
 
+        for (int i = 0; i < validWords.Count; i++)
+        {
+            validWords[i] = validWords[i][..5];
         }
+        for (int i = 0; i < wordChoice.Count; i++)
+        {
+            wordChoice[i] = wordChoice[i][..5];
+        }
+        flashlight = GameObject.Find("Flashlight");
+        playerCamera = flashlight.transform.parent.gameObject;
+        player = playerCamera.transform.parent.gameObject;
+        UI = GameObject.Find("UI").GetComponent<Canvas>();
+        greenGuess = new Color(0.0f, 0.79f, 0.0f);
+        yellowGuess = new Color(1.0f, 0.79f, 0.0f);
+        mysteryWord = RandomWord();
+        print(mysteryWord);
+    }
+
+    void Update()
+    {
+        if (!isPlaying && isTouching && !isSwitching && !UIState.isBusy && !KeyEvents.wordle && ToggleActions.IsPressed("interact"))
+        {
+            StartCoroutine(Play());
+        }
+        if (isPlaying) GameLoop();
+    }
+
+    IEnumerator Play()
+    {
+        isSwitching = true;
+        initialRotation = playerCamera.transform.eulerAngles;
+        UI.enabled = false;
+        UIState.isBusy = true;
+        ChangePlayerState.Disable();
+        flashlight.SetActive(false);
+        playerCamera.transform.DOMove(transform.position + new Vector3(-0.6f, 0.0f, 0.0f), 2.0f);
+        playerCamera.transform.DORotate(new Vector3(0.0f, transform.eulerAngles.y + 90.0f, 0.0f), 2.0f);
+
+
+        yield return new WaitForSeconds(2.0f);
+
+        isPlaying = true;
+        Cursor.lockState = CursorLockMode.None;
+        isSwitching = false;
+    }
+
+    public IEnumerator Unplay()
+    {
+        isSwitching = true;
+        isPlaying = false;
+        playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2);
+        playerCamera.transform.DORotate(initialRotation, 2);
+
+        yield return new WaitForSeconds(2.0f);
+
+        UI.enabled = true;
+        UIState.isBusy = false;
+        ChangePlayerState.Enable();
+        flashlight.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        isSwitching = false;
+    }
+
+    string RandomWord()
+    {
+        System.Random random = new();
+        return wordChoice[random.Next(wordChoice.Count)];
+    }
+
+    bool CheckWord()
+    {
+        List<bool> availabilities = new() { true, true, true, true, true };
+        guess = guess.ToLower();
+
+        if (guess == mysteryWord)
+        {
+            for (short i = 0; i < 5; i++)
+            {
+                GameObject.Find("square" + attempts + i).GetComponent<Image>().color = greenGuess;
+            }
+            return true;
+        }
+
+        for (short i = 0; i < 5; i++)
+        {
+            if (guess[i] == mysteryWord[i]) // Green
+            {
+                GameObject.Find("square" + attempts + i).GetComponent<Image>().color = greenGuess;
+                availabilities[i] = false;
+            }
+        }
+
+        for (short i = 0; i < 5; i++)
+        {
+            if (mysteryWord.Contains(guess[i]))
+            {
+                for (short j = 0; j < 5; j++)
+                {
+                    if (availabilities[j] && guess[i] == mysteryWord[j]) // Yellow
+                    {
+                        GameObject.Find("square" + attempts + i).GetComponent<Image>().color = yellowGuess;
+                        availabilities[j] = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    void OnGUI()
+    {
+        if (isPlaying)
+        {
+            Event e = Event.current;
+            if (e.type == EventType.KeyDown && e.keyCode.ToString().Length == 1 && char.IsLetter(e.keyCode.ToString()[0]))
+            {
+                if (guess.Length < 5)
+                {
+                    string letter = e.keyCode.ToString();
+                    guess += letter;
+                    GameObject.Find("letter" + attempts + (guess.Length - 1)).GetComponent<TMP_Text>().text = letter;
+                }
+            }
+            else if (e.type == EventType.KeyDown && e.keyCode == KeyCode.Backspace)
+            {
+                if (guess.Length > 0)
+                {
+                    GameObject.Find("letter" + attempts + (guess.Length - 1)).GetComponent<TMP_Text>().text = "";
+                    guess = guess.Substring(0, guess.Length - 1);
+                }
+            }
+        }
+    }
+
+    void GameLoop()
+    {
+        if (attempts < 6 && guess.Length == 5 && Input.GetKeyDown(KeyCode.Return))
+        {
+            if (validWords.Contains(guess.ToLower()))
+            {
+                if (CheckWord())
+                {
+                    StartCoroutine(Unplay());
+                    KeyEvents.wordle = true;
+                }
+                else
+                {
+                    guess = "";
+                    attempts += 1;
+                }
+            }
+            else
+            {
+                print("word not exists");
+            }
+        }
+    }
+
+    // Triggered when another collider enters the trigger zone
+    void OnTriggerEnter(Collider collider)
+    {
+        isTouching = true;
+    }
+
+    // Triggered when another collider exits the trigger zone
+    void OnTriggerExit(Collider collider)
+    {
+        isTouching = false;
     }
 }
