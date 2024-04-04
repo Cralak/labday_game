@@ -4,34 +4,42 @@ using UnityEngine;
 
 public class SewersPuzzleRock : MonoBehaviour
 {
-    GameObject[] rocks = new GameObject[64]; 
+    GameObject[] LBricks = new GameObject[36]; 
     int n = 0;
 
     bool isTouching = false;
+
+    GameObject Bricks;
     
     void Start()
     {
-        for (int i = 1; i <= 64; i++)
+        Bricks = GameObject.Find("Bricks");
+
+        for (int i = 1; i <= 36; i++)
         {
-            string rockName = "Rock" + i;
-            GameObject rock = GameObject.Find(rockName);
+            string brickName = "Brick" + i;
+            GameObject brick = GameObject.Find(brickName);
             
-            if (rock != null)
+            if (brick != null)
             {
-                rocks[i - 1] = rock; 
+                LBricks[i - 1] = brick; 
             }
         }
 
     }
     void Update()
     {
-        if (n < 64)
+        if (n < 36)
         {
-            if (rocks[n].activeSelf && ToggleActions.IsPressed("interact") && isTouching)
+            if (LBricks[n].activeSelf && ToggleActions.IsPressed("interact") && isTouching)
             {
-                rocks[n].SetActive(false);
+                LBricks[n].SetActive(false);
                 n = n +1;
             }
+        }
+        if (n >= 36)
+        {
+            Bricks.SetActive(false);
         }
     }
 

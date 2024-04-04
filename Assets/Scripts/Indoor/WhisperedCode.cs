@@ -17,14 +17,14 @@ public class WhisperedCode : MonoBehaviour
         if (KeyEvents.chessCode != null)
         {
             Destroy(transform.parent.gameObject);
-
-            textField = GetComponentInChildren<TMP_Text>();
-
-            isLaunched = false;
-            code = UnityEngine.Random.Range(0, 99999).ToString();
-            code = new string('0', 5 - code.Length) + code;
-            KeyEvents.chessCode = code;
         }
+
+        textField = GetComponentInChildren<TMP_Text>();
+
+        isLaunched = false;
+        code = UnityEngine.Random.Range(0, 99999).ToString();
+        code = new string('0', 5 - code.Length) + code;
+        KeyEvents.chessCode = code;
     }
 
     // Update is called once per frame
