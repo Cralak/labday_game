@@ -8,6 +8,7 @@ public class Credits : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         GameObject sacrifice = new("sacrifice");
         DontDestroyOnLoad(sacrifice);
 
@@ -18,7 +19,7 @@ public class Credits : MonoBehaviour
 
     IEnumerator DisplayCredits()
     {
-        transform.DOMoveY(10.8f * Screen.height, 6.0f).SetEase(Ease.Linear);
+        transform.DOMoveY(10.8f * Screen.height, 60.0f).SetEase(Ease.Linear);
 
         yield return new WaitForSeconds(63.0f);
 

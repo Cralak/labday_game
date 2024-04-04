@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SewersPuzzleRock : MonoBehaviour
@@ -34,10 +32,10 @@ public class SewersPuzzleRock : MonoBehaviour
             if (LBricks[n].activeSelf && ToggleActions.IsPressed("interact") && isTouching)
             {
                 LBricks[n].SetActive(false);
-                n = n +1;
+                n++;
             }
         }
-        if (n >= 36)
+        else
         {
             Bricks.SetActive(false);
         }
