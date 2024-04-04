@@ -7,6 +7,7 @@ using TMPro;
 public class OpenInput : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
+    [SerializeField] Canvas text;
     [SerializeField] TMP_InputField inputField;
 
     string answer;
@@ -15,6 +16,7 @@ public class OpenInput : MonoBehaviour
      
     bool isTouching = false;
     bool isTyping = false;
+    bool isResolved = false;
 
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class OpenInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTouching && ToggleActions.IsPressed("interact") && !isTyping)
+        if (isTouching && ToggleActions.IsPressed("interact") && !isTyping && !isResolved)
         {
             isTyping = true;
             print("touche et touche");
@@ -53,9 +55,12 @@ public class OpenInput : MonoBehaviour
     public void Check()
     {
         answer = inputField.text;
-        if (answer == "tst")
+        if (answer == "death")
         {
-            print("ça marche");
+            transform.rotation = Quaternion.Euler(new Vector3(0,130,0));
+            isResolved = true;
+            text.enabled = false;
+            Exit();
         }
     }
 
