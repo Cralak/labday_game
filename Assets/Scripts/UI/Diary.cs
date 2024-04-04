@@ -42,7 +42,8 @@ public class Diary : MonoBehaviour
         {"chess", "Why did I have to play chess in this place with that scary old mother? And what is it that she whispered? " + KeyEvents.chessCode + ", I wonder what it could be"},
         {"firstFloor", "Oh, what a scary corridor, I hope no one is here..."},
         {"TV", "AH THAT SOUND, so noisy. I'll likely have an earache."},
-        {"sewers", "Wah, it's so dark in here. Thankfully I've got that flashlight."}};
+        {"sewers", "Wah, it's so dark in here. Thankfully I've got that flashlight."},
+        {"wordle", "Why the hell is a word that terrifying the answer to this puzzle? "}};
 
     Canvas canvas;
     AudioSource sound;
@@ -107,7 +108,6 @@ public class Diary : MonoBehaviour
     // Coroutine to write text in the diary
     IEnumerator Write(string eventName)
     {
-        isBusy = true;
         sound.clip = writingSound;
         sound.loop = true;
         sound.Play();
@@ -210,10 +210,12 @@ public class Diary : MonoBehaviour
     {
         foreach (string eventName in eventsSentences.Keys)
         {
-            if (events.Contains(eventName))
+            if (!isBusy && events.Contains(eventName))
             {
                 StartCoroutine(Write(eventName));
+                isBusy = true;
                 events.Remove(eventName);
+                break;
             }
         }
     }

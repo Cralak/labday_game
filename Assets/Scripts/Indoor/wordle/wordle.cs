@@ -10,6 +10,8 @@ using DG.Tweening;
 public class Wordle : MonoBehaviour
 {
     [SerializeField] TMP_FontAsset computerFont;
+    [SerializeField] GameObject rules;
+    [SerializeField] GameObject grid;
 
     readonly StreamReader reader = new("Assets/Scripts/indoor/wordle/validWords.txt");
     readonly StreamReader reader2 = new("Assets/Scripts/indoor/wordle/wordChoice.txt");
@@ -25,11 +27,13 @@ public class Wordle : MonoBehaviour
     GameObject flashlight;
     Vector3 initialRotation;
     Canvas UI;
+    Diary diary;
     string mysteryWord;
     string guess = "";
     int attempts = 0;
     Color greenGuess;
     Color yellowGuess;
+    IEnumerator setLettersRed;
 
     void Start()
     {
@@ -50,10 +54,12 @@ public class Wordle : MonoBehaviour
         playerCamera = flashlight.transform.parent.gameObject;
         player = playerCamera.transform.parent.gameObject;
         UI = GameObject.Find("UI").GetComponent<Canvas>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         greenGuess = new Color(0.0f, 0.79f, 0.0f);
         yellowGuess = new Color(1.0f, 0.79f, 0.0f);
         mysteryWord = RandomWord();
         print(mysteryWord);
+        setLettersRed = SetLettersRed();
     }
 
     void Update()
@@ -81,13 +87,18 @@ public class Wordle : MonoBehaviour
 
         isPlaying = true;
         Cursor.lockState = CursorLockMode.None;
+        grid.SetActive(true);
         isSwitching = false;
     }
 
     public IEnumerator Unplay()
     {
+        if (KeyEvents.wordle) yield return new WaitForSeconds(1.0f);
+
         isSwitching = true;
         isPlaying = false;
+        grid.SetActive(false);
+        rules.SetActive(false);
         playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2);
         playerCamera.transform.DORotate(initialRotation, 2);
 
@@ -156,6 +167,12 @@ public class Wordle : MonoBehaviour
             Event e = Event.current;
             if (e.type == EventType.KeyDown && e.keyCode.ToString().Length == 1 && char.IsLetter(e.keyCode.ToString()[0]))
             {
+                StopCoroutine(setLettersRed);
+                for (int i = 0; i < 5; i++)
+                {
+                    GameObject.Find("square" + attempts + i).GetComponent<Image>().color = Color.white;
+                }
+
                 if (guess.Length < 5)
                 {
                     string letter = e.keyCode.ToString();
@@ -165,12 +182,33 @@ public class Wordle : MonoBehaviour
             }
             else if (e.type == EventType.KeyDown && e.keyCode == KeyCode.Backspace)
             {
+                StopCoroutine(setLettersRed);
+                for (int i = 0; i < 5; i++)
+                {
+                    GameObject.Find("square" + attempts + i).GetComponent<Image>().color = Color.white;
+                }
+
                 if (guess.Length > 0)
                 {
                     GameObject.Find("letter" + attempts + (guess.Length - 1)).GetComponent<TMP_Text>().text = "";
                     guess = guess.Substring(0, guess.Length - 1);
                 }
             }
+        }
+    }
+
+    IEnumerator SetLettersRed()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject.Find("square" + attempts + i).GetComponent<Image>().color = Color.red;
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject.Find("square" + attempts + i).GetComponent<Image>().color = Color.white;
         }
     }
 
@@ -182,8 +220,9 @@ public class Wordle : MonoBehaviour
             {
                 if (CheckWord())
                 {
-                    StartCoroutine(Unplay());
                     KeyEvents.wordle = true;
+                    diary.AddEvent("wordle");
+                    StartCoroutine(Unplay());
                 }
                 else
                 {
@@ -193,7 +232,9 @@ public class Wordle : MonoBehaviour
             }
             else
             {
-                print("word not exists");
+                StopCoroutine(setLettersRed);
+                setLettersRed = SetLettersRed();
+                StartCoroutine(setLettersRed);
             }
         }
     }
