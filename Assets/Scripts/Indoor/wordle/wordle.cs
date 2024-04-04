@@ -58,12 +58,12 @@ public class Wordle : MonoBehaviour
         greenGuess = new Color(0.0f, 0.79f, 0.0f);
         yellowGuess = new Color(1.0f, 0.79f, 0.0f);
         setLettersRed = SetLettersRed();
-        mysteryWord = RandomWord();
+        mysteryWord = "eerie";
     }
 
     void Update()
     {
-        if (!isPlaying && isTouching && !isSwitching && !UIState.isBusy && KeyEvents.wordleCode != null && ToggleActions.IsPressed("interact"))
+        if (!isPlaying && isTouching && !isSwitching && !UIState.isBusy && KeyEvents.wordleCode == null && ToggleActions.IsPressed("interact"))
         {
             StartCoroutine(Play());
         }
@@ -78,7 +78,7 @@ public class Wordle : MonoBehaviour
         UIState.isBusy = true;
         ChangePlayerState.Disable();
         flashlight.SetActive(false);
-        playerCamera.transform.DOMove(transform.position + new Vector3(-0.6f, 0.0f, 0.0f), 2.0f);
+        playerCamera.transform.DOMove(transform.position - transform.right * 0.6f, 2.0f);
         playerCamera.transform.DORotate(new Vector3(0.0f, transform.eulerAngles.y + 90.0f, 0.0f), 2.0f);
 
 
@@ -119,7 +119,7 @@ public class Wordle : MonoBehaviour
 
     bool CheckWord()
     {
-        List<bool> availabilities = new() { true, true, true, true, true };
+        bool[] availabilities = { true, true, true, true, true };
         guess = guess.ToLower();
 
         if (guess == mysteryWord)
@@ -146,7 +146,7 @@ public class Wordle : MonoBehaviour
             {
                 for (short j = 0; j < 5; j++)
                 {
-                    if (availabilities[j] && guess[i] == mysteryWord[j]) // Yellow
+                    if (availabilities[i] && guess[i] == mysteryWord[j]) // Yellow
                     {
                         GameObject.Find("square" + attempts + i).GetComponent<Image>().color = yellowGuess;
                         availabilities[j] = false;
