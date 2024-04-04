@@ -33,7 +33,7 @@ public class Diary : MonoBehaviour
     readonly List<string> writtenEvents = new();
 
     // List to match events and their sentences
-    readonly Dictionary<string, string> eventsSentences = new() {
+    readonly Dictionary<string, string> eventsTexts = new() {
         {"start", "Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."},
         {"lightning", "What an astounding lightning! It scared me so badly!"},
         {"archEnter", "OH NO! I can't go out... Huh, let's find Pixelle before thinking about that."},
@@ -41,12 +41,10 @@ public class Diary : MonoBehaviour
         {"rustyKey", "Berk, why was that key in that body? So disgusting! And how did it get so rusty?"},
         {"indoor", "Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"},
         {"lightCorridor", "What is illuminating the ceiling ? So scary!"},
-        {"chess", "Why did I have to play chess in this place with that scary old mother? And what is it that she whispered? " + KeyEvents.chessCode + ", I wonder what it could be"},
         {"digicodeDoor", "I knew, the code was what the ghost said... How did she even know it?"},
         {"firstFloor", "Oh, what a scary corridor, I hope no one is here..."},
         {"TV", "AH THAT SOUND, so noisy. I'll likely have an earache."},
-        {"sewers", "Wah, it's so dark in here. Thankfully I've got that flashlight."},
-        {"wordle", "Why the hell is a word that terrifying the answer to this puzzle? "}};
+        {"sewers", "Wah, it's so dark in here. Thankfully I've got that flashlight."}};
 
     Canvas canvas;
     AudioSource sound;
@@ -100,8 +98,8 @@ public class Diary : MonoBehaviour
             int rightPage = pageNumber * 2 + 1;
 
             // Display text on left and right pages
-            text1.text = writtenEvents.Count > leftPage ? eventsSentences[writtenEvents[leftPage]] : "";
-            text2.text = writtenEvents.Count > rightPage ? eventsSentences[writtenEvents[rightPage]] : "";
+            text1.text = writtenEvents.Count > leftPage ? eventsTexts[writtenEvents[leftPage]] : "";
+            text2.text = writtenEvents.Count > rightPage ? eventsTexts[writtenEvents[rightPage]] : "";
 
             // Check for specific game events and display corresponding diary entries
             WriteEvents();
@@ -117,7 +115,7 @@ public class Diary : MonoBehaviour
 
         if (text1.text == "")
         {
-            string sentence = eventsSentences[eventName];
+            string sentence = eventsTexts[eventName];
             foreach (char letter in sentence)
             {
                 text1.text += letter;
@@ -133,7 +131,7 @@ public class Diary : MonoBehaviour
         }
         else if (text2.text == "")
         {
-            string sentence = eventsSentences[eventName];
+            string sentence = eventsTexts[eventName];
             foreach (char letter in sentence)
             {
                 text2.text += letter;
@@ -208,12 +206,17 @@ public class Diary : MonoBehaviour
         events.Add(eventName);
     }
 
+    public void SetEventText(string eventName, string text)
+    {
+        eventsTexts[eventName] = text;
+    }
+
     // Check for specific game events and display corresponding diary entries
     void WriteEvents()
     {
         foreach (string eventName in events)
         {
-            if (!isBusy && eventsSentences.Keys.Contains(eventName))
+            if (!isBusy && eventsTexts.Keys.Contains(eventName))
             {
                 StartCoroutine(Write(eventName));
                 isBusy = true;
