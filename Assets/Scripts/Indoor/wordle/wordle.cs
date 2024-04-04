@@ -54,7 +54,6 @@ public class Wordle : MonoBehaviour
         yellowGuess = new Color(1.0f, 0.79f, 0.0f);
         mysteryWord = RandomWord();
         print(mysteryWord);
-        CreateLetters();
     }
 
     void Update()
@@ -85,7 +84,7 @@ public class Wordle : MonoBehaviour
         isSwitching = false;
     }
 
-    IEnumerator Unplay()
+    public IEnumerator Unplay()
     {
         isSwitching = true;
         isPlaying = false;
@@ -100,59 +99,6 @@ public class Wordle : MonoBehaviour
         flashlight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         isSwitching = false;
-    }
-
-    public void Quit()
-    {
-        StartCoroutine(Unplay());
-    }
-
-    void CreateLetters()
-    {
-        float minX = -0.001f;
-        float maxX = 0.001f;
-        float minY = -0.0008f;
-        float maxY = 0.001f;
-
-        for (int w = 0; w < 6; w++)
-        {
-            for (int l = 0; l < 5; l++)
-            {
-                GameObject background = new()
-                {
-                    name = "square" + w + l
-                };
-                background.transform.parent = GetComponentInChildren<Canvas>().transform;
-
-                RectTransform backgroundTransform = background.AddComponent<RectTransform>();
-                backgroundTransform.localPosition = new Vector3(minX + l * (maxX - minX) / 4, maxY - w * (maxY - minY) / 5, 0.0f);
-                backgroundTransform.sizeDelta = new Vector2(0.0002f, 0.0002f);
-                backgroundTransform.localRotation = Quaternion.identity;
-                backgroundTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-                background.AddComponent<CanvasRenderer>();
-                Image image = background.AddComponent<Image>();
-
-
-                GameObject letter = new()
-                {
-                    name = "letter" + w + l
-                };
-                letter.transform.parent = background.transform;
-
-                RectTransform letterTransform = letter.AddComponent<RectTransform>();
-                letterTransform.localPosition = new Vector3(-0.000042f, 0.00002f, 0.0f);
-                letterTransform.localRotation = Quaternion.identity;
-                letterTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-                letter.AddComponent<CanvasRenderer>();
-                TMP_Text letterField = letter.AddComponent<TextMeshProUGUI>();
-                letterField.font = computerFont;
-                letterField.fontSize = 0.00025f;
-                letterField.color = Color.black;
-                letterField.alignment = TextAlignmentOptions.Center;
-            }
-        }
     }
 
     string RandomWord()
