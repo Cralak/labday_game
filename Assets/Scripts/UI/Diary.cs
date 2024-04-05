@@ -41,9 +41,10 @@ public class Diary : MonoBehaviour
         {"rustyKey", "Berk, why was that key in that body? So disgusting! And how did it get so rusty?"},
         {"indoor", "Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"},
         {"lightCorridor", "What is illuminating the ceiling ? So scary!"},
-        {"digicodeDoor", "I knew, the code was what the ghost said... How did she even know it?"},
+        {"firstFloorDoor", "I knew, the code was what the ghost said... How did she even know it?"},
         {"firstFloor", "Oh, what a scary corridor, I hope no one is here..."},
         {"TV", "AH THAT SOUND, so noisy. I'll likely have an earache."},
+        {"basementDoor", "Finally reached the basement. What can be found here?"},
         {"sewers", "Wah, it's so dark in here. Thankfully I've got that flashlight."}};
 
     Canvas canvas;

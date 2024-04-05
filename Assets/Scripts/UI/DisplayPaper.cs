@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DisplayPaper : MonoBehaviour
 {
@@ -57,5 +58,10 @@ public class DisplayPaper : MonoBehaviour
     {
         // Reset the colliding flag when the player exits the trigger zone
         isColliding = false;
+    }
+
+    public void SetText(string newText)
+    {
+        text = newText;
     }
 }

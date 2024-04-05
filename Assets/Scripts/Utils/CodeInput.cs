@@ -44,9 +44,17 @@ public class CodeInput : MonoBehaviour
 
         if (input.Length == 5)
         {
-            if (!diary.CheckEvent("digicodeDoor") && input == KeyEvents.chessCode)
+            if (!diary.CheckEvent("firstFloorDoor") && input == KeyEvents.chessCode)
             {
-                diary.AddEvent("digicodeDoor");
+                diary.AddEvent("firstFloorDoor");
+                ChangePlayerState.Enable();
+                UIState.isBusy = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                canvas.enabled = false;
+            }
+            else if (!diary.CheckEvent("basementDoor") && input == KeyEvents.basementCode)
+            {
+                diary.AddEvent("basementDoor");
                 ChangePlayerState.Enable();
                 UIState.isBusy = false;
                 Cursor.lockState = CursorLockMode.Locked;

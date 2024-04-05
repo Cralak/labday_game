@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class RoomEnter : MonoBehaviour
+public class BasementEnter : MonoBehaviour
 {
-    GameObject player;
+    [SerializeField] GameObject door;
+
     Diary diary;
     bool isTouching; // Flag to check if the player is touching the trigger area
     bool isInputing;
@@ -12,32 +13,30 @@ public class RoomEnter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        digicodeCanvas = GameObject.Find("Digicode").GetComponent<Canvas>();
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         areaText = GetComponent<Canvas>();
         areaText.enabled = false;
         isTouching = false;
-        digicodeCanvas = GameObject.Find("Digicode").GetComponent<Canvas>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check if the player is touching the trigger area, and presses the "e" key
-        if (diary.CheckEvent("firstFloorDoor"))
+        // Check if the player is touching the trigger area, and presses the interact key
+        if (!isInputing)
         {
-            if (isTouching && !UIState.isBusy && ToggleActions.IsPressed("interact")) Enter();
+            if (isTouching && !UIState.isBusy && ToggleActions.IsPressed("interact")) StartCodeInput();
         }
         else
         {
-            if (!isInputing)
-            {
-                if (isTouching && !UIState.isBusy && ToggleActions.IsPressed("interact")) StartCodeInput();
-            }
-            else
-            {
-                if (ToggleActions.IsPressed("interact")) StopCodeInput();
-            }
+            if (ToggleActions.IsPressed("interact")) StopCodeInput();
+        }
+
+        if (diary.CheckEvent("basementDoor"))
+        {
+            door.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 130.0f, 0.0f));
+            Destroy(gameObject);
         }
     }
 
@@ -71,11 +70,5 @@ public class RoomEnter : MonoBehaviour
         ChangePlayerState.Enable();
         Cursor.lockState = CursorLockMode.Locked;
         digicodeCanvas.enabled = false;
-    }
-
-    void Enter()
-    {
-        if (!diary.CheckEvent("firstFloor")) diary.AddEvent("firstFloor");
-        StartCoroutine(Teleport.GoTo(player, new Vector3(-12f, 1.1f, 0f), "FirstFloor"));
     }
 }
