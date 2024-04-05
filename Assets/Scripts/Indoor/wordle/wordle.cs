@@ -124,8 +124,8 @@ public class Wordle : MonoBehaviour
 
     bool CheckWord()
     {
-        bool[] availabilitiesWord = { true, true, true, true, true };
-        bool[] availabilitiesGuess = { true, true, true, true, true };
+        bool[] wordAvailabilities = { true, true, true, true, true };
+        bool[] guessAvailabilities = { true, true, true, true, true };
         guess = guess.ToLower();
 
         if (guess == mysteryWord)
@@ -142,8 +142,8 @@ public class Wordle : MonoBehaviour
             if (guess[i] == mysteryWord[i]) // Green
             {
                 GameObject.Find("square" + attempts + i).GetComponent<Image>().color = greenGuess;
-                availabilitiesWord[i] = false;
-                availabilitiesGuess[i] = false;
+                wordAvailabilities[i] = false;
+                guessAvailabilities[i] = false;
             }
         }
 
@@ -152,15 +152,15 @@ public class Wordle : MonoBehaviour
             Image square = GameObject.Find("square" + attempts + i).GetComponent<Image>();
             if (mysteryWord.Contains(guess[i]))
             {
-                if (availabilitiesGuess[i])
+                if (guessAvailabilities[i])
                 {
                     for (short j = 0; j < 5; j++)
                     {
-                        if (availabilitiesWord[j] && guess[i] == mysteryWord[j]) // Yellow
+                        if (wordAvailabilities[j] && guess[i] == mysteryWord[j]) // Yellow
                         {
                             square.color = yellowGuess;
-                            availabilitiesWord[j] = false;
-                            availabilitiesGuess[i] = false;
+                            wordAvailabilities[j] = false;
+                            guessAvailabilities[i] = false;
                             break;
                         }
                     }
