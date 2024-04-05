@@ -13,7 +13,8 @@ public class WhisperedCode : MonoBehaviour
     Diary diary;
 
     // Start is called before the first frame update
-    void Awake()
+    
+    void Start()
     {
         if (KeyEvents.chessCode != null)
         {
