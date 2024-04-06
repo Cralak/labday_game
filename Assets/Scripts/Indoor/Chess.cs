@@ -57,7 +57,7 @@ public class Chess : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.enabled = isTouching;
+        text.enabled = isTouching && !isPlaying && !isSwitching;
 
         // Check if chess puzzle is not in progress
         if (!isPlaying)
@@ -103,6 +103,8 @@ public class Chess : MonoBehaviour
         ChangePlayerState.Enable();
         flashlight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (diary.CheckEvent("chess")) Destroy(gameObject);
     }
 
     // Coroutine to enter chess puzzle mode
