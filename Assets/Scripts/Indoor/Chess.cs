@@ -16,6 +16,8 @@ public class Chess : MonoBehaviour
     [SerializeField] GameObject pieceBlack2;
     [SerializeField] GameObject pieceBlack3;
     [SerializeField] GameObject pieceBlack4;
+    [SerializeField] Material transparent;
+    [SerializeField] Material selected;
 
     // References to other game objects and components
     GameObject player;
@@ -134,16 +136,19 @@ public class Chess : MonoBehaviour
         {
             if (Physics.Raycast(componentCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
+                if (lastClicked != "64" && square.transform.parent.name == "ChessSensors") square.GetComponent<MeshRenderer>().material = transparent; // set last clicked square to normal
+
                 // Check if the clicked object is a chess piece
                 if (hit.transform.name.Contains("Black") || hit.transform.name.Contains("White"))
                 {
-                    Physics.Raycast(hit.transform.position, -Vector3.up, out RaycastHit hit2);
+                    Physics.Raycast(hit.transform.position, -Vector3.up, out RaycastHit hit2, Mathf.Infinity, 1 << LayerMask.NameToLayer("ChessSensors"));
                     square = hit2.transform.gameObject; // Get the square beneath the chess piece
                 }
                 else
                 {
                     square = hit.transform.gameObject;
                 }
+                if (square.transform.parent.name == "ChessSensors") square.GetComponent<MeshRenderer>().material = selected; // set last clicked square to yellowish
 
                 // Handle chess puzzle moves
                 if (!firstMoveDone)
@@ -205,8 +210,8 @@ public class Chess : MonoBehaviour
 
                         yield return new WaitForSeconds(0.3f);
 
-                        // Add chess puzzle completion event to the diary
-                        diary.AddEvent("chess");
+                        diary.AddEvent("chess"); // add chess puzzle completion event to the diary
+                        square.GetComponent<MeshRenderer>().material = transparent; // set last clicked square to normal
                         StartCoroutine(Unplay());
                     }
                 }
