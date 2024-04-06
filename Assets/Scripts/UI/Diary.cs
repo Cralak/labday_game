@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Diary : MonoBehaviour
@@ -49,6 +50,7 @@ public class Diary : MonoBehaviour
 
     Canvas canvas;
     AudioSource sound;
+    AudioSource notification;
     bool isBusy; // Flag to check if the diary is currently writing or turning pages
     int pageNumber; // Current page number
 
@@ -57,6 +59,8 @@ public class Diary : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         sound = GetComponent<AudioSource>();
+        notification = gameObject.AddComponent<AudioSource>();
+        notification.clip = notificationSound;
         pageNumber = 0;
 
         events.Add("start");
@@ -66,6 +70,7 @@ public class Diary : MonoBehaviour
     void Update()
     {
         sound.volume = PlayerPrefs.GetFloat("SFX");
+        notification.volume = PlayerPrefs.GetFloat("SFX");
 
         if (ToggleActions.IsPressed("diary"))
         {
@@ -127,6 +132,7 @@ public class Diary : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
+            events.Remove(eventName);
             writtenEvents.Add(eventName);
             isBusy = false;
         }
@@ -143,6 +149,7 @@ public class Diary : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
+            events.Remove(eventName);
             writtenEvents.Add(eventName);
             isBusy = false;
         }
@@ -202,8 +209,7 @@ public class Diary : MonoBehaviour
 
     public void AddEvent(string eventName)
     {
-        sound.clip = notificationSound;
-        sound.Play();
+        notification.Play();
         events.Add(eventName);
     }
 
@@ -221,7 +227,6 @@ public class Diary : MonoBehaviour
             {
                 StartCoroutine(Write(eventName));
                 isBusy = true;
-                events.Remove(eventName);
                 break;
             }
         }
