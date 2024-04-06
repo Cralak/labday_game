@@ -6,6 +6,8 @@ public class SewersEnter : MonoBehaviour
     Diary diary;
     bool isColliding;
 
+    [SerializeField] AudioClip BGMClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,5 +39,17 @@ public class SewersEnter : MonoBehaviour
         diary.AddEvent("sewers");
         Destroy(GameObject.Find("BGM"));
         StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 1.0f, 0.0f), "Sewers"));
+        CreateSewersBGM();
+    }
+
+    void CreateSewersBGM()
+    {
+        GameObject music = new("BGM");
+        AudioSource BGMSource = music.AddComponent<AudioSource>();
+        BGMSource.clip = BGMClip;
+        BGMSource.loop = true;
+        BGMSource.Play();
+        music.AddComponent<SetSFXVolume>();
+        DontDestroyOnLoad(music);
     }
 }

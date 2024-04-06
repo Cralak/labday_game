@@ -11,6 +11,7 @@ public class WhisperedCode : MonoBehaviour
     string code;
     bool isLaunched;
     Diary diary;
+
     void Awake()
     {
         if (KeyEvents.chessCode != null)
@@ -18,6 +19,7 @@ public class WhisperedCode : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
