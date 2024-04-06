@@ -12,7 +12,7 @@ public class Credits : MonoBehaviour
         GameObject sacrifice = new("sacrifice");
         DontDestroyOnLoad(sacrifice);
 
-        foreach (GameObject thing in sacrifice.scene.GetRootGameObjects()) Destroy(thing);
+        foreach (GameObject thing in sacrifice.scene.GetRootGameObjects()) if (thing.name != "[DOTween]") Destroy(thing);
 
         StartCoroutine(DisplayCredits());
     }
