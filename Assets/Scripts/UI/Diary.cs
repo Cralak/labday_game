@@ -132,6 +132,7 @@ public class Diary : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
+            events.Remove(eventName);
             writtenEvents.Add(eventName);
             isBusy = false;
         }
@@ -148,6 +149,7 @@ public class Diary : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
+            events.Remove(eventName);
             writtenEvents.Add(eventName);
             isBusy = false;
         }
@@ -225,7 +227,6 @@ public class Diary : MonoBehaviour
             {
                 StartCoroutine(Write(eventName));
                 isBusy = true;
-                events.Remove(eventName);
                 break;
             }
         }
