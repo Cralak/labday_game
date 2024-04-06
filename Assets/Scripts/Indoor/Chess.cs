@@ -141,7 +141,7 @@ public class Chess : MonoBehaviour
                 // Check if the clicked object is a chess piece
                 if (hit.transform.name.Contains("Black") || hit.transform.name.Contains("White"))
                 {
-                    Physics.Raycast(hit.transform.position, -Vector3.up, out RaycastHit hit2);
+                    Physics.Raycast(hit.transform.position, -Vector3.up, out RaycastHit hit2, Mathf.Infinity, 1 << LayerMask.NameToLayer("ChessSensors"));
                     square = hit2.transform.gameObject; // Get the square beneath the chess piece
                 }
                 else
