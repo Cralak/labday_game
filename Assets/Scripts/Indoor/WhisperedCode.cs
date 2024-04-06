@@ -12,15 +12,17 @@ public class WhisperedCode : MonoBehaviour
     bool isLaunched;
     Diary diary;
 
-    // Start is called before the first frame update
-    
-    void Start()
+    void Awake()
     {
         if (KeyEvents.chessCode != null)
         {
             Destroy(transform.parent.gameObject);
         }
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         textField = GetComponentInChildren<TMP_Text>();
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
 

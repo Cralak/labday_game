@@ -3,7 +3,6 @@ using UnityEngine;
 public class RoomExit : MonoBehaviour
 {
     GameObject player;
-    Diary diary;
     bool isTouching; // Flag to check if the player is touching the trigger area
     Canvas text;
 
@@ -11,7 +10,6 @@ public class RoomExit : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         text = GetComponent<Canvas>();
         text.enabled = false;
         isTouching = false;

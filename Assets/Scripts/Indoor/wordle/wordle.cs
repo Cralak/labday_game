@@ -33,6 +33,7 @@ public class Wordle : MonoBehaviour
     int attempts = 0;
     Color greenGuess;
     Color yellowGuess;
+    Color wrongGuess;
     IEnumerator setLettersRed;
 
     void Start()
@@ -58,6 +59,7 @@ public class Wordle : MonoBehaviour
 
         greenGuess = new Color(0.0f, 0.79f, 0.0f);
         yellowGuess = new Color(1.0f, 0.79f, 0.0f);
+        wrongGuess = Color.gray;
         setLettersRed = SetLettersRed();
 
         mysteryWord = RandomWord();
@@ -122,7 +124,8 @@ public class Wordle : MonoBehaviour
 
     bool CheckWord()
     {
-        bool[] availabilities = { true, true, true, true, true };
+        bool[] wordAvailabilities = { true, true, true, true, true };
+        bool[] guessAvailabilities = { true, true, true, true, true };
         guess = guess.ToLower();
 
         if (guess == mysteryWord)
@@ -139,23 +142,38 @@ public class Wordle : MonoBehaviour
             if (guess[i] == mysteryWord[i]) // Green
             {
                 GameObject.Find("square" + attempts + i).GetComponent<Image>().color = greenGuess;
-                availabilities[i] = false;
+                wordAvailabilities[i] = false;
+                guessAvailabilities[i] = false;
             }
         }
 
         for (short i = 0; i < 5; i++)
         {
+            Image square = GameObject.Find("square" + attempts + i).GetComponent<Image>();
             if (mysteryWord.Contains(guess[i]))
             {
-                for (short j = 0; j < 5; j++)
+                if (guessAvailabilities[i])
                 {
-                    if (availabilities[i] && guess[i] == mysteryWord[j]) // Yellow
+                    for (short j = 0; j < 5; j++)
                     {
-                        GameObject.Find("square" + attempts + i).GetComponent<Image>().color = yellowGuess;
-                        availabilities[j] = false;
-                        break;
+                        if (wordAvailabilities[j] && guess[i] == mysteryWord[j]) // Yellow
+                        {
+                            square.color = yellowGuess;
+                            wordAvailabilities[j] = false;
+                            guessAvailabilities[i] = false;
+                            break;
+                        }
+                    }
+
+                    if (square.color == Color.white)
+                    {
+                        square.color = wrongGuess;
                     }
                 }
+            }
+            else
+            {
+                square.color = wrongGuess;
             }
         }
 
@@ -164,7 +182,7 @@ public class Wordle : MonoBehaviour
 
     void OnGUI()
     {
-        if (isPlaying)
+        if (isPlaying && attempts < 6)
         {
             Event e = Event.current;
             if (e.type == EventType.KeyDown && e.keyCode.ToString().Length == 1 && char.IsLetter(e.keyCode.ToString()[0]))
@@ -206,7 +224,21 @@ public class Wordle : MonoBehaviour
             GameObject.Find("square" + attempts + i).GetComponent<Image>().color = Color.red;
         }
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.3f);
+
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject.Find("square" + attempts + i).GetComponent<Image>().color = Color.white;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject.Find("square" + attempts + i).GetComponent<Image>().color = Color.red;
+        }
+
+        yield return new WaitForSeconds(0.3f);
 
         for (int i = 0; i < 5; i++)
         {
@@ -214,9 +246,30 @@ public class Wordle : MonoBehaviour
         }
     }
 
+    IEnumerator ResetAndUnplay()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        for (short i = 0; i < 6; i++)
+        {
+            for (short j = 0; j < 5; j++)
+            {
+                GameObject square = GameObject.Find("square" + i + j);
+                square.GetComponent<Image>().color = Color.white;
+                square.GetComponentInChildren<TMP_Text>().text = "";
+            }
+        }
+
+        StartCoroutine(Unplay());
+
+        attempts = 0;
+        mysteryWord = RandomWord();
+        diary.SetEventText("wordle", mysteryWord + "... Why is a word that terrifying the answer to this puzzle?");
+    }
+
     void GameLoop()
     {
-        if (attempts < 6 && guess.Length == 5 && Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && guess.Length == 5 && attempts < 6)
         {
             if (validWords.Contains(guess.ToLower()))
             {
@@ -230,6 +283,11 @@ public class Wordle : MonoBehaviour
                 {
                     guess = "";
                     attempts += 1;
+
+                    if (attempts >= 6)
+                    {
+                        StartCoroutine(ResetAndUnplay());
+                    }
                 }
             }
             else
