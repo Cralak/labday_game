@@ -43,7 +43,7 @@ public class ArchEntrance : MonoBehaviour
 
     void Enter()
     {
-        StartCoroutine(Teleport.GoTo(player, new Vector3(22, 1, 50)));
+        StartCoroutine(Teleport.GoTo(player, new Vector3(-7, 0, 67)));
 
         // Add corresponding event in the diary
         diary.AddEvent("archEnter");

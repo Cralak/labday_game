@@ -21,6 +21,6 @@ public class LoadUI : MonoBehaviour
 
         // Prevent specified GameObjects from being destroyed on scene changes
         foreach (GameObject thing in UI.scene.GetRootGameObjects()) DontDestroyOnLoad(thing);
-        DontDestroyOnLoad(GameObject.Find("EventSystem"));
+        DontDestroyOnLoad(gameObject);
     }
 }

@@ -38,6 +38,6 @@ public class RoomExit : MonoBehaviour
 
     void Enter()
     {
-        StartCoroutine(Teleport.GoTo(player, new Vector3(-22f, 5.5f, -11f), "TestIndoor"));
+        StartCoroutine(Teleport.GoTo(player, new Vector3(-24f, 4.1f, 1f), "TestIndoor"));
     }
 }
