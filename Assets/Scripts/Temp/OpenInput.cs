@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class OpenInput : MonoBehaviour
@@ -9,11 +6,13 @@ public class OpenInput : MonoBehaviour
     [SerializeField] Canvas canvas;
     [SerializeField] Canvas text;
     [SerializeField] TMP_InputField inputField;
+    [SerializeField] GameObject nurseryDoorLeft;
+    [SerializeField] GameObject nurseryWindowLeft;
+    [SerializeField] GameObject nurseryDoorRight;
+    [SerializeField] GameObject nurseryWindowRight;
 
     string answer;
-    
-    GameObject player;
-     
+
     bool isTouching = false;
     bool isTyping = false;
     bool isResolved = false;
@@ -24,7 +23,6 @@ public class OpenInput : MonoBehaviour
     {
         isTouching = false;
         canvas.enabled = false;
-        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -54,7 +52,11 @@ public class OpenInput : MonoBehaviour
         answer = inputField.text;
         if (answer == KeyEvents.wordleCode)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0,130,0));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 130, 0));
+            Destroy(nurseryDoorLeft);
+            Destroy(nurseryWindowLeft);
+            Destroy(nurseryDoorRight);
+            Destroy(nurseryWindowRight);
             isResolved = true;
             text.enabled = false;
             Exit();
