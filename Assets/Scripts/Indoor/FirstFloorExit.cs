@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RoomExit : MonoBehaviour
+public class FirstFloorExit : MonoBehaviour
 {
     GameObject player;
     bool isTouching; // Flag to check if the player is touching the trigger area

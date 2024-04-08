@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RoomEnter : MonoBehaviour
+public class FirstFloorEnter : MonoBehaviour
 {
     GameObject player;
     Diary diary;
