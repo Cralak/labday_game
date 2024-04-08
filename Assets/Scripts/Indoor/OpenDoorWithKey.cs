@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class OpenDoorWithKey : MonoBehaviour
 {
-    GameObject player;
     Diary diary;
     GameObject key;
     AudioSource doorNoise;
@@ -13,10 +12,9 @@ public class OpenDoorWithKey : MonoBehaviour
     // Start is called before the first frame update    
     void Start()
     {
-        // Find the Player, Diary, Key, and Inventory components
-        player = GameObject.Find("Player");
+        // Find the Diary, Key, and Inventory components
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        key = GameObject.Find("Key");
+        key = GameObject.Find("RustyKey");
         inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
         doorNoise = GetComponent<AudioSource>();
 
@@ -30,10 +28,10 @@ public class OpenDoorWithKey : MonoBehaviour
         doorNoise.volume = PlayerPrefs.GetFloat("SFX");
 
         // Check for collision, 'E' key press, and presence of the key in the inventory
-        if (isColliding && !UIState.isBusy && inventoryScript.inventory.Contains(key) && ToggleActions.IsPressed("interact"))
+        if (isColliding && !UIState.isBusy && inventoryScript.CheckInventory(key) && ToggleActions.IsPressed("interact"))
         {
             // Remove the key from the inventory
-            inventoryScript.inventory.Remove(key);
+            inventoryScript.RemoveInventory(key);
 
             // Move the door using DOTween animation
             transform.DOMove(transform.position + new Vector3(5.0f, 0.0f, 3.5f), 5.0f);
@@ -42,19 +40,19 @@ public class OpenDoorWithKey : MonoBehaviour
             doorNoise.Play();
 
             // Add an event to the diary
-            diary.AddEvent("rustyKey");
+            diary.AddEvent("RustyKey");
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
         // Set the colliding flag when the player enters the trigger zone
-        if (collider.gameObject == player) isColliding = true;
+        isColliding = true;
     }
 
     void OnTriggerExit(Collider collider)
     {
         // Reset the colliding flag when the player exits the trigger zone
-        if (collider.gameObject == player) isColliding = false;
+        isColliding = false;
     }
 }

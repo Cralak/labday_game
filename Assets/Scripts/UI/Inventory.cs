@@ -4,12 +4,10 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public List<GameObject> inventory = new(); // List to store inventory items
+    readonly List<GameObject> inventory = new(); // List to store inventory items
 
     // Textures for inventory items
     [SerializeField] Texture2D cross;
-
-    [SerializeField] Texture2D key2D;
 
     // List to store references to inventory slot content
     readonly List<RawImage> inventorySlotsContent = new();
@@ -26,9 +24,6 @@ public class Inventory : MonoBehaviour
         // Get references to the UI Canvases
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         inventoryCanvas = GetComponent<Canvas>();
-
-        // Find and store the reference to the key GameObject
-        if (keyObject = GameObject.Find("Key")) object2D[keyObject] = key2D;
 
         // Get references to the inventory slot content RawImages
         for (int i = 0; i < 6; i++)
@@ -49,7 +44,7 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                HideInventory();
+                if (!UIState.isBusy) HideInventory();
             }
         }
 
@@ -68,15 +63,33 @@ public class Inventory : MonoBehaviour
 
     void HideInventory()
     {
-        UIState.isBusy = false;
         UI.enabled = true;
         inventoryCanvas.enabled = false;
     }
 
     void ShowInventory()
     {
-        UIState.isBusy = true;
         UI.enabled = false;
         inventoryCanvas.enabled = true;
+    }
+
+    public bool CheckInventory(GameObject thing)
+    {
+        return inventory.Contains(thing);
+    }
+
+    public void AddInventory(GameObject thing)
+    {
+        inventory.Add(thing);
+    }
+
+    public void RemoveInventory(GameObject thing)
+    {
+        inventory.Remove(thing);
+    }
+
+    public void SetTexture2D(GameObject object3D, Texture2D texture2D)
+    {
+        object2D[object3D] = texture2D;
     }
 }

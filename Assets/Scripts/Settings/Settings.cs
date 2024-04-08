@@ -5,7 +5,6 @@ public class Settings : MonoBehaviour
 {
     readonly List<GameObject> sections = new();
 
-    Canvas UI;
     Canvas settingsCanvas;
 
     // Start is called before the first frame update
@@ -17,7 +16,6 @@ public class Settings : MonoBehaviour
         ChangeSection("General Section");
 
         settingsCanvas = GetComponent<Canvas>();
-        UI = GameObject.Find("UI").GetComponent<Canvas>();
         settingsCanvas.enabled = false;
     }
 
@@ -43,7 +41,6 @@ public class Settings : MonoBehaviour
         UIState.isBusy = true;
         ChangePlayerState.Disable();
         Cursor.lockState = CursorLockMode.None;
-        UI.enabled = false;
         settingsCanvas.enabled = true;
     }
 
@@ -52,7 +49,6 @@ public class Settings : MonoBehaviour
         UIState.isBusy = false;
         ChangePlayerState.Enable();
         Cursor.lockState = CursorLockMode.Locked;
-        UI.enabled = true;
         settingsCanvas.enabled = false;
     }
 
