@@ -57,9 +57,9 @@ public class HospitalEnter : MonoBehaviour
     void Enter()
     {
         // Check if the player has the key in inventory
-        if (inventoryScript.inventory.Contains(key))
+        if (inventoryScript.CheckInventory(key))
         {
-            inventoryScript.inventory.Remove(key);
+            inventoryScript.RemoveInventory(key);
             diary.AddEvent("indoor");
             CreateIndoorBGM();
             StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 0.0f, 0f), "TestIndoor"));
