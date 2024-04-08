@@ -94,9 +94,6 @@ public class Lightning : MonoBehaviour
 
             // End the lightning flash
             lightningLight.enabled = false;
-
-            // Add the lightning event to the diary if it's the first occurrence
-            if (!diary.CheckEvent("lightning")) diary.AddEvent("lightning");
         }
     }
 }

@@ -36,7 +36,6 @@ public class Diary : MonoBehaviour
     // List to match events and their sentences
     readonly Dictionary<string, string> eventsTexts = new() {
         {"start", "Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."},
-        {"lightning", "What an astounding lightning! It scared me so badly!"},
         {"archEnter", "OH NO! I can't go out... Huh, let's find Pixelle before thinking about that."},
         {"doorLock", "I don't have the key, i need to find it."},
         {"rustyKey", "Berk, why was that key in that body? So disgusting! And how did it get so rusty?"},
