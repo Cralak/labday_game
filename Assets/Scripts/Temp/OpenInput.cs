@@ -12,16 +12,19 @@ public class OpenInput : MonoBehaviour
     [SerializeField] GameObject nurseryWindowRight;
 
     string answer;
-
     bool isTouching = false;
     bool isTyping = false;
-    bool isResolved = false;
+    bool isResolved;
+    Diary diary;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         isTouching = false;
+        isResolved = diary.CheckEvent("officeDoor");
+
         canvas.enabled = false;
     }
 
@@ -59,6 +62,7 @@ public class OpenInput : MonoBehaviour
             Destroy(nurseryWindowRight);
             isResolved = true;
             text.enabled = false;
+            diary.AddEvent("officeDoor");
             Exit();
         }
     }
