@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class ChangeEmission : MonoBehaviour
 {
-    // Référence au material attaché à cet objet
-    private Renderer rend;
-
     // Durée de l'animation en secondes
-    public float animationDuration = 2f;
+    readonly float animationDuration = 2f;
+
+    // Référence au material attaché à cet objet
+    Renderer rend;
+
+    // Référence au transform du joueur
+    Transform player;
 
     void Start()
     {
@@ -16,6 +19,9 @@ public class ChangeEmission : MonoBehaviour
 
         // Assure que le matériau a l'émission activée
         rend.material.EnableKeyword("_EMISSION");
+
+        // Obtient le joueur
+        player = GameObject.Find("Player").transform;
 
         // Lance la coroutine pour l'animation
         StartCoroutine(EmissionColorLoop());
@@ -26,12 +32,17 @@ public class ChangeEmission : MonoBehaviour
     {
         while (true)
         {
+            // Définit les couleurs de départ et de fin en fonction de la position du joueur
+            Color startColor = Color.black;
+            float intensity = 1.0f - Vector3.Distance(player.position, transform.position) / 5.0f;
+            Color endColor = new(intensity, intensity , 0.0f);
+
             // Noir à Jaune
-            yield return ChangeEmissionColor(Color.black, Color.yellow, animationDuration);
+            yield return ChangeEmissionColor(startColor, endColor, animationDuration);
 
             yield return new WaitForSeconds(1f);
             // Jaune à Noir
-            yield return ChangeEmissionColor(Color.yellow, Color.black, animationDuration);
+            yield return ChangeEmissionColor(endColor, startColor, animationDuration);
         }
     }
 
