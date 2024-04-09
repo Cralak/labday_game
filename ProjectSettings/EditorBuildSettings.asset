@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/KristianScene.unity
     guid: 91f49a00388b9d6408bdd569da33ec1a
   - enabled: 1
-    path: Assets/Scenes/TestIndoor.unity
+    path: Assets/Scenes/Indoor.unity
     guid: 852d7492d7febfe40a13702abca41bdc
   - enabled: 1
     path: Assets/Scenes/FirstFloor.unity
