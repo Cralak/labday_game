@@ -38,6 +38,6 @@ public class FirstFloorExit : MonoBehaviour
 
     void Enter()
     {
-        StartCoroutine(Teleport.GoTo(player, new Vector3(-24f, 4.1f, 1f), "TestIndoor"));
+        StartCoroutine(Teleport.GoTo(player, new Vector3(-24f, 4.1f, 1f), "Indoor"));
     }
 }
