@@ -1509,7 +1509,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246bf1931235ae844ad584720958f4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 
+  text: Logic class. Today's lesson is on chess. We worked on checkmates in 3 moves.
+    One of the patients seems to greatly enjoy chess, but I dare not go near her,
+    she's the one who attacked patient 4. The solution to defeat her is Rook G6,
+    Queen F3, then Rook E1.
 --- !u!114 &211050463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2202,6 +2205,58 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 386915810024423144, guid: 3151be68500cb47e195febcb9acab3b4, type: 3}
+--- !u!1 &282312512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8605019574945875304, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
+  m_PrefabInstance: {fileID: 1734355978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &282312517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282312512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246bf1931235ae844ad584720958f4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 'Movie screening: The Nune'
+--- !u!114 &282312518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282312512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada938fd70bc34689b1ab1704428e6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationDuration: 2
+--- !u!135 &282312519
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282312512}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0.0000019073486, y: 0.6023393, z: -0.0053419173}
 --- !u!1 &286100141
 GameObject:
   m_ObjectHideFlags: 0
@@ -17533,6 +17588,15 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1716720242}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8605019574945875304, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 282312518}
+    - targetCorrespondingSourceObject: {fileID: 8605019574945875304, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 282312517}
+    - targetCorrespondingSourceObject: {fileID: 8605019574945875304, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 282312519}
     - targetCorrespondingSourceObject: {fileID: 8605195005540887736, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 687486927}
@@ -17893,6 +17957,12 @@ PrefabInstance:
     - target: {fileID: 4151748652242088605, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307334917974564130, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
+      propertyPath: text
+      value: Landslide in the sewers, bricks collapsed and blocked the exit. They
+        should still be easy to move but no one dares to go into the sewers, this
+        place is too eerie.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18625,7 +18695,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246bf1931235ae844ad584720958f4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 
+  text: While we were all gathered in the living room for our weekly therapy session,
+    screams began echoing down the hallway. It's strange... Especially considering
+    one patient is missing, along with patient 4. I hope they're both alright.
 --- !u!114 &1918241794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19383,7 +19455,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -19482,7 +19554,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246bf1931235ae844ad584720958f4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 
+  text: Operation number 67, the patient 4 died due to his injuries. What happened
+    to him is truly horrific, I have no words to describe it. We had to throw the
+    corpse into the courtyard dumpster.
 --- !u!65 &2065713730
 BoxCollider:
   m_ObjectHideFlags: 0
