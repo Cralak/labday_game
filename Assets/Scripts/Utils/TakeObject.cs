@@ -18,11 +18,7 @@ public class TakeObject : MonoBehaviour
     void Update()
     {
         // Check if colliding
-<<<<<<<< HEAD:Assets/Scripts/Utils/TakeObject.cs
         if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact")) PickUp();
-========
-        if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact")) TakeObject();
->>>>>>>> Cralak:Assets/Scripts/Utils/ObjectInteract.cs
     }
 
     void OnTriggerEnter(Collider collider)
@@ -56,14 +52,6 @@ public class TakeObject : MonoBehaviour
         enabled = false;
 
         // If the object is a key, add an event to the diary
-<<<<<<<< HEAD:Assets/Scripts/Utils/TakeObject.cs
         diary.AddEvent(name);
-        
-========
-        if (name == "Key")
-        {
-            diary.AddEvent("rustyKey");
-        }
->>>>>>>> Cralak:Assets/Scripts/Utils/ObjectInteract.cs
     }
 }

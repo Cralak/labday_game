@@ -38,7 +38,6 @@ public class Wordle : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
         if (KeyEvents.wordleCode != null)
         {
             validWords = new List<string>(reader.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
@@ -68,34 +67,6 @@ public class Wordle : MonoBehaviour
             mysteryWord = RandomWord();
             diary.SetEventText("wordle", mysteryWord + "... Why is a word that terrifying the answer to this puzzle?");
         }
-=======
-        validWords = new List<string>(reader.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
-        wordChoice = new List<string>(reader2.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
-        reader.Close();
-        reader2.Close();
-        for (int i = 0; i < validWords.Count; i++)
-        {
-            validWords[i] = validWords[i][..5];
-        }
-        for (int i = 0; i < wordChoice.Count; i++)
-        {
-            wordChoice[i] = wordChoice[i][..5];
-        }
-
-        flashlight = GameObject.Find("Flashlight");
-        playerCamera = flashlight.transform.parent.gameObject;
-        player = playerCamera.transform.parent.gameObject;
-        UI = GameObject.Find("UI").GetComponent<Canvas>();
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-
-        greenGuess = new Color(0.0f, 0.79f, 0.0f);
-        yellowGuess = new Color(1.0f, 0.79f, 0.0f);
-        wrongGuess = Color.gray;
-        setLettersRed = SetLettersRed();
-
-        mysteryWord = RandomWord();
-        diary.SetEventText("wordle", mysteryWord + "... Why is a word that terrifying the answer to this puzzle?");
->>>>>>> Cralak
     }
 
     void Update()
