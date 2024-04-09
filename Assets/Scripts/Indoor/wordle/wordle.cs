@@ -38,7 +38,7 @@ public class Wordle : MonoBehaviour
 
     void Start()
     {
-        if (KeyEvents.wordleCode != null)
+        if (KeyEvents.wordleCode == null)
         {
             validWords = new List<string>(reader.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
             wordChoice = new List<string>(reader2.ReadToEnd().Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
