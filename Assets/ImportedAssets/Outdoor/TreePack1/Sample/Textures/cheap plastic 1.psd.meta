@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Assets/Voicebox/Textures/voicebox.png.meta
-guid: 9a37ebbd879c55740a36cefc52c72108
-timeCreated: 1510107067
-========
-guid: 2c0866669c9da064ea045cb8803808e8
-timeCreated: 1502320541
->>>>>>>> Outside:Assets/Assets/TreePackVol.1/Sample/Textures/cheap plastic 1.psd.meta
+guid: 8223e23a5f7d7c9489247694ffe030f4
+timeCreated: 1492201447
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}

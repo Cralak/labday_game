@@ -7,7 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<<< HEAD:Assets/Images/Materials/settingsCross.mat
+  m_Name: settingsCross
+========
   m_Name: Trash_02_New
+>>>>>>>> Cralak:Assets/ImportedAssets/Outdoor/StreetProps/Trash/Trash_02_New.mat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -46,7 +50,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+<<<<<<<< HEAD:Assets/Images/Materials/settingsCross.mat
+        m_Texture: {fileID: 2800000, guid: 84b6a81f2524a4649b48f768f8bbf309, type: 3}
+========
         m_Texture: {fileID: 2800000, guid: eebac941f3151ec41a4a023aaa9e8ab8, type: 3}
+>>>>>>>> Cralak:Assets/ImportedAssets/Outdoor/StreetProps/Trash/Trash_02_New.mat
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

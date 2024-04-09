@@ -28,7 +28,11 @@ public class OpenDoorWithKey : MonoBehaviour
         doorNoise.volume = PlayerPrefs.GetFloat("SFX");
 
         // Check for collision, 'E' key press, and presence of the key in the inventory
+<<<<<<< HEAD
         if (isColliding && !UIState.isBusy && inventoryScript.CheckInventory(key) && ToggleActions.IsPressed("interact"))
+=======
+        if (isColliding && !UIState.isBusy && inventoryScript.inventory.Contains(key) && ToggleActions.IsPressed("interact"))
+>>>>>>> Cralak
         {
             // Remove the key from the inventory
             inventoryScript.RemoveInventory(key);
@@ -40,7 +44,11 @@ public class OpenDoorWithKey : MonoBehaviour
             doorNoise.Play();
 
             // Add an event to the diary
+<<<<<<< HEAD
             diary.AddEvent("RustyKey");
+=======
+            diary.AddEvent("rustyKey");
+>>>>>>> Cralak
         }
     }
 

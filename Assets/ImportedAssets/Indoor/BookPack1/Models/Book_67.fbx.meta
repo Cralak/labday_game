@@ -1,19 +1,37 @@
 fileFormatVersion: 2
-guid: c04954dc60b1c4040a694e81ef3980c1
-timeCreated: 1521201878
+guid: 9cf3bab5c346b4c4294c6e347923a57c
+timeCreated: 1492967846
 licenseType: Store
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Box009
+    100004: Object001
+    100006: Object002
+    100008: Object003
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Book_67
+    400002: Box009
+    400004: Object001
+    400006: Object002
+    400008: Object003
+    2300000: Box009
+    2300002: Object001
+    2300004: Object002
+    2300006: Object003
+    3300000: Box009
+    3300002: Object001
+    3300004: Object002
+    3300006: Object003
+    4300000: Box009
+    4300002: Object001
+    4300004: Object002
+    4300006: Object003
+    7400000: Take 001
     9500000: //RootNode
   materials:
     importMaterials: 1
-    materialName: 1
+    materialName: 0
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
@@ -21,8 +39,6 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -56,7 +72,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -75,7 +91,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
