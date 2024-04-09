@@ -2735,7 +2735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3260066922a97584c90c5aaa728c6e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture2D: {fileID: 2800000, guid: bbc17208cdeb9d548b65e97c2403930d, type: 3}
 --- !u!135 &313909608
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10778,7 +10777,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246bf1931235ae844ad584720958f4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 
+  text: I feel like strange things are happening, like the staff is getting fewer
+    and we're being served less food. Moreover, some rather bizarre things are occurring,
+    almost surreal. All of this is making me more and more worried.
 --- !u!1 &1137548741
 GameObject:
   m_ObjectHideFlags: 0
@@ -20039,7 +20040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4151748652242088605, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.011819
+      value: 1.017
       objectReference: {fileID: 0}
     - target: {fileID: 4151748652242088605, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20073,31 +20074,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5307334917974564130, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
+      propertyPath: text
+      value: 'An exit is accessible from the sewers, but a gate blocks the access.
+        To activate the mechanism and lift the gate, the password must be entered
+        in a loop and in the correct order.  Password: H, I, O, U'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3663161296203343911, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1708062118352262273}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
---- !u!1 &1708062118352262272 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3663161296203343911, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
-  m_PrefabInstance: {fileID: 1708062118352262271}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1708062118352262273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708062118352262272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46a11fe6a64c7a40bb7c5bc9ac49180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1708062118352262274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4151748652242088605, guid: f8fe8e2a7da6e49008bb3e10d7b59cc1, type: 3}
