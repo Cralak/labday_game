@@ -25,7 +25,7 @@ public class Diary : MonoBehaviour
     [SerializeField] AudioClip pageSound;
 
     // Writing speed parameter
-    [SerializeField, Range(0.005f, 0.05f)] readonly float writingSpeed = 0.01f;
+    [SerializeField, Range(0.005f, 0.05f)] float writingSpeed = 0.01f;
 
     // List to store game events
     readonly List<string> events = new();
