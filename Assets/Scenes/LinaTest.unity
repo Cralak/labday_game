@@ -11814,7 +11814,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1255063562928098, guid: b0c9e37732491f14ebf148fca8134993, type: 3}
       propertyPath: m_Name
-      value: LittleBox2
+      value: LittleBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361079644646988, guid: b0c9e37732491f14ebf148fca8134993, type: 3}
+      propertyPath: m_Name
+      value: Little box
       objectReference: {fileID: 0}
     - target: {fileID: 4210200150808192, guid: b0c9e37732491f14ebf148fca8134993, type: 3}
       propertyPath: m_LocalScale.x
@@ -19844,7 +19848,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1180257272771708, guid: 7c21bc16125c0394f816b22450955d50, type: 3}
       propertyPath: m_Name
-      value: Hammer2
+      value: Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 4454935609144506, guid: 7c21bc16125c0394f816b22450955d50, type: 3}
       propertyPath: m_LocalScale.x
