@@ -12,7 +12,7 @@ public class Jumpscare : MonoBehaviour
     [SerializeField] VideoPlayer videoPlayer;
     Canvas UI;
     AudioSource audioSource;
-    AudioSource audioSource2;
+    //AudioSource audioSource2;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class Jumpscare : MonoBehaviour
         canvas.enabled = false;
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         audioSource = GetComponent<AudioSource>();
-        audioSource2 = gameObject.GetComponents<AudioSource>()[1];
+        //audioSource2 = gameObject.GetComponents<AudioSource>()[1];
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class Jumpscare : MonoBehaviour
     {
         audioSource.Play();
         yield return new WaitForSeconds(0.50f);
-        audioSource2.Stop();
+        //audioSource2.Stop();
 
         UIState.isBusy = true;
         ChangePlayerState.Disable();
