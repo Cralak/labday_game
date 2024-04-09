@@ -61,7 +61,7 @@ public class HospitalEnter : MonoBehaviour
         {
             inventoryScript.RemoveInventory(key);
             CreateIndoorBGM();
-            StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 0.0f, 0f), "TestIndoor"));
+            StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 0.0f, 0f), "Indoor"));
             if (!diary.CheckEvent("indoor")) diary.AddEvent("indoor");
         }
         else if (!diary.CheckEvent("doorLock")) diary.AddEvent("doorLock");

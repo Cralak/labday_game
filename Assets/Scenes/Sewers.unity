@@ -2283,7 +2283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 75538cafbcbbe414bb39faafe68cd9e0, type: 3}
       propertyPath: m_Name
-      value: pixelle
+      value: Pixelle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5653,7 +5653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1302002328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8401,7 +8401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1835546031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9416,7 +9416,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 777553310}
   - {fileID: 360764040}
-  - {fileID: 298389893}
   - {fileID: 1835546036}
-  - {fileID: 1302002331}
+  - {fileID: 298389893}
   - {fileID: 570127433}
+  - {fileID: 1302002331}

@@ -5577,7 +5577,7 @@ GameObject:
   - component: {fileID: 524285658}
   - component: {fileID: 524285657}
   m_Layer: 0
-  m_Name: DayON_OFF
+  m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23843,5 +23843,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 524285658}
   - {fileID: 2026447694}
-  - {fileID: 1156576439}
   - {fileID: 1988075552}
+  - {fileID: 1156576439}
