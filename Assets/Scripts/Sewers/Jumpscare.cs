@@ -4,12 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using DG.Tweening;
 
 
 public class Jumpscare : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
     [SerializeField] VideoPlayer videoPlayer;
+    [SerializeField] GameObject playerCam;
+    [SerializeField] GameObject player;
+    [SerializeField] AudioClip BGMClip;
     Canvas UI;
     AudioSource audioSource;
     //AudioSource audioSource2;
@@ -37,14 +41,18 @@ public class Jumpscare : MonoBehaviour
 
     IEnumerator Wait()
     {
+        UIState.isBusy = true;
+        ChangePlayerState.Disable();
+        Cursor.lockState = CursorLockMode.Locked;
+        UI.enabled = false;
+
+        playerCam.transform.DOLookAt(transform.position + Vector3.up, 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+
         audioSource.Play();
         yield return new WaitForSeconds(0.50f);
         //audioSource2.Stop();
-
-        UIState.isBusy = true;
-        ChangePlayerState.Disable();
-        Cursor.lockState = CursorLockMode.None;
-        UI.enabled = false;
 
         for (int i = 0; i <= 3; i++)
         {   
@@ -66,6 +74,17 @@ public class Jumpscare : MonoBehaviour
         ChangePlayerState.Enable();
         Cursor.lockState = CursorLockMode.Locked;
         UI.enabled = true;
+
+        Destroy(GameObject.Find("BGM"));
+        StartCoroutine(Teleport.GoTo(player, new Vector3(19.0f, 0.0f, 7f), "Indoor"));
+
+        GameObject music = new("BGM");
+        AudioSource BGMSource = music.AddComponent<AudioSource>();
+        BGMSource.clip = BGMClip;
+        BGMSource.loop = true;
+        BGMSource.Play();
+        music.AddComponent<SetSFXVolume>();
+        DontDestroyOnLoad(music);
 
         print("Video Terminée");
     }

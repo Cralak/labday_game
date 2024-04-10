@@ -47,7 +47,7 @@ public class Diary : MonoBehaviour
         {"TV", "AH THAT SOUND, so noisy. I'll likely have an earache."},
         {"basementDoor", "Finally reached the basement. What can be found here?"},
         {"sewers", "Wah, it's so dark in here. Thankfully I've got that flashlight."},
-        {"InfirmaryKey", "Test"}};
+        {"InfirmaryKey", "It's definitely the key to the infirmary that I saw up there, but I don't want to go back. Just thinking about it scares me, but I don't really have a choice."}};
 
     Canvas canvas;
     AudioSource sound;
