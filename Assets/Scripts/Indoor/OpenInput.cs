@@ -62,7 +62,6 @@ public class OpenInput : MonoBehaviour
             Destroy(nurseryWindowRight);
             isResolved = true;
             text.enabled = false;
-            diary.AddEvent("officeDoor");
             Exit();
         }
     }
