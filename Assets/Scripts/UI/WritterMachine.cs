@@ -26,13 +26,13 @@ public class WriterMachine : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter()
     {
         // Start the coroutine when triggered
         StartCoroutine(coroutine);
     }
 
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit()
     {
         // Clear the text when exiting the trigger
         uiText.text = null;

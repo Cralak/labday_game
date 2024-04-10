@@ -308,13 +308,13 @@ public class Wordle : MonoBehaviour
     }
 
     // Triggered when another collider enters the trigger zone
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter()
     {
         isTouching = true;
     }
 
     // Triggered when another collider exits the trigger zone
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit()
     {
         isTouching = false;
     }

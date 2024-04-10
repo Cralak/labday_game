@@ -21,12 +21,12 @@ public class SewersEnter : MonoBehaviour
         if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact")) Enter();
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter()
     {
         isColliding = true;
     }
 
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit()
     {
         isColliding = false;
     }

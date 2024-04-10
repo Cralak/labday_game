@@ -10,8 +10,9 @@ public class LadyDisappeared : MonoBehaviour
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
     }
     
-    void OnBecameVisible()
+    void OnTriggerEnter()
     {
+        print("beute");
         if(!diary.CheckEvent("ladyDisappeared") && diary.CheckEvent("FirstFloor")) diary.AddEvent("ladyDisappeared");
     }
 }
