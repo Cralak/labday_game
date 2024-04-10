@@ -41,7 +41,7 @@ public class FirstFloorExit : MonoBehaviour
 
     void Exit()
     {
-        player.transform.rotation = Quaternion.Euler(new Vector3(0,160,0));
+        player.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 160.0f, 0.0f));
         StartCoroutine(Teleport.GoTo(player, new Vector3(-24f, 4.1f, 1f), "Indoor"));
 
         if (!diary.CheckEvent("firstFloorExit")) diary.AddEvent("firstFloorExit");
