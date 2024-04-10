@@ -10,7 +10,7 @@ public class InfirmaryDoorDisappeared : MonoBehaviour
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
     }
     
-    void OnBecameVisible()
+    void OnTriggerEnter()
     {
         if(!diary.CheckEvent("infirmaryDoorDisappeared") && diary.CheckEvent("InfirmaryKey")) diary.AddEvent("infirmaryDoorDisappeared");
     }

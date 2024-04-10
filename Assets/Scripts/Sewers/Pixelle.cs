@@ -23,7 +23,7 @@ public class Pixelle : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter()
     {
         hasCollided = true;
     }

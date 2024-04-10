@@ -30,7 +30,7 @@ public class WrongWay : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter()
     {
         isTouching = true;
     }
