@@ -27,6 +27,7 @@ public class Chess : MonoBehaviour
     Diary diary;
     Canvas UI;
     TMP_Text text;
+    AudioSource puzzleMusic;
     Light boardLight;
 
     bool isTouching;
@@ -49,6 +50,7 @@ public class Chess : MonoBehaviour
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         text = GetComponentInChildren<TMP_Text>();
+        puzzleMusic = GetComponent<AudioSource>();
         boardLight = board.transform.parent.GetComponentInChildren<Light>();
         isTouching = false;
         isPlaying = false;
@@ -91,20 +93,21 @@ public class Chess : MonoBehaviour
     // Coroutine to exit chess puzzle mode
     IEnumerator Unplay()
     {
+        isSwitching = true;
         boardLight.enabled = false;
         isPlaying = false;
+        puzzleMusic.Stop();
         playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2.0f);
         playerCamera.transform.DORotate(initialRotation, 2.0f);
-        isSwitching = true;
 
         yield return new WaitForSeconds(2.0f);
 
-        isSwitching = false;
         UIState.isBusy = false;
         UI.enabled = true;
         ChangePlayerState.Enable();
         flashlight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
+        isSwitching = false;
 
         if (diary.CheckEvent("chess")) Destroy(gameObject);
     }
@@ -126,6 +129,7 @@ public class Chess : MonoBehaviour
         boardLight.enabled = true;
         isPlaying = true;
         Cursor.lockState = CursorLockMode.None;
+        puzzleMusic.Play();
         isSwitching = false;
     }
 
@@ -160,7 +164,7 @@ public class Chess : MonoBehaviour
                         pieceWhite1.transform.DOMove(new Vector3(destinationSquare.transform.position.x, pieceWhite1.transform.position.y, destinationSquare.transform.position.z), 2.0f);
 
                         yield return new WaitForSeconds(2.0f);
-                        
+
                         destinationSquare = GameObject.Find("56");
                         pieceBlack1.transform.DOMove(new Vector3(destinationSquare.transform.position.x, pieceBlack1.transform.position.y, destinationSquare.transform.position.z), 2.0f);
 
