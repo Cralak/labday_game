@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using UnityEngine.Video;
 using DG.Tweening;
 
@@ -14,6 +11,7 @@ public class Jumpscare : MonoBehaviour
     [SerializeField] GameObject playerCam;
     [SerializeField] GameObject player;
     [SerializeField] AudioClip BGMClip;
+
     Canvas UI;
     AudioSource audioSource;
     //AudioSource audioSource2;
@@ -25,12 +23,6 @@ public class Jumpscare : MonoBehaviour
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         audioSource = GetComponent<AudioSource>();
         //audioSource2 = gameObject.GetComponents<AudioSource>()[1];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void OnTriggerEnter()
@@ -76,16 +68,17 @@ public class Jumpscare : MonoBehaviour
         UI.enabled = true;
 
         Destroy(GameObject.Find("BGM"));
-        StartCoroutine(Teleport.GoTo(player, new Vector3(19.0f, 0.0f, 7f), "Indoor"));
 
         GameObject music = new("BGM");
+        music.AddComponent<SetSFXVolume>();
+
         AudioSource BGMSource = music.AddComponent<AudioSource>();
         BGMSource.clip = BGMClip;
         BGMSource.loop = true;
         BGMSource.Play();
-        music.AddComponent<SetSFXVolume>();
         DontDestroyOnLoad(music);
 
-        print("Video Terminée");
+        DOTween.KillAll();
+        StartCoroutine(Teleport.GoTo(player, new Vector3(19.0f, 0.0f, 7f), "Indoor"));
     }
 }
