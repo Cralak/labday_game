@@ -12,6 +12,9 @@ public class DestroyBarricade : MonoBehaviour
     void Start()
     {
         diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
+
+        if (diary.CheckEvent("barricade")) Destroy(gameObject);
+
         inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
         isTouching = false;
     }
@@ -22,8 +25,8 @@ public class DestroyBarricade : MonoBehaviour
         // Check if the player is touching the trigger area, and presses the "e" key
         if (inventoryScript.CheckInventory(crowbar) && ToggleActions.IsPressed("interact") && isTouching && !UIState.isBusy)
         {
-            Destroy(gameObject);
             diary.AddEvent("barricade");
+            Destroy(gameObject);
         }
     }
 
