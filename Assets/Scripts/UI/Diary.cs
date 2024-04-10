@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Diary : MonoBehaviour
@@ -43,7 +41,7 @@ public class Diary : MonoBehaviour
         {"findCrowbar", "Can't take off the planks, I need to find a tool to take them off."},
         {"firstFloorDoor", "Looks like the code worked! Let's check what's in there!"},
         {"firstFloor", "Oh, what a scary corridor, I hope no one is here..."},
-        {"firstFloorExit", "I think I've just seen something... Maybe should I go find the lady again."},
+        {"firstFloorExit", "I have the feeling that I saw something... I'm not reassured with everything that's happening here. I should go back to keep an eye on the lady from earlier, she worries me."},
         {"ladyDisappeared", "Wait... Where has she gone? I'm shitting myself."},
         {"InfirmaryKey", "It's definitely the key to the infirmary that I saw up there, but I don't want to go back. Just thinking about it scares me, but I don't really have a choice."},
         {"infirmaryDoorDisappeared", "The door is opened? How? Am I becoming mentally ill?"},

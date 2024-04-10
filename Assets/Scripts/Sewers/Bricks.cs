@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class SewersPuzzleRock : MonoBehaviour
+public class Bricks : MonoBehaviour
 {
-    GameObject[] LBricks = new GameObject[36]; 
+    readonly GameObject[] LBricks = new GameObject[36]; 
     int n = 0;
 
     bool isTouching = false;
 
-    GameObject Bricks;
+    GameObject bricks;
     
     void Start()
     {
-        Bricks = GameObject.Find("Bricks");
+        bricks = GameObject.Find("Bricks");
 
         for (int i = 1; i <= 36; i++)
         {
@@ -37,7 +37,7 @@ public class SewersPuzzleRock : MonoBehaviour
         }
         else
         {
-            Bricks.SetActive(false);
+            bricks.SetActive(false);
         }
     }
 
