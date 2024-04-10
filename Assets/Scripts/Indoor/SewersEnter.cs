@@ -37,7 +37,7 @@ public class SewersEnter : MonoBehaviour
     void Enter()
     {
         Destroy(GameObject.Find("BGM"));
-        StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 1.0f, 0.0f), "Sewers"));
+        StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 0f, 0.0f), "Sewers"));
         CreateSewersBGM();
         if (!diary.CheckEvent("sewers")) diary.AddEvent("sewers");
     }
