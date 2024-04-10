@@ -30,7 +30,7 @@ public class WhisperedCode : MonoBehaviour
         code = UnityEngine.Random.Range(0, 99999).ToString();
         code = new string('0', 5 - code.Length) + code;
         KeyEvents.chessCode = code;
-        diary.SetEventText("chess", "Why did I have to play chess in this place with that scary old mother? And what is it that she whispered? " + code + ", I wonder what it could be");
+        diary.SetEventText("chess", "Why did I have to play chess in this place with that scary old mother? And what is it that she whispered? " + code + ", I wonder what it could be.");
     }
 
     // Update is called once per frame

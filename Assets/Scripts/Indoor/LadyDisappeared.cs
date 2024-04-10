@@ -12,7 +12,6 @@ public class LadyDisappeared : MonoBehaviour
     
     void OnTriggerEnter()
     {
-        print("beute");
-        if(!diary.CheckEvent("ladyDisappeared") && diary.CheckEvent("FirstFloor")) diary.AddEvent("ladyDisappeared");
+        if(!diary.CheckEvent("ladyDisappeared") && diary.CheckEvent("firstFloor")) diary.AddEvent("ladyDisappeared");
     }
 }
