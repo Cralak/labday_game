@@ -20,14 +20,16 @@ public class Wordle : MonoBehaviour
 
     public bool isPlaying = false;
 
-    bool isTouching = false;
-    bool isSwitching = false;
     GameObject player;
     GameObject playerCamera;
     GameObject flashlight;
     Vector3 initialRotation;
     Canvas UI;
     Diary diary;
+    AudioSource puzzleMusic;
+
+    bool isTouching = false;
+    bool isSwitching = false;
     string mysteryWord;
     string guess = "";
     int attempts = 0;
@@ -58,6 +60,7 @@ public class Wordle : MonoBehaviour
             player = playerCamera.transform.parent.gameObject;
             UI = GameObject.Find("UI").GetComponent<Canvas>();
             diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
+            puzzleMusic = GetComponent<AudioSource>();
 
             greenGuess = new Color(0.0f, 0.79f, 0.0f);
             yellowGuess = new Color(1.0f, 0.79f, 0.0f);
@@ -95,6 +98,7 @@ public class Wordle : MonoBehaviour
         isPlaying = true;
         Cursor.lockState = CursorLockMode.None;
         grid.SetActive(true);
+        puzzleMusic.Play();
         isSwitching = false;
     }
 
@@ -106,6 +110,7 @@ public class Wordle : MonoBehaviour
         isPlaying = false;
         grid.SetActive(false);
         rules.SetActive(false);
+        puzzleMusic.Stop();
         playerCamera.transform.DOMove(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), 2);
         playerCamera.transform.DORotate(initialRotation, 2);
 
