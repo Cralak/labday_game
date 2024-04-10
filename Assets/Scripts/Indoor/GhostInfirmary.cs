@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GhostInfirmary : MonoBehaviour
 {
+    [SerializeField] GameObject ghost;
+
     bool isTouching = false;
     int nb = 0;
-    [SerializeField] GameObject ghost;
 
     void Start()
     {
@@ -24,16 +25,15 @@ public class GhostInfirmary : MonoBehaviour
     IEnumerator Pop()
     {
         ghost.SetActive(true);
-        print("ghost ON");
+
         yield return new WaitForSeconds(1f);
+
         ghost.SetActive(false);
-        print("ghost OFF");
-        nb = nb + 1;
+        nb++;
     }
 
     void OnTriggerEnter()
     {
-        print("Touch");
         isTouching = true;
     }
 }
