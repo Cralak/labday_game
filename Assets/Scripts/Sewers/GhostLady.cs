@@ -25,15 +25,15 @@ public class GhostLady : MonoBehaviour
 
     IEnumerator GoToStart()
     {
-        yield return new WaitForSeconds(5.0f);
+        // yield return new WaitForSeconds(5.0f);
 
-        transform.DORotate(new Vector3(0.0f, 180.0f, 0.0f), 1.0f);
+        // transform.DORotate(new Vector3(0.0f, 180.0f, 0.0f), 1.0f);
 
-        yield return new WaitForSeconds(1.0f);
+        // yield return new WaitForSeconds(1.0f);
 
-        transform.DOMoveZ(-10.0f, 6.0f);
+        transform.DOMoveX(0.0f, 16.0f).SetEase(Ease.Linear);
 
-        yield return new WaitForSeconds(9.0f);
+        yield return new WaitForSeconds(16.0f);
 
         isFollowing = true;
     }

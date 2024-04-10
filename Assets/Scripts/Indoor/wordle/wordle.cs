@@ -68,7 +68,7 @@ public class Wordle : MonoBehaviour
             setLettersRed = SetLettersRed();
 
             mysteryWord = RandomWord();
-            diary.SetEventText("wordle", mysteryWord + "... Why is a word that terrifying the answer to this puzzle?");
+            diary.SetEventText("wordle", "What a scary word! " + mysteryWord + "... What can I do with that?");
         }
     }
 
@@ -272,7 +272,7 @@ public class Wordle : MonoBehaviour
 
         attempts = 0;
         mysteryWord = RandomWord();
-        diary.SetEventText("wordle", mysteryWord + "... Why is a word that terrifying the answer to this puzzle?");
+        diary.SetEventText("wordle", "What a scary word! " + mysteryWord + "... What can I do with that?");
     }
 
     void GameLoop()

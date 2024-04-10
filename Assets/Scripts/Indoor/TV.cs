@@ -11,7 +11,6 @@ public class TV : MonoBehaviour
 
     AudioSource source;
     GameObject player;
-    Diary diary;
     Light screenLight;
 
     // Start is called before the first frame update
@@ -19,7 +18,6 @@ public class TV : MonoBehaviour
     {
         source = gameObject.AddComponent<AudioSource>();
         player = GameObject.Find("Player");
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         screenLight = GetComponentInChildren<Light>();
 
         StartCoroutine(LightGlitch(interval));
@@ -32,9 +30,6 @@ public class TV : MonoBehaviour
         {
             source.clip = TVGlitch;
             if (!source.isPlaying) source.Play();
-
-            if (!diary.CheckEvent("TV")) diary.AddEvent("TV");
-
         }
         else
         {
