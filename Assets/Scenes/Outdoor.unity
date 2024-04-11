@@ -3716,19 +3716,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 596629841}
-  mouseSmoothTime: 0
-  moveSmoothTime: 0
-  bobbingX: 0
-  bobbingY: 0
+  mouseSmoothTime: 0.1
+  moveSmoothTime: 0.1
+  bobbingX: 0.005
+  bobbingY: 0.005
   frequency: 10
   gravity: -30
   groundCheck: {fileID: 1671980114}
   ground:
     serializedVersion: 2
     m_Bits: 1024
-  jumpBlock:
-    serializedVersion: 2
-    m_Bits: 2048
+  speed: 2
 --- !u!82 &270555916
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6655,7 +6653,7 @@ GameObject:
   - component: {fileID: 533107261}
   - component: {fileID: 533107260}
   - component: {fileID: 533107259}
-  m_Layer: 4
+  m_Layer: 10
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
