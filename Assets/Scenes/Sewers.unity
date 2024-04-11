@@ -7173,7 +7173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1302002328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10454,7 +10454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1835546031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10478,9 +10478,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 1024
-  jumpBlock:
-    serializedVersion: 2
-    m_Bits: 0
+  speed: 6
 --- !u!82 &1835546032
 AudioSource:
   m_ObjectHideFlags: 0
