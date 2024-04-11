@@ -6,7 +6,9 @@ public class Barricade : MonoBehaviour
 
     Diary diary;
     Inventory inventoryScript;
-    bool isTouching; // Flag to check if the player is touching the trigger area
+    AudioSource sound;
+    bool isTouching = false; // Flag to check if the player is touching the trigger area
+    bool isDestroyed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +18,7 @@ public class Barricade : MonoBehaviour
         if (KeyEvents.barricade) Destroy(gameObject);
 
         inventoryScript = GameObject.Find("Inventory").GetComponent<Inventory>();
-        isTouching = false;
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,13 +30,17 @@ public class Barricade : MonoBehaviour
             if (inventoryScript.CheckInventory(crowbar))
             {
                 KeyEvents.barricade = true;
-                Destroy(gameObject);
+                GetComponent<AudioSource>().Play();
+                isDestroyed = true;
+                transform.localScale = Vector3.zero;
             }
             else
             {
                 if (!diary.CheckEvent("findCrowbar")) diary.AddEvent("findCrowbar");
             }
         }
+
+        if (isDestroyed && !sound.isPlaying) Destroy(gameObject);
     }
 
     // Called when another collider enters the trigger area
