@@ -35,7 +35,7 @@ public class BasementSounds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        source.volume = PlayerPrefs.GetFloat("SFX") * (10.0f - Vector3.Distance(player.transform.position, transform.position)) / 10.0f;
+        source.volume = PlayerPrefs.GetFloat("SFX") * (20.0f - Vector3.Distance(player.transform.position, transform.position)) / 20.0f;
     }
 
     IEnumerator Noises()
