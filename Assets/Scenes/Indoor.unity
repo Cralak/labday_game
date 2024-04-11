@@ -1689,7 +1689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &240059900
 Light:
   m_ObjectHideFlags: 0
@@ -10600,7 +10600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7aba86b7eea68409c1894ba992082a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture2D: {fileID: 0}
+  texture2D: {fileID: 2800000, guid: 718dd52462f03704bae2034a9cf71fe4, type: 3}
 --- !u!114 &1029059427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13044,9 +13044,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 1024
-  jumpBlock:
-    serializedVersion: 2
-    m_Bits: 0
+  speed: 6
 --- !u!82 &1359166865
 AudioSource:
   m_ObjectHideFlags: 0
