@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Barricade : MonoBehaviour
 {
-    [SerializeField] GameObject crowbar; // Reference to the key GameObject
+    [SerializeField] GameObject axe; // Reference to the key GameObject
 
     Diary diary;
     Inventory inventoryScript;
@@ -27,7 +27,7 @@ public class Barricade : MonoBehaviour
         // Check if the player is touching the trigger area, and presses the "e" key
         if (ToggleActions.IsPressed("interact") && isTouching && !UIState.isBusy)
         {
-            if (inventoryScript.CheckInventory(crowbar))
+            if (inventoryScript.CheckInventory(axe))
             {
                 KeyEvents.barricade = true;
                 GetComponent<AudioSource>().Play();
