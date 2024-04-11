@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GhostInfirmary : MonoBehaviour
+public class GhostPop : MonoBehaviour
 {
     [SerializeField] GameObject ghost;
 
@@ -25,7 +25,7 @@ public class GhostInfirmary : MonoBehaviour
     {
         ghost.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         ghost.SetActive(false);
         nb++;
