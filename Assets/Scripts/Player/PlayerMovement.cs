@@ -22,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
     // Ground check parameters
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
-    [SerializeField] LayerMask jumpBlock;
+
+    // Movement speed
+    public float speed = 6.0f;
 
     // Character Controller component
     CharacterController controller;
@@ -43,9 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
     // Sensitivity for mouse input
     float sensitivity;
-
-    // Movement speed
-    float speed = 6.0f;
 
     // Jump height
     readonly float jumpHeight = 6.0f;
@@ -130,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         // Update head bobbing motion and play/pause footsteps sound
-        UpdateHeadBobbing(velocity);
+        UpdateHeadBobbing();
 
         // Perform crouching logic
         PerformCrouch();
@@ -148,10 +147,9 @@ public class PlayerMovement : MonoBehaviour
     {
         // Perform jumping logic
         if (isGrounded && ToggleActions.IsHeld("jump")) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
-        if (Physics.CheckSphere(groundCheck.position, 0.2f, jumpBlock)) velocityY = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
     }
 
-    void UpdateHeadBobbing(Vector3 velocity)
+    void UpdateHeadBobbing()
     {
         // Update head bobbing motion and play/pause footsteps sound
         if (Vector2.Distance(new Vector2(controller.velocity.x, controller.velocity.z), Vector2.zero) > 0.3f && isGrounded)
