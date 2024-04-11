@@ -10,13 +10,11 @@ public class Lightning : MonoBehaviour
 
     readonly List<AudioSource> lightnings = new(); // List to store AudioSource components for lightning sounds
 
-    Diary diary;
     Light lightningLight;
 
     // Start is called before the first frame update
     void Start()
     {
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         lightningLight = GetComponent<Light>();
 
         // Create five AudioSource components for different lightning sounds
@@ -49,7 +47,7 @@ public class Lightning : MonoBehaviour
             // Start the lightning flash
             lightningLight.intensity = 3.0f;
             lightningLight.enabled = true;
-            lightnings[3].Play();
+            lightnings[0].Play();
 
             yield return new WaitForSeconds(0.1f);
 
@@ -57,7 +55,7 @@ public class Lightning : MonoBehaviour
             lightningLight.enabled = false;
 
             // Iterate through the remaining lightning flashes
-            for (int i = 0; i < 3; i++)
+            for (int i = 1; i < 4; i++)
             {
                 yield return new WaitForSeconds(lightningTime);
 
