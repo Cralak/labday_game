@@ -37,7 +37,7 @@ public class Diary : MonoBehaviour
         {"doorLock", "I don't have the key, i need to find it."},
         {"RustyKey", "Berk, why was that key in that body? So disgusting!"},
         {"indoor", "Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"},
-        {"Crowbar", "Nice, a crowbar! I feel like I could destroy everything now"},
+        {"Axe", "Nice, an Axe! I feel like I could destroy everything now"},
         {"findCrowbar", "Can't take off the planks, I need to find a tool to take them off."},
         {"firstFloorDoor", "Looks like the code worked! Let's check what's in there!"},
         {"firstFloor", "Oh, what a scary corridor, I hope no one is here..."},
