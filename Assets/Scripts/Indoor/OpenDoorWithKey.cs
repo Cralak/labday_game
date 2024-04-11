@@ -44,13 +44,13 @@ public class OpenDoorWithKey : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter()
     {
         // Set the colliding flag when the player enters the trigger zone
         isColliding = true;
     }
 
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit()
     {
         // Reset the colliding flag when the player exits the trigger zone
         isColliding = false;

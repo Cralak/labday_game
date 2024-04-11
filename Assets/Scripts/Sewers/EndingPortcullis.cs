@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SewersPortal : MonoBehaviour
+public class EndingPortcullis : MonoBehaviour
 {
     bool first = false;
     bool second = false;

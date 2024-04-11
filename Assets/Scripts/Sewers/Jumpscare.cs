@@ -1,15 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using UnityEngine.Video;
+using DG.Tweening;
 
 
 public class Jumpscare : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
     [SerializeField] VideoPlayer videoPlayer;
+    [SerializeField] GameObject playerCam;
+    [SerializeField] GameObject player;
+    [SerializeField] AudioClip BGMClip;
+
     Canvas UI;
     AudioSource audioSource;
     //AudioSource audioSource2;
@@ -23,12 +25,6 @@ public class Jumpscare : MonoBehaviour
         //audioSource2 = gameObject.GetComponents<AudioSource>()[1];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter()
     {
         videoPlayer.time = 0;
@@ -37,14 +33,18 @@ public class Jumpscare : MonoBehaviour
 
     IEnumerator Wait()
     {
+        UIState.isBusy = true;
+        ChangePlayerState.Disable();
+        Cursor.lockState = CursorLockMode.Locked;
+        UI.enabled = false;
+
+        playerCam.transform.DOLookAt(transform.position + Vector3.up, 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+
         audioSource.Play();
         yield return new WaitForSeconds(0.50f);
         //audioSource2.Stop();
-
-        UIState.isBusy = true;
-        ChangePlayerState.Disable();
-        Cursor.lockState = CursorLockMode.None;
-        UI.enabled = false;
 
         for (int i = 0; i <= 3; i++)
         {   
@@ -67,6 +67,18 @@ public class Jumpscare : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         UI.enabled = true;
 
-        print("Video Terminée");
+        Destroy(GameObject.Find("BGM"));
+
+        GameObject music = new("BGM");
+        music.AddComponent<SetSFXVolume>();
+
+        AudioSource BGMSource = music.AddComponent<AudioSource>();
+        BGMSource.clip = BGMClip;
+        BGMSource.loop = true;
+        BGMSource.Play();
+        DontDestroyOnLoad(music);
+
+        DOTween.KillAll();
+        StartCoroutine(Teleport.GoTo(player, new Vector3(19.0f, 0.0f, 7f), "Indoor"));
     }
 }

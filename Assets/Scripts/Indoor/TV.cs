@@ -11,15 +11,13 @@ public class TV : MonoBehaviour
 
     AudioSource source;
     GameObject player;
-    Diary diary;
     Light screenLight;
 
     // Start is called before the first frame update
     void Start()
     {
+        source = gameObject.AddComponent<AudioSource>();
         player = GameObject.Find("Player");
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
-        source = GetComponent<AudioSource>();
         screenLight = GetComponentInChildren<Light>();
 
         StartCoroutine(LightGlitch(interval));
@@ -28,13 +26,10 @@ public class TV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < 5.0f)
+        if (Vector3.Distance(player.transform.position, transform.position) < 2.0f)
         {
             source.clip = TVGlitch;
             if (!source.isPlaying) source.Play();
-
-            if (!diary.CheckEvent("TV")) diary.AddEvent("TV");
-
         }
         else
         {

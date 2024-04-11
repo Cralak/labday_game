@@ -28,13 +28,13 @@ public class TextDisplay : MonoBehaviour
         transform.LookAt(player);
     }
 
-    void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter()
     {
         // Toggle the visibility of the text canvas when triggered
         text.enabled = !text.enabled;
     }
 
-    void OnTriggerExit(Collider collision)
+    void OnTriggerExit()
     {
         // Toggle the visibility of the text canvas when exiting the trigger
         text.enabled = !text.enabled;

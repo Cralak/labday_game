@@ -34,7 +34,7 @@ public class ChangeEmission : MonoBehaviour
         {
             // Définit les couleurs de départ et de fin en fonction de la position du joueur
             Color startColor = Color.black;
-            float intensity = 1.0f - Vector3.Distance(player.position, transform.position) / 5.0f;
+            float intensity = Mathf.Max(1.0f - Vector3.Distance(player.position, transform.position) / 10.0f, 0.0f);
             Color endColor = new(intensity, intensity , 0.0f);
 
             // Noir à Jaune

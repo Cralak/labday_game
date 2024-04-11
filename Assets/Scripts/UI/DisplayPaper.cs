@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DisplayPaper : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class DisplayPaper : MonoBehaviour
     GameObject flyingPage;
     Canvas canvas;
     Canvas UI; // Reference to the main UI canvas
+    Diary diary;
     TMP_Text textField;
     bool isColliding;
 
@@ -16,6 +16,7 @@ public class DisplayPaper : MonoBehaviour
     void Start()
     {
         UI = GameObject.Find("UI").GetComponent<Canvas>();
+        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         flyingPage = GameObject.Find("FlyingPage");
         canvas = flyingPage.GetComponent<Canvas>();
         textField = flyingPage.GetComponentInChildren<TMP_Text>();
@@ -38,6 +39,8 @@ public class DisplayPaper : MonoBehaviour
         textField.text = text;
         UI.enabled = false;
         canvas.enabled = true;
+
+        if (!diary.CheckEvent("basementCode") && name == "BasementCodePaper") diary.AddEvent("basementCode"); 
     }
 
     void HidePaper()
@@ -48,13 +51,13 @@ public class DisplayPaper : MonoBehaviour
         canvas.enabled = false;
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter()
     {
         // Set the colliding flag when the player enters the trigger zone
         isColliding = true;
     }
 
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit()
     {
         // Reset the colliding flag when the player exits the trigger zone
         isColliding = false;

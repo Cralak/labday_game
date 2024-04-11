@@ -3,7 +3,6 @@ using UnityEngine;
 public class SewersEnter : MonoBehaviour
 {
     GameObject player;
-    Diary diary;
     bool isColliding;
 
     [SerializeField] AudioClip BGMClip;
@@ -12,7 +11,6 @@ public class SewersEnter : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
 
         isColliding = false;
     }
@@ -23,12 +21,12 @@ public class SewersEnter : MonoBehaviour
         if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact")) Enter();
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter()
     {
         isColliding = true;
     }
 
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit()
     {
         isColliding = false;
     }
@@ -37,9 +35,9 @@ public class SewersEnter : MonoBehaviour
     void Enter()
     {
         Destroy(GameObject.Find("BGM"));
-        StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 1.0f, 0.0f), "Sewers"));
+        StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 0f, 0.0f), "Sewers"));
+        player.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
         CreateSewersBGM();
-        if (!diary.CheckEvent("sewers")) diary.AddEvent("sewers");
     }
 
     void CreateSewersBGM()

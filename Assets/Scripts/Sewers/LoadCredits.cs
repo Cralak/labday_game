@@ -16,12 +16,12 @@ public class LoadCredits : MonoBehaviour
         if (isColliding && !UIState.isBusy && ToggleActions.IsPressed("interact")) StartCoroutine(Teleport.GoTo("Credits"));
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter()
     {
         isColliding = true;
     }
 
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit()
     {
         isColliding = false;
     }

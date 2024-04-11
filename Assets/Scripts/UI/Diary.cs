@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Diary : MonoBehaviour
@@ -35,18 +33,19 @@ public class Diary : MonoBehaviour
 
     // List to match events and their sentences
     readonly Dictionary<string, string> eventsTexts = new() {
-        {"start", "Where did Pixelle go? I last saw her running away to that kind of hospital. Hope she is fine."},
-        {"archEnter", "OH NO! I can't go out... Huh, let's find Pixelle before thinking about that."},
+        {"start", "Where did Pixelle go? What a messy dog... I last saw her running away to that kind of hospital. Hope she is fine."},
         {"doorLock", "I don't have the key, i need to find it."},
-        {"RustyKey", "Berk, why was that key in that body? So disgusting! And how did it get so rusty?"},
+        {"RustyKey", "Berk, why was that key in that body? So disgusting!"},
         {"indoor", "Finally inside... Glad I don't have to touch that key anymore. Where is Pixelle though?"},
-        {"Crowbar", "Nice, a crowbar! I can go to the dinning room now."},
-        {"barricade", "That was tough, who even thought of putting a barricade here?"},
-        {"firstFloorDoor", "I knew, the code was what the ghost said... How did she even know it?"},
+        {"Crowbar", "Nice, a crowbar! I feel like I could destroy everything now"},
+        {"findCrowbar", "Can't take off the planks, I need to find a tool to take them off."},
+        {"firstFloorDoor", "Looks like the code worked! Let's check what's in there!"},
         {"firstFloor", "Oh, what a scary corridor, I hope no one is here..."},
-        {"TV", "AH THAT SOUND, so noisy. I'll likely have an earache."},
-        {"basementDoor", "Finally reached the basement. What can be found here?"},
-        {"sewers", "Wah, it's so dark in here. Thankfully I've got that flashlight."}};
+        {"firstFloorExit", "I have the feeling that I saw something... I'm not reassured with everything that's happening here. I should go back to keep an eye on the lady from earlier, she worries me."},
+        {"ladyDisappeared", "Wait... Where has she gone? I'm shitting myself."},
+        {"InfirmaryKey", "It's definitely the key to the infirmary that I saw up there, but I don't want to go back. Just thinking about it scares me, but I don't really have a choice."},
+        {"infirmaryDoorDisappeared", "The door is opened? How? Am I becoming mentally ill?"},
+        {"basementDoor", "I'm starting to hear weird sounds, it's like someone is near. Let's hurry."}};
 
     Canvas canvas;
     AudioSource sound;
