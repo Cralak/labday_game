@@ -62,6 +62,8 @@ public class LoadIndoor : MonoBehaviour
             inventoryScript.RemoveInventory(key);
             CreateIndoorBGM();
             StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 0.0f, 0f), "Indoor"));
+            player.GetComponent<PlayerMovement>().speed = 3.0f;
+
             if (!diary.CheckEvent("indoor")) diary.AddEvent("indoor");
         }
         else if (!diary.CheckEvent("doorLock")) diary.AddEvent("doorLock");
