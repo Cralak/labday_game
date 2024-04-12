@@ -45,7 +45,7 @@ public class BasementSounds : MonoBehaviour
                 source.clip = sounds[Random.Range(0, 6)];
                 source.Play();
 
-                yield return new WaitForSeconds(20.0f);
+                yield return new WaitForSeconds(15.0f);
             
         }
     }

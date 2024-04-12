@@ -3,14 +3,15 @@ using UnityEngine;
 public class WrongWay : MonoBehaviour
 {
     [SerializeField] GameObject monster;
-    [SerializeField] GameObject player;
 
+    GameObject player;
     bool isTouching = false;
     float initialRotationY;
     float currentY;
 
     void Start()
     {
+        player = GameObject.Find("Player");
         initialRotationY = monster.transform.rotation.eulerAngles.y;
         currentY = monster.transform.position.y;
     }
@@ -19,7 +20,6 @@ public class WrongWay : MonoBehaviour
     {
         if (isTouching)
         {
-            monster.transform.LookAt(player.transform.position);
             monster.transform.rotation = Quaternion.Euler(0, initialRotationY, 0);
 
             if (Vector3.Distance(monster.transform.position, player.transform.position) > 1.5f)

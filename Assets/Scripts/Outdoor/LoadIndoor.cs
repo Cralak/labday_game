@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HospitalEnter : MonoBehaviour
+public class LoadIndoor : MonoBehaviour
 {
     [SerializeField] GameObject key; // Reference to the key GameObject
     [SerializeField] AudioClip BGMClip; // Reference to the Canvas component

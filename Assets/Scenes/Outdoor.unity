@@ -4200,15 +4200,15 @@ MonoBehaviour:
   playerCamera: {fileID: 596629841}
   mouseSmoothTime: 0.1
   moveSmoothTime: 0.1
-  bobbingX: 0.005
-  bobbingY: 0.005
+  bobbingX: 0.003
+  bobbingY: 0.003
   frequency: 10
   gravity: -30
   groundCheck: {fileID: 1671980114}
   ground:
     serializedVersion: 2
     m_Bits: 1024
-  speed: 2
+  speed: 4
 --- !u!82 &270555916
 AudioSource:
   m_ObjectHideFlags: 0

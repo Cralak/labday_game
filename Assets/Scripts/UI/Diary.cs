@@ -43,7 +43,7 @@ public class Diary : MonoBehaviour
         {"firstFloor", "Oh, what a scary corridor, I hope no one is here..."},
         {"firstFloorExit", "I have the feeling that I saw something... I'm not reassured with everything that's happening here. I should go back to keep an eye on the lady from earlier, she worries me."},
         {"ladyDisappeared", "Wait... Where has she gone? I'm shitting myself."},
-        {"InfirmaryKey", "It's definitely the key to the infirmary that I saw up there, but I don't want to go back. Just thinking about it scares me, but I don't really have a choice."},
+        {"InfirmaryKey", "It's definitely the key to the infirmary that I saw up there, but I don't want to go back. But I guess I don't really have a choice."},
         {"infirmaryDoorDisappeared", "The door is opened? How? Am I becoming mentally ill?"},
         {"basementDoor", "I'm starting to hear weird sounds, it's like someone is near. Let's hurry."}};
 
@@ -131,8 +131,6 @@ public class Diary : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
-            events.Remove(eventName);
-            writtenEvents.Add(eventName);
             isBusy = false;
         }
         else if (text2.text == "")
@@ -148,8 +146,6 @@ public class Diary : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
-            events.Remove(eventName);
-            writtenEvents.Add(eventName);
             isBusy = false;
         }
         else
@@ -224,6 +220,8 @@ public class Diary : MonoBehaviour
         {
             if (!isBusy && eventsTexts.Keys.Contains(eventName))
             {
+                events.Remove(eventName);
+                writtenEvents.Add(eventName);
                 StartCoroutine(Write(eventName));
                 isBusy = true;
                 break;

@@ -39,8 +39,6 @@ public class DisplayPaper : MonoBehaviour
         textField.text = text;
         UI.enabled = false;
         canvas.enabled = true;
-
-        if (!diary.CheckEvent("basementCode") && name == "BasementCodePaper") diary.AddEvent("basementCode"); 
     }
 
     void HidePaper()
@@ -49,6 +47,8 @@ public class DisplayPaper : MonoBehaviour
         ChangePlayerState.Enable();
         UI.enabled = true;
         canvas.enabled = false;
+
+        if (!diary.CheckEvent("basementCode") && name == "BasementCodePaper") diary.AddEvent("basementCode"); 
     }
 
     void OnTriggerEnter()

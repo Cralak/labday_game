@@ -68,7 +68,7 @@ public class Wordle : MonoBehaviour
             setLettersRed = SetLettersRed();
 
             mysteryWord = RandomWord();
-            diary.SetEventText("wordle", "What a scary word! " + mysteryWord + "... What can I do with that?");
+            diary.SetEventText("wordle", mysteryWord + "... What can I do with that?");
         }
     }
 
