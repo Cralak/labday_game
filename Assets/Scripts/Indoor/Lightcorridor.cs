@@ -5,16 +5,12 @@ public class Lightcorridor : MonoBehaviour
 {
     [SerializeField] float interval = 0.3f; // Interval between light cycles
 
-    GameObject player;
-    Diary diary;
     Light lightComponent;
     AudioSource lightSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         lightComponent = GetComponent<Light>();
         lightSound = GetComponent<AudioSource>();
         lightSound.Play();

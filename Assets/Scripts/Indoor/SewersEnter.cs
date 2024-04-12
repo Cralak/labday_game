@@ -37,6 +37,7 @@ public class SewersEnter : MonoBehaviour
         Destroy(GameObject.Find("BGM"));
         StartCoroutine(Teleport.GoTo(player, new Vector3(0.0f, 0f, 0.0f), "Sewers"));
         player.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+        player.GetComponent<PlayerMovement>().speed = 5.0f;
         CreateSewersBGM();
     }
 

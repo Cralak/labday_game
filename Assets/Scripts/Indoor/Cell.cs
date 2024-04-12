@@ -5,7 +5,6 @@ public class Cell : MonoBehaviour
     [SerializeField] Vector3 endingPosition; // Position where player gets teleported to
 
     GameObject player; // Reference to the player GameObject
-    Diary diary; // Reference to the Diary script
     bool isTouching; // Flag to check if the player is touching the trigger area
 
     // Start is called before the first frame update
@@ -13,7 +12,6 @@ public class Cell : MonoBehaviour
     {
         // Find and assign references to necessary components and objects
         player = GameObject.Find("Player");
-        diary = GameObject.Find("OpenedDiary").GetComponent<Diary>();
         isTouching = false;
     }
 

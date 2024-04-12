@@ -52,7 +52,7 @@ public class OpenInput : MonoBehaviour
 
     public void Check()
     {
-        answer = inputField.text;
+        answer = inputField.text.ToLower();
         if (answer == KeyEvents.wordleCode)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 130, 0));

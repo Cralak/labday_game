@@ -8,10 +8,10 @@ public class Jumpscare : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
     [SerializeField] VideoPlayer videoPlayer;
-    [SerializeField] GameObject playerCam;
-    [SerializeField] GameObject player;
     [SerializeField] AudioClip BGMClip;
 
+    GameObject player;
+    GameObject playerCam;
     Canvas UI;
     AudioSource audioSource;
     //AudioSource audioSource2;
@@ -19,10 +19,12 @@ public class Jumpscare : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canvas.enabled = false;
+        player = GameObject.Find("Player");
+        playerCam = player.GetComponentInChildren<Camera>().gameObject;
         UI = GameObject.Find("UI").GetComponent<Canvas>();
         audioSource = GetComponent<AudioSource>();
         //audioSource2 = gameObject.GetComponents<AudioSource>()[1];
+        canvas.enabled = false;
     }
 
     void OnTriggerEnter()
@@ -43,11 +45,13 @@ public class Jumpscare : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         audioSource.Play();
+
         yield return new WaitForSeconds(0.50f);
+
         //audioSource2.Stop();
 
         for (int i = 0; i <= 3; i++)
-        {   
+        {
             canvas.enabled = true;
 
             yield return new WaitForSeconds(0.1f);
@@ -79,6 +83,7 @@ public class Jumpscare : MonoBehaviour
         DontDestroyOnLoad(music);
 
         DOTween.KillAll();
+        player.GetComponent<PlayerMovement>().speed = 2.0f;
         StartCoroutine(Teleport.GoTo(player, new Vector3(19.0f, 0.0f, 7f), "Indoor"));
     }
 }
